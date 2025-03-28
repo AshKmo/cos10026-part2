@@ -1,0 +1,3 @@
+- never use styling apart from external styling
+- always add comments to all html and css code
+- always validate code using the online markup and css validation services
