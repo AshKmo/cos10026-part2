@@ -5,3 +5,7 @@ created: 2025-03-28
 last modified: 2025-03-28
 description: Stylesheet for all pages
 */
+
+* {
+    font: arial, sans-serif;
+}
