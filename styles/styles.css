@@ -1,7 +1,11 @@
 /*
 filename: styles.css
-author: Ashley Kollmorgen
-created: 
-last modified: 
-description: Stylesheet for index.html
+author: Ash, Hayden, Tim, Max
+created: 2025-03-28
+last modified: 2025-03-28
+description: Stylesheet for all pages
 */
+
+* {
+    font-family: arial, sans-serif;
+}
