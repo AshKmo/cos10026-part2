@@ -1,0 +1,62 @@
+* {
+    
+}
+
+body {
+    background-color:whitesmoke;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px;
+    background: #747474;
+    overflow: hidden;
+    text-align: center;
+    max-width: 800px;
+}
+
+nav ul li {
+    display: inline;
+    padding: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+#group-info {
+    float: right;
+    max-width: 400px;
+    
+}
+
+#group-info li {
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+#team-contributions {
+    float: left;
+    max-width: 400px;
+    
+}
