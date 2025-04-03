@@ -1,0 +1,41 @@
+fieldset legend {
+	font-weight: bold;
+}
+
+form > fieldset > legend {
+	font-size: 130%;
+}
+
+fieldset:not(:last-child) {
+	margin-bottom: 20px;
+}
+
+form label {
+	user-select: none;
+}
+
+.fancy-button {
+	background-color: #0073e6;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.fancy-button:not(:last-child) {
+	margin-right: 15px;
+}
+
+.fancy-button:hover {
+	background-color: #003B73;
+}
+
+.fancy-button-bad {
+	background-color: #FF0019;
+}
+
+.fancy-button-bad:hover {
+	background-color: #88000C;
+}

@@ -63,14 +63,14 @@
 					<label for="email">Email address: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="email" id="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
+					<input type="text" name="email" id="email" placeholder="asdf@asdf.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
 					</p>
 
 					<p>
 					<label for="phone">Phone number: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="phone" id="phone" pattern="[a-zA-Z0-9 ]{8,12}" required>
+					<input type="text" name="phone" id="phone" placeholder="0000 000 000" pattern="[a-zA-Z0-9 ]{8,12}" required>
 					</p>
 
 					<p>
@@ -102,7 +102,7 @@
 					<label for="postcode">Postcode: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="postcode" id="postcode" maxlength="4" minlength="4" size="4" pattern="[0-9]{4}">
+					<input type="text" name="postcode" id="postcode" maxlength="4" minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}">
 					</p>
 
 					<p>
@@ -162,8 +162,8 @@
 					</p>
 				</fieldset>
 
-				<input type="submit" value="Submit">
-				<input type="reset" value="Clear all fields">
+				<input type="submit" value="Apply" class="fancy-button">
+				<input type="reset" value="Reset" class="fancy-button fancy-button-bad">
 			</form>
 		</main>
 
