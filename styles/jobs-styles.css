@@ -1,3 +1,22 @@
 body{
-    margin: 30px;
+    margin: 20px;
+}
+
+header{
+    background: linear-gradient(90deg, #001aff 0%, #a91cfa 100%);
+}   
+
+nav ul { 
+    list-style-type: none;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+nav ul li{
+    display: inline;
+    border-style: solid;
+    border-color: lightblue;
+    color: black;
+    background-color: white;
+    padding: 5px 2px;
 }
