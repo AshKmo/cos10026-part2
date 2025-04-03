@@ -104,6 +104,16 @@ figcaption {
     color: #555;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: normal;
+    gap: 0;
+}
+
 #group-info {
     float: right;
     max-width: 350px;
@@ -115,14 +125,16 @@ figcaption {
 }
 
 #team-contributions {
-    max-width: 400px;
-
-    padding-right: 100px;
+    order: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
 }
 
 #team-interests {
-    width: 50%;
-    float: left;
+    padding-right: 50px;
+    flex: 1;
 }
 
 #group-photo {
