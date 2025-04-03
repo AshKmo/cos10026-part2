@@ -27,16 +27,141 @@
 	</head>
 
 	<body>
-		<!-- define the page header -->
-		<header>
-		</header>
-
 		<!-- define the site navigation section -->
 		<nav>
 		</nav>
 
+		<!-- define the page header -->
+		<header>
+			<h1>Apply for a position</h1>
+		</header>
+
 		<!-- define the main body content of the page -->
 		<main>
+			<form method="POST" action="https://mercury.swin.edu.au/it000000/formtest.php">
+				<fieldset>
+					<legend>Personal details</legend>
+
+					<p>
+					<label for="first-name">First name: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
+					<input type="text" name="first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required></input>
+					</p>
+
+					<p>
+					<label for="last-name">Last name: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
+					<input type="text" name="last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required></input>
+					</p>
+
+					<p>
+					<label for="email">Email address: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
+					<input type="text" name="email" id="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
+					</p>
+
+					<p>
+					<label for="phone">Phone number: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
+					<input type="text" name="phone" id="phone" pattern="[a-zA-Z0-9 ]{8,12}" required>
+					</p>
+
+					<p>
+					<label for="address">Street address: </label>
+					<input type="text" name="address" size="40" maxlength="40" placeholder="Your street address here" required></input>
+					</p>
+
+					<p>
+					<label for="town">Suburb/town: </label>
+					<input type="text" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required></input>
+					</p>
+
+					<p>
+					<label for="state">State: </label>
+					<select name="state" id="state" required>
+						<option value="">Please select</option>
+						<option value="vic">Victoria</option>
+						<option value="nsw">New South Wales</option>
+						<option value="qld">Queensland</option>
+						<option value="wa">Western Australia</option>
+						<option value="sa">South Australia</option>
+						<option value="tas">Tasmania</option>
+						<option value="act">Australian Capital Territory</option>
+						<option value="nt">Northern Territory</option>
+					</select>
+					</p>
+
+					<p>
+					<label for="postcode">Postcode: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
+					<input type="text" name="postcode" id="postcode" maxlength="4" minlength="4" size="4" pattern="[0-9]{4}">
+					</p>
+
+					<p>
+					<label for="date-of-birth">Date of birth: </label>
+					<input type="date" name="date-of-birth" id="date-of-birth" max="2010-01-01" required>
+					</p>
+
+					<fieldset>
+						<legend>Gender</legend>
+
+						<p>
+						<input type="radio" name="gender" value="male" id="gender_male" required>
+						<label for="gender_male">Male</label>
+						</p>
+
+						<p>
+						<input type="radio" name="gender" value="female" id="gender_female" required>
+						<label for="gender_female">Female</label>
+						</p>
+
+						<p>
+						<input type="radio" name="gender" value="other" id="gender_other" required>
+						<label for="gender_other">Other</label>
+						</p>
+
+						<p>
+						<input type="radio" name="gender" value="unspecified" id="gender_unspecified" required>
+						<label for="gender_unspecified">Prefer not to say</label>
+						</p>
+					</fieldset>
+				</fieldset>
+
+				<fieldset>
+					<legend>Employment details</legend>
+
+					<p>
+					<label for="job-reference-number">Position of interest: </label>
+					<select name="job-reference-number" id="job-reference-number" required>
+						<option value="">Please select</option>
+						<option value="bruh">Bruh (DELETE ME)</option>
+					</select>
+					</p>
+
+					<fieldset>
+						<legend>Required technical skills:</legend>
+
+						<p>
+						<input type="checkbox" name="required-technical-skills[]" id="required-technical-skills_bruh" value="bruh" required>
+						<label for="required-technical-skills_bruh">Bruh (DELETE ME)</label>
+						</p>
+					</fieldset>
+
+					<p>
+					<label for="other-skills">Other skills: </label>
+					<br>
+					<textarea id="other-skills" name="other-skills" rows="20" cols="50" placeholder="Enter any other skills you'd like to share here..."></textarea>
+					</p>
+				</fieldset>
+
+				<input type="submit" value="Submit">
+				<input type="reset" value="Clear all fields">
+			</form>
 		</main>
 
 		<!-- define the page footer -->
