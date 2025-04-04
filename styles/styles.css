@@ -99,6 +99,11 @@ th {
     color: white;
 }
 
+textarea {
+	width: 100%;
+	height: 200px;
+}
+
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 @media only screen and (max-width: 600px) {
 	nav {
@@ -114,13 +119,5 @@ th {
 		width: 100%;
 		padding-left: 10px;
 		padding-right: 10px;
-	}
-
-	textarea {
-		width: 100%;
-	}
-
-	fieldset #address, fieldset #town {
-		width: 200px;
 	}
 }
