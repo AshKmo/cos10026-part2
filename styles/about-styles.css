@@ -1,5 +1,7 @@
 body {
-    background-color:whitesmoke;
+    background-image: linear-gradient(to bottom, #efefef, #dff2f8);
+    background-size: cover;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -31,7 +33,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #afccff;
+    color: #dff2f8;
 }
 
 main {
@@ -43,6 +45,10 @@ main {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     overflow: hidden;
+}
+
+h2 {
+    color: rgb(9, 121, 159);
 }
 
 section {
@@ -68,32 +74,33 @@ dd {
     padding-left: 10px;
 }
 
-table {
+.interests {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-table, th, td {
+.interests, .interests th, .interests td {
     border: 1px solid #ccc;
 }
 
-th, td {
+.interests th, .interests td {
     padding: 10px;
     text-align: left;
 }
 
-th {
+.interests th {
     background: #747474;
     color: white;
+    text-align: center;
 }
 
-td {
+.interests td {
     background-color: #efefef;
 }
 
-td:hover {
-    background-image: linear-gradient(to bottom right, #efefef, #c5ebf5);
+.interests td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #cfe9f0);
 }
 
 figure {
