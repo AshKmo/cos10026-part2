@@ -82,12 +82,12 @@ section {
     margin-left: 2%;
 }
 
-table th {
+#jobs-prerequisites{
     text-align: left;
     width: 40%;
 }
 
-table th ul {
+#jobs-prerequisites div{
     font-weight: normal;
 }
 
