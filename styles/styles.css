@@ -120,8 +120,4 @@ textarea {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
-
-	fieldset #address, fieldset #town {
-		width: 200px;
-	}
 }
