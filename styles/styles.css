@@ -98,3 +98,29 @@ th {
     background: #747474;
     color: white;
 }
+
+/* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
+@media only screen and (max-width: 600px) {
+	nav {
+		width: 90%;
+	}
+
+	nav ul li {
+		padding: 0;
+	}
+
+	main {
+		box-sizing: border-box;
+		width: 100%;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	textarea {
+		width: 100%;
+	}
+
+	fieldset #address, fieldset #town {
+		width: 200px;
+	}
+}
