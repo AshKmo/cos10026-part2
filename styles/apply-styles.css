@@ -1,9 +1,13 @@
+fieldset {
+	border-radius: 10px;
+}
+
 fieldset legend {
 	font-weight: bold;
 }
 
 form > fieldset > legend {
-	font-size: 130%;
+	font-size: 120%;
 }
 
 fieldset:not(:last-child) {
@@ -12,6 +16,20 @@ fieldset:not(:last-child) {
 
 form label {
 	user-select: none;
+}
+
+form * {
+	font-size: 20px;
+}
+
+input[type="text"] {
+	outline: none;
+	border: none;
+	border-bottom: solid black 3px;
+}
+
+input[type="text"]:focus, input[type="text"]:hover {
+	border-bottom: solid #0073e6 3px;
 }
 
 .fancy-button {
@@ -38,4 +56,12 @@ form label {
 
 .fancy-button-bad:hover {
 	background-color: #88000C;
+}
+
+@media only screen and (max-width: 600px) {
+	input[type="text"] {
+		padding-top: 10px;
+		width: 98%;
+		margin-left: 2%;
+	}
 }
