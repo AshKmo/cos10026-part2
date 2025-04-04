@@ -88,6 +88,14 @@ th {
     color: white;
 }
 
+td {
+    background-color: #efefef;
+}
+
+td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #c5ebf5);
+}
+
 figure {
     text-align: right;
     float: right;
@@ -133,7 +141,8 @@ figcaption {
 }
 
 #team-interests {
-    padding-right: 50px;
+    padding-right: 100px;
+    width: 100%;
     flex: 1;
 }
 
