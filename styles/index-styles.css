@@ -1,7 +1,7 @@
-figure {
+/*figure {
     text-align: right;
     margin: 20px 0;
-}
+}*/
 
 figure img {
     max-width: 350px;
@@ -19,14 +19,19 @@ figcaption {
 }
 
 #benefits {
+    border-radius: 15px;
+    background-color: #747474;
     display: flex;
-    justify-content: space-around;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
+}
+
+#benefits figure {
+    display: flex;
+    flex-direction: column;
 }
 
 #benefits figure figcaption {
-    justify-content: center;
+    color: white;
 }
 
 #company-info {
