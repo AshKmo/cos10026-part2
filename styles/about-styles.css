@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to bottom, #efefef, #dff2f8);
+    background-image: linear-gradient(to bottom, #efefef, #e3ebee);
     background-size: cover;
     background-attachment: fixed;
     font-family: Arial, sans-serif;
@@ -132,6 +132,7 @@ figcaption {
 #group-info {
     float: right;
     max-width: 350px;
+    padding-left: 100px;
 }
 
 #group-info li {
@@ -145,6 +146,19 @@ figcaption {
     flex-shrink: 1;
     flex-basis: auto;
     align-self: auto;
+    margin-right: 4em;
+    padding-right: 4em;
+    border-right: 1px solid black;
+}
+
+#company-summary {
+    order: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    max-width: max-content;
+    
 }
 
 #team-interests {
