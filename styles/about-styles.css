@@ -111,6 +111,8 @@ figure {
 
 figure img {
     max-width: 350px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px lightgray;
 }
 
 figcaption {
@@ -153,12 +155,11 @@ figcaption {
 
 #company-summary {
     order: 0;
+    align-self: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
+    flex-basis: 30%;
     max-width: max-content;
-    
 }
 
 #team-interests {
