@@ -74,16 +74,31 @@ figcaption {
     color: #555;
 }
 
-aside{
+aside {
     margin-left: 2%;
 }
 
-section{
+section {
     margin-left: 2%;
 }
 
-table th{
-    text-align: left;
+table {
     
+}
+
+table th {
+    text-align: left;
     width: 40%;
+}
+
+table th ul {
+    font-weight: normal;
+}
+
+#soft-line {
+    opacity: 40%;
+}
+
+#jobs-title {
+
 }
