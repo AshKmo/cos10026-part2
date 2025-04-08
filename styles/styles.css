@@ -75,7 +75,7 @@ main {
     padding-left: 50px;
     background: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
 
@@ -85,6 +85,13 @@ section {
 
 footer {
     text-align: center;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    padding-left: 50px;
+    background: #747474;
+    border-radius: 0 0 5px 5px;
+    color: white;
 }
 
 dl {

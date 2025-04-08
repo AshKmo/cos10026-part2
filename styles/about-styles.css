@@ -55,6 +55,16 @@ nav ul li a:hover {
     color: #00BFFF;
 }
 
+footer {
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    padding-left: 50px;
+    background: #747474;
+    border-radius: 0 0 5px 5px;
+    color: white;
+}
+
 /* Team member contribution section */
 #about_contributions {
     margin-right: 4em;
