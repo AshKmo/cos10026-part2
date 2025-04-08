@@ -20,32 +20,53 @@ body {
     font-size: 16px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 10px;
+nav {
+    display: flex;
+    align-items: center;
     background: #747474;
-    overflow: hidden;
-    text-align: center;
+    padding: 10px;
+    margin: 20px 0 20px 0;
     max-width: 800px;
     border-radius: 0px 10px 10px 0px;
-}
-
-nav ul li {
+    position: relative;
+    height: 20px;
+    overflow: visible;
+  }
+  
+  .nav-logo {
+    position: absolute;
+    top: -28px;
+    left: 10px;
+    height: 100px;
+    z-index: 10; 
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  nav ul li {
     display: inline;
-    padding: 15px;
-}
-
-nav ul li a {
+  }
+  
+  nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
     transition: color 0.3s ease-in-out;
-}
+  }
+  
+  nav ul li a:hover {
+    color: #00BFFF;
+  }
 
-nav ul li a:hover {
-    color: #afccff;
-}
+
 
 main {
     padding: 20px;
@@ -73,7 +94,7 @@ dl {
 
 dt {
     font-weight: bold;
-    color: #0073e6;
+    color: #00BFFF;
 }
 
 dd {
