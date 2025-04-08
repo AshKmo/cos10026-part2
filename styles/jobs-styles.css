@@ -7,7 +7,7 @@ body {
     font-size: 16px;
 }
 
-nav ul {
+/*nav ul {
     list-style: none;
     padding: 10px;
     background: #747474;
@@ -24,7 +24,7 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-}
+}*/
 
 main {
     padding: 2%;

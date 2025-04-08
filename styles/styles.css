@@ -31,40 +31,40 @@ nav {
     position: relative;
     height: 20px;
     overflow: visible;
-  }
+}
   
-  .nav-logo {
+.nav-logo {
     position: absolute;
     top: -28px;
     left: 10px;
     height: 100px;
     z-index: 10; 
-  }
+}
   
-  nav ul {
+nav ul {
     list-style: none;
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-  }
+}
   
-  nav ul li {
+nav ul li {
     display: inline;
-  }
+}
   
-  nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
     transition: color 0.3s ease-in-out;
-  }
+}
   
-  nav ul li a:hover {
+nav ul li a:hover {
     color: #00BFFF;
-  }
+}
 
 
 
