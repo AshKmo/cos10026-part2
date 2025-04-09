@@ -144,24 +144,57 @@
 					<label for="apply-job-reference-number">Position of interest: </label>
 					<select name="job-reference-number" id="apply-job-reference-number" required>
 						<option value="">Please select</option>
-						<option value="bruh">Bruh (DELETE ME)</option>
+						<option value="support">IT Support Technician</option>
+						<option value="analyst">Data Analyst</option>
 					</select>
 					</p>
 
 					<fieldset>
 						<legend>Required technical skills:</legend>
 
-						<p>
-						<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bruh" value="bruh" required>
-						<label for="apply-required-technical-skills_bruh">Bruh (DELETE ME)</label>
-						</p>
+						<div class="apply-checkbox-container">
+							<div id="">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sql" value="sql" required>
+								<label for="apply-required-technical-skills_sql">Understanding of SQL and Python</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_networks" value="networks" required>
+								<label for="apply-required-technical-skills_networks">Understanding of networks</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_excel" value="excel" required>
+								<label for="apply-required-technical-skills_excel">Proficiency in Microsoft Excel</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" required>
+								<label for="apply-required-technical-skills_vistools">Experience with data visualisation tools</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" required>
+								<label for="apply-required-technical-skills_problem_solving">Analytical and problem-solving skills</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" required>
+								<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data Science</label>
+							</div>
+
+							<div>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" required>
+								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
+							</div>
+						</div>
 					</fieldset>
 
-					<p>
-					<label for="apply-other-skills">Other skills: </label>
-					<br>
-					<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
-					</p>
+					<fieldset class="apply-text-fieldset">
+						<legend>Other skills</legend>
+
+						<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
+					</fieldset>
 				</fieldset>
 
 				<input type="submit" value="Apply" class="apply-fancy-button">
