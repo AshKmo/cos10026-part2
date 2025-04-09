@@ -12,7 +12,7 @@ fieldset legend {
 }
 
 form > fieldset > legend {
-	font-size: 120%;
+	font-size: 24px;
 }
 
 fieldset:not(:last-child) {
@@ -23,7 +23,7 @@ form label {
 	user-select: none;
 }
 
-form * {
+form label, form input, form legend, form select {
 	font-size: 20px;
 }
 
@@ -38,11 +38,33 @@ input[type="text"]:where(:focus, :hover) {
 }
 
 .apply-checkbox-container {
-	column-count: 2;
-	padding: 5px;
+	display: none;
+	flex-basis: 50%;
 }
 
-.apply-checkbox-container div:not(:last-child) {
+#apply-employment-details fieldset {
+	padding-bottom: 0;
+}
+
+#apply-employment-details:has(option[value=""]:checked) fieldset {
+	display: none;
+}
+
+#apply-employment-details:has(option[value="IT427"]:checked) .apply-checkbox-set-support {
+	display: block;
+}
+
+#apply-employment-details:has(option[value="DA193"]:checked) .apply-checkbox-set-analyst {
+	display: block;
+}
+
+.apply-checkbox-set-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px 5px 0px 5px;
+}
+
+.apply-checkbox-container {
 	margin-bottom: 20px;
 }
 
@@ -96,6 +118,6 @@ input[type="text"]:where(:focus, :hover) {
 	}
 
 	.apply-checkbox-container {
-		column-count: initial;
+		flex-basis: 100%;
 	}
 }
