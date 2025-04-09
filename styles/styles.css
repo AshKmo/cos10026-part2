@@ -92,6 +92,10 @@ footer {
     color: white;
 }
 
+main p {
+	font-size: 20px;
+}
+
 dl {
     padding: 15px;
     border-radius: 5px;
