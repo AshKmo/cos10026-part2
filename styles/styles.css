@@ -11,28 +11,49 @@ description: Stylesheet for all pages
 }
 
 body {
-    background-color:whitesmoke;
+    background-image: linear-gradient(to bottom, #efefef, #e3ebee);
+    background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     color: #333;
     font-size: 16px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 10px;
+nav {
+    display: flex;
+    align-items: center;
     background: #747474;
-    overflow: hidden;
-    text-align: center;
+    padding: 10px;
+    margin: 20px 0 20px 0;
     max-width: 800px;
     border-radius: 0px 10px 10px 0px;
+    position: relative;
+    height: 20px;
+    overflow: visible;
 }
-
+  
+.nav-logo {
+    position: absolute;
+    top: -28px;
+    left: 10px;
+    height: 100px;
+    z-index: 10; 
+}
+  
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+  
 nav ul li {
     display: inline;
-    padding: 15px;
 }
-
+  
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -40,9 +61,9 @@ nav ul li a {
     padding: 10px;
     transition: color 0.3s ease-in-out;
 }
-
+  
 nav ul li a:hover {
-    color: #afccff;
+    color: #00BFFF;
 }
 
 main {
@@ -52,7 +73,7 @@ main {
     padding-left: 50px;
     background: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
 
@@ -62,6 +83,13 @@ section {
 
 footer {
     text-align: center;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    padding-left: 50px;
+    background: #747474;
+    border-radius: 0 0 5px 5px;
+    color: white;
 }
 
 dl {
@@ -71,7 +99,7 @@ dl {
 
 dt {
     font-weight: bold;
-    color: #0073e6;
+    color: #00BFFF;
 }
 
 dd {
@@ -102,6 +130,99 @@ th {
 textarea {
 	width: 100%;
 	height: 200px;
+}
+
+/******************************/
+/* about.html specific styles */
+/******************************/
+
+/* About page custom container class which organises sections neatly */
+.about_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Team member contribution section */
+#about_contributions {
+    margin-right: 4em;
+    padding-right: 4em;
+    border-right: 1px solid black;
+}
+#about_contributions dl {
+    padding: 15px;
+    border-radius: 5px;
+}
+#about_contributions dt {
+    font-weight: bold;
+    color: #0073e6;
+}
+#about_contributions dd {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/* Team member interests table */
+#about_interests {
+    padding-right: 100px;
+    width: 100%;
+    flex: 1;
+}
+#about_interests table {
+    width: 90%;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+#about_interests th {
+    background: #747474;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+#about_interests td {
+    background-color: #efefef;
+}
+#about_interests td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
+}
+
+/* Team information aside */
+#about_group-info {
+    float: right;
+    max-width: 350px;
+    padding-left: 100px;
+}
+#about_group-info li {
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+/* Team photo aside */
+#about_team-photo {
+    float: right;
+    clear: right;
+}
+#about_team-photo figure {
+    text-align: right;
+    float: right;
+    margin: 20px 0;
+}
+#about_team-photo figure img {
+    max-width: 350px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px lightgray;
+}
+#about_team-photo figcaption {
+    font-style: italic;
+    margin-top: 5px;
+    color: #555;
+}
+
+/* Company summary section */
+#about_summary {
+    flex: 1 1 300px;
+    max-width: 100%;
 }
 
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
