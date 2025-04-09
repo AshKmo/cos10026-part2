@@ -92,40 +92,7 @@ footer {
     color: white;
 }
 
-dl {
-    padding: 15px;
-    border-radius: 5px;
-}
 
-dt {
-    font-weight: bold;
-    color: #00BFFF;
-}
-
-dd {
-    margin-bottom: 10px;
-    padding-left: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-table, th, td {
-    border: 1px solid #ccc;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background: #747474;
-    color: white;
-}
 
 /******************************/
 /* about.html specific styles */
@@ -168,15 +135,19 @@ th {
     width: 90%;
     margin: 10px auto;
     border-collapse: collapse;
+    border: 1px solid #ccc;
 }
 #about_interests th {
     background: #747474;
     color: white;
     text-align: center;
     font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 #about_interests td {
     background-color: #efefef;
+    border: 1px solid #ccc;
 }
 #about_interests td:hover {
     background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
