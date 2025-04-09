@@ -43,51 +43,54 @@
 		<main>
 			<h1>Apply for a position</h1>
 
+			<p>Tolstra is always committed to providing premium employment opportunities to those who need them the most. Please submit your application below, and welcome aboard!</p>
+
+			<!-- HTML form containing all fields for submission -->
 			<form method="POST" action="https://mercury.swin.edu.au/it000000/formtest.php">
 				<fieldset>
 					<legend>Personal details</legend>
 
 					<p>
-					<label for="first-name">First name: </label>
+					<label for="apply-first-name">First name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
 					<input type="text" name="first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required></input>
 					</p>
 
 					<p>
-					<label for="last-name">Last name: </label>
+					<label for="apply-last-name">Last name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
 					<input type="text" name="last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required></input>
 					</p>
 
 					<p>
-					<label for="email">Email address: </label>
+					<label for="apply-email">Email address: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="email" id="email" placeholder="asdf@asdf.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
+					<input type="text" name="email" id="apply-email" placeholder="asdf@asdf.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
 					</p>
 
 					<p>
-					<label for="phone">Phone number: </label>
+					<label for="apply-phone">Phone number: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="phone" id="phone" placeholder="0000 000 000" pattern="[a-zA-Z0-9 ]{8,12}" required>
+					<input type="text" name="phone" id="apply-phone" placeholder="0000 000 000" pattern="[a-zA-Z0-9 ]{8,12}" required>
 					</p>
 
 					<p>
-					<label for="address">Street address: </label>
-					<input type="text" id="address" name="address" size="40" maxlength="40" placeholder="Your street address here" required></input>
+					<label for="apply-address">Street address: </label>
+					<input type="text" id="apply-address" name="address" size="40" maxlength="40" placeholder="Your street address here" required></input>
 					</p>
 
 					<p>
-					<label for="town">Suburb/town: </label>
-					<input type="text" id="town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required></input>
+					<label for="apply-town">Suburb/town: </label>
+					<input type="text" id="apply-town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required></input>
 					</p>
 
 					<p>
-					<label for="state">State: </label>
-					<select name="state" id="state" required>
+					<label for="apply-state">State: </label>
+					<select name="state" id="apply-state" required>
 						<option value="">Please select</option>
 						<option value="vic">Victoria</option>
 						<option value="nsw">New South Wales</option>
@@ -101,71 +104,109 @@
 					</p>
 
 					<p>
-					<label for="postcode">Postcode: </label>
+					<label for="apply-postcode">Postcode: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="postcode" id="postcode" maxlength="4" minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}">
+					<input type="text" name="postcode" id="apply-postcode" maxlength="4" minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}">
 					</p>
 
 					<p>
-					<label for="date-of-birth">Date of birth: </label>
-					<input type="text" name="date-of-birth" id="date-of-birth" placeholder="dd/mm/yyyy" size="10" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" required>
+					<label for="apply-date-of-birth">Date of birth: </label>
+					<input type="text" name="date-of-birth" id="apply-date-of-birth" placeholder="dd/mm/yyyy" size="10" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" required>
 					</p>
 
 					<fieldset>
 						<legend>Gender</legend>
 
 						<p>
-						<input type="radio" name="gender" value="male" id="gender_male" required>
-						<label for="gender_male">Male</label>
+						<input type="radio" name="gender" value="male" id="apply-gender_male" required>
+						<label for="apply-gender_male">Male</label>
 						</p>
 
 						<p>
-						<input type="radio" name="gender" value="female" id="gender_female" required>
-						<label for="gender_female">Female</label>
+						<input type="radio" name="gender" value="female" id="apply-gender_female" required>
+						<label for="apply-gender_female">Female</label>
 						</p>
 
 						<p>
-						<input type="radio" name="gender" value="other" id="gender_other" required>
-						<label for="gender_other">Other</label>
+						<input type="radio" name="gender" value="other" id="apply-gender_other" required>
+						<label for="apply-gender_other">Other</label>
 						</p>
 
 						<p>
-						<input type="radio" name="gender" value="unspecified" id="gender_unspecified" required>
-						<label for="gender_unspecified">Prefer not to say</label>
+						<input type="radio" name="gender" value="unspecified" id="apply-gender_unspecified" required checked>
+						<label for="apply-gender_unspecified">Prefer not to say</label>
 						</p>
 					</fieldset>
 				</fieldset>
 
-				<fieldset>
+				<fieldset id="apply-employment-details">
 					<legend>Employment details</legend>
 
 					<p>
-					<label for="job-reference-number">Position of interest: </label>
-					<select name="job-reference-number" id="job-reference-number" required>
+					<label for="apply-job-reference-number">Position of interest: </label>
+					<select name="job-reference-number" id="apply-job-reference-number" required>
 						<option value="">Please select</option>
-						<option value="bruh">Bruh (DELETE ME)</option>
+						<option value="IT427">IT Support Technician</option>
+						<option value="DA193">Data Analyst</option>
 					</select>
 					</p>
 
 					<fieldset>
 						<legend>Required technical skills:</legend>
 
-						<p>
-						<input type="checkbox" name="required-technical-skills[]" id="required-technical-skills_bruh" value="bruh" required>
-						<label for="required-technical-skills_bruh">Bruh (DELETE ME)</label>
-						</p>
+						<div class="apply-checkbox-set-container">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sql" value="sql" checked>
+								<label for="apply-required-technical-skills_sql">Understanding of SQL</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_python" value="python" checked>
+								<label for="apply-required-technical-skills_python">Understanding of Python</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_networks" value="networks" checked>
+								<label for="apply-required-technical-skills_networks">Understanding of networks</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_excel" value="excel" checked>
+								<label for="apply-required-technical-skills_excel">Proficiency in Microsoft Excel</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" checked>
+								<label for="apply-required-technical-skills_vistools">Experience with data visualisation tools</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
+								<label for="apply-required-technical-skills_problem_solving">Analytical and problem-solving skills</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
+								<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data Science</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
+								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
+							</div>
+						</div>
 					</fieldset>
 
-					<p>
-					<label for="other-skills">Other skills: </label>
-					<br>
-					<textarea id="other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
-					</p>
+					<fieldset class="apply-text-fieldset">
+						<legend>Other skills</legend>
+
+						<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
+					</fieldset>
 				</fieldset>
 
-				<input type="submit" value="Apply" class="fancy-button">
-				<input type="reset" value="Reset" class="fancy-button fancy-button-bad">
+				<input type="submit" value="Apply" class="apply-fancy-button">
+				<input type="reset" value="Reset" class="apply-fancy-button apply-fancy-button-bad">
 			</form>
 		</main>
 

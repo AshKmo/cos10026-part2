@@ -6,20 +6,21 @@ last modified: 2025-03-28
 description: Stylesheet for all pages
 */
 
-* {
-    font-family: Arial, sans-serif;
-}
-
+/*************************************/
+/* non page-specific styles (global) */
+/*************************************/
 body {
     background-image: linear-gradient(to bottom, #efefef, #e3ebee);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-    color: #333;
+    font-family: Arial, sans-serif;
     font-size: 16px;
+    color: #333;
 }
 
+/* navigation menu */
 nav {
     display: flex;
     align-items: center;
@@ -32,7 +33,6 @@ nav {
     height: 20px;
     overflow: visible;
 }
-  
 .nav-logo {
     position: absolute;
     top: -28px;
@@ -40,7 +40,6 @@ nav {
     height: 100px;
     z-index: 10; 
 }
-  
 nav ul {
     list-style: none;
     display: flex;
@@ -49,11 +48,9 @@ nav ul {
     justify-content: center;
     flex-grow: 1;
 }
-  
 nav ul li {
     display: inline;
 }
-  
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -61,7 +58,6 @@ nav ul li a {
     padding: 10px;
     transition: color 0.3s ease-in-out;
 }
-  
 nav ul li a:hover {
     color: #00BFFF;
 }
@@ -75,6 +71,10 @@ main {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px 5px 0 0;
     overflow: hidden;
+}
+
+main p {
+	font-size: 20px;
 }
 
 section {
@@ -92,50 +92,24 @@ footer {
     color: white;
 }
 
-dl {
-    padding: 15px;
-    border-radius: 5px;
-}
+/******************************/
+/* index.html specific styles */
+/******************************/
 
-dt {
-    font-weight: bold;
-    color: #00BFFF;
-}
 
-dd {
-    margin-bottom: 10px;
-    padding-left: 10px;
-}
+/*****************************/
+/* jobs.html specific styles */
+/*****************************/
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
 
-table, th, td {
-    border: 1px solid #ccc;
-}
+/******************************/
+/* apply.html specific styles */
+/******************************/
 
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background: #747474;
-    color: white;
-}
-
-textarea {
-	width: 100%;
-	height: 200px;
-}
 
 /******************************/
 /* about.html specific styles */
 /******************************/
-
 /* About page custom container class which organises sections neatly */
 .about_container {
     display: flex;
@@ -163,6 +137,12 @@ textarea {
     padding-left: 10px;
 }
 
+/* Company summary section */
+#about_summary {
+    flex: 1 1 300px;
+    max-width: 100%;
+}
+
 /* Team member interests table */
 #about_interests {
     padding-right: 100px;
@@ -173,15 +153,19 @@ textarea {
     width: 90%;
     margin: 10px auto;
     border-collapse: collapse;
+    border: 1px solid #ccc;
 }
 #about_interests th {
     background: #747474;
     color: white;
     text-align: center;
     font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 #about_interests td {
     background-color: #efefef;
+    border: 1px solid #ccc;
 }
 #about_interests td:hover {
     background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
@@ -217,12 +201,6 @@ textarea {
     font-style: italic;
     margin-top: 5px;
     color: #555;
-}
-
-/* Company summary section */
-#about_summary {
-    flex: 1 1 300px;
-    max-width: 100%;
 }
 
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
