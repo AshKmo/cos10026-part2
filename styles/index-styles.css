@@ -18,25 +18,25 @@ figcaption {
     clear: right;
 }
 
-#benefits {
+#index-benefits {
     border-radius: 15px;
     background-color: #747474;
     display: flex;
     justify-content: space-around;
 }
 
-#benefits figure {
+#index-benefits figure {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#benefits figure img {
+#index-benefits figure img {
     max-width: 100px;
     border-radius: 25px;
 }
 
-#benefits figure figcaption {
+#index-benefits figure figcaption {
     color: white;
 }
 
