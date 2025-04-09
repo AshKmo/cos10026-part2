@@ -28,6 +28,12 @@ figcaption {
 #benefits figure {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+#benefits figure img {
+    max-width: 100px;
+    color: white;
 }
 
 #benefits figure figcaption {
