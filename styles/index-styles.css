@@ -22,7 +22,7 @@ figcaption {
     border-radius: 15px;
     background-color: #747474;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #benefits figure {
@@ -33,7 +33,7 @@ figcaption {
 
 #benefits figure img {
     max-width: 100px;
-    color: white;
+    border-radius: 25px;
 }
 
 #benefits figure figcaption {
