@@ -12,6 +12,16 @@ section {
     margin-left: 2%;
 }
 
+.arrow {
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 0.25em;
+    margin: 0 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
 .jobs-dropdown {
     width: 100%;
     border: 1px solid #ccc;
@@ -21,10 +31,17 @@ section {
     margin: 20px 0px;
 }
 
-.jobs-dropdown input:checked ~ .jobs-dropdown-content{
+
+/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text */
+.jobs-dropdown input:checked ~ .jobs-dropdown-content {
     max-height: 1000px;
-    padding-left: 10px;
 }
+
+.jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
 
 .jobs-dropdown input {
     display: none;
@@ -43,7 +60,7 @@ section {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
-    padding: 0 10px;
+    padding: 0px 20px;
 }
 
 .jobs-prereqs-title {
