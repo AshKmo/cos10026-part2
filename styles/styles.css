@@ -172,18 +172,15 @@ textarea {
     flex: 1;
 }
 #about_interests table {
-    width: 100%;
+    width: 90%;
+    margin: 10px auto;
     border-collapse: collapse;
-    margin-top: 10px;
-}
-#about_interests th, #about_interests td {
-    padding: 10px;
-    text-align: left;
 }
 #about_interests th {
     background: #747474;
     color: white;
     text-align: center;
+    font-weight: bold;
 }
 #about_interests td {
     background-color: #efefef;
@@ -192,7 +189,7 @@ textarea {
     background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
-/* Team information section */
+/* Team information aside */
 #about_group-info {
     float: right;
     max-width: 350px;
@@ -203,7 +200,7 @@ textarea {
     list-style-type: none;
 }
 
-/* Team photo */
+/* Team photo aside */
 #about_team-photo {
     float: right;
     clear: right;
