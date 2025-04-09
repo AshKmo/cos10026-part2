@@ -1,3 +1,108 @@
+body {
+    background-image: linear-gradient(to bottom, #efefef, #e3ebee);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px;
+    background: #747474;
+    overflow: hidden;
+    text-align: center;
+    max-width: 800px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+nav ul li {
+    display: inline;
+    padding: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #dff2f8;
+}
+
+main {
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    padding-left: 50px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+h2 {
+    color: rgb(9, 121, 159);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+}
+
+dl {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+dt {
+    font-weight: bold;
+    color: #0073e6;
+}
+
+dd {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.interests {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.interests, .interests th, .interests td {
+    border: 1px solid #ccc;
+}
+
+.interests th, .interests td {
+    padding: 10px;
+    text-align: left;
+}
+
+.interests th {
+    background: #747474;
+    color: white;
+    text-align: center;
+}
+
+.interests td {
+    background-color: #efefef;
+}
+
+.interests td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #cfe9f0);
+}
+
 figure {
     text-align: right;
     float: right;
@@ -14,9 +119,20 @@ figcaption {
     color: #555;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: normal;
+    gap: 0;
+}
+
 #group-info {
     float: right;
     max-width: 350px;
+    padding-left: 100px;
 }
 
 #group-info li {
@@ -25,14 +141,30 @@ figcaption {
 }
 
 #team-contributions {
-    max-width: 400px;
+    order: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    margin-right: 4em;
+    padding-right: 4em;
+    border-right: 1px solid black;
+}
 
-    padding-right: 100px;
+#company-summary {
+    order: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    max-width: max-content;
+    
 }
 
 #team-interests {
-    width: 50%;
-    float: left;
+    padding-right: 100px;
+    width: 100%;
+    flex: 1;
 }
 
 #group-photo {
