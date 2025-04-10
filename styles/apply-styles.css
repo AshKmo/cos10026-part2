@@ -9,6 +9,7 @@ form > fieldset {
 	box-shadow: 8px 8px rgb(200, 200, 200);
 }
 
+/* make the fieldset legends more obvious */
 fieldset legend {
 	font-weight: bold;
 }
@@ -52,6 +53,7 @@ input[type="text"]:focus {
 	flex-basis: 50%;
 }
 
+/* remove the padding from the bottom of the "Employment details" section so that there isn't a massive gap betweeen the end of the textarea and the end of the fieldset */
 #apply-employment-details fieldset {
 	padding-bottom: 0;
 }
@@ -78,6 +80,7 @@ input[type="text"]:focus {
 	padding: 5px 5px 0px 5px;
 }
 
+/* make the checkboxes more spaced out */
 .apply-checkbox-container {
 	margin-bottom: 20px;
 }
@@ -114,8 +117,8 @@ input[type="text"]:focus {
 	background-color: #88000C;
 }
 
-/* add a darker border to the textarea box and make it fill the width of the fieldset */
 #apply-other-skills {
+	/* add a darker rounded border to the textarea box, make it fill the width of the fieldset, and add inner padding so that the text nicely fits inside */
 	width: 100%;
 	height: 150px;
 	box-sizing: border-box;
@@ -123,6 +126,9 @@ input[type="text"]:focus {
 	border-radius: 10px;
 	padding: 10px;
 	font-size: 16px;
+
+	/* disable changes to the width of the textarea so that it doesn't collide with the edges of the main element */
+	resize: vertical;
 }
 
 /* update the styles for mobile devices */
