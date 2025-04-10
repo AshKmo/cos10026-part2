@@ -1,25 +1,28 @@
 /* Jobs CSS - Max */
 
+#jobs-title {
+    color: rgb(9, 121, 159);
+}
+
 /* Job ID - sets it to the right of the screen, with a width of 25% of that job's container size */
-aside {
+.jobs-aside {
     text-align: right;
     padding: 3%;
     width: 25%;
     float: right;
 }
 
-section {
-    margin-left: 2%;
-}
-
+/* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
 .arrow {
     border: solid black;
     border-width: 0 4px 4px 0;
     display: inline-block;
     padding: 0.25em;
     margin: 0 10px;
+    /* Two transforms are used to help with browser compatability */
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
+    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
   }
 
 .jobs-dropdown {
@@ -42,6 +45,10 @@ section {
     -webkit-transform: rotate(45deg);
 }
 
+.jobs-dropdown-title:hover {
+    color: rgb(51, 160, 255);
+    font-size: 1.6em;
+}
 
 .jobs-dropdown input {
     display: none;
@@ -54,6 +61,7 @@ section {
     display: block;
     cursor: pointer;
     color: rgb(9, 121, 159);
+    transition: color 0.2s ease, font-size 0.2s ease;
 }
 
 .jobs-dropdown-content {
@@ -61,6 +69,7 @@ section {
     overflow: hidden;
     transition: max-height 0.4s ease;
     padding: 0px 20px;
+    margin-left: 2%;
 }
 
 .jobs-prereqs-title {
@@ -84,3 +93,9 @@ section {
 .jobs-prerequisites div {
     width: 60%;
 }
+
+.jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
+    color: rgb(9, 121, 159)
+}
+
+/* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */

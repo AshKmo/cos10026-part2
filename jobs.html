@@ -48,13 +48,17 @@
 
 			<!-- Support Technician details -->
 			<div class="jobs-dropdown">
+				<!-- Making the title into a clickable checkbox so that, when clicked, the CSS will modify the height of the content to display everything -->
 				<input type="checkbox" id="jobs-itsupport-dropdown">
 				<label class="jobs-dropdown-title" for="jobs-itsupport-dropdown"><em class="arrow"></em><strong>  IT Support Technician</strong></label>
 				<section class="jobs-dropdown-content">
-					<aside>
-						<strong>Job ID: </strong>IT427<br>
+					<aside class="jobs-aside">
+						<strong>Job ID: </strong>IT427<br><br>
+						<strong>You will report to:</strong><br>
+						Assistant Network Administrator<br>
+						(current is John Monash)
 					</aside>
-					<p class="jobs-description">As and IT Support Technician, you will assist staff and customers in any hardware and software dificulties that they may face.</p>
+					<p class="jobs-description">As and IT Support Technician, you will assist staff and customers in any hardware and software dificulties that they may face. You will work and talk with many people around Australia, lending a hand and potentially teaching them about networking within their home or office environment.</p>
 					
 					<h3>You will be expected to:</h3>
 					<ol>
@@ -93,12 +97,18 @@
 				</section>
 			</div>
 			
+			<!-- Data Analyst details -->
 			<div class="jobs-dropdown">
 				<input type="checkbox" id="jobs-data-analyst-dropdown">
 				<label class="jobs-dropdown-title" for="jobs-data-analyst-dropdown"><em class="arrow"></em><strong>  Data Analyst</strong></label>
 				<section class="jobs-dropdown-content">
-					<aside><strong>Job ID: </strong>DA193</aside>
-					<p class="jobs-description">We're looking for a detail-oriented Data Analyst to help turn data into actionable insights that support business decisions and strategic goals.</p>
+					<aside class="jobs-aside">
+						<strong>Job ID: </strong>DA193<br><br>
+						<strong>You will report to:</strong><br>
+						Chief Data Officer (CDO)<br>
+						(current is Bill Gates)
+					</aside>
+					<p class="jobs-description">We're looking for a detail-oriented Data Analyst to help turn data into actionable insights that support business decisions and strategic goals. If you're someone with a keen eye for patters, a sharp mind for data and friendly attitude to communicate with your team, we'd love to have you on board.</p>
 					
 					<h3>You will be expected to:</h3>
 					<ol>
@@ -135,6 +145,55 @@
 					<p>$90,000 to $105,000</p>
 				</section>
 			</div>
+			
+			<div class="jobs-dropdown">
+				<input type="checkbox" id="jobs-blockchain-developer-dropdown">
+				<label class="jobs-dropdown-title" for="jobs-blockchain-developer-dropdown"><em class="arrow"></em><strong>  Blockchain Developer</strong></label>
+				<section class="jobs-dropdown-content">
+					<aside class="jobs-aside">
+						<strong>Job ID: </strong>DA193<br><br>
+						<strong>You will report to:</strong><br>
+						Lead Software Developer<br>
+						(current is Michael Scott)
+					</aside>
+					<!-- Description made by ChatGPT (prompt: Make a brief description for the job hiring page of a blockchain developer)-->
+					<p class="jobs-description">We’re looking for a skilled Blockchain Developer to join our team and help build secure, scalable, and innovative decentralized solutions. You'll work on smart contract development, blockchain integration, and contribute to cutting-edge projects in Web3, DeFi, or NFT ecosystems. If you’re passionate about blockchain technology and enjoy solving complex technical challenges, we’d love to hear from you.</p>
+					<!-- Expectations made by ChatGPT (same chat as previous, prompt: give a list of things that someone working in that job would be expected to perform)-->
+					<h3>You will be expected to:</h3>
+					<ol>
+						<li>Build and maintain decentralized applications (dApps) that interact with blockchain protocols</li>
+						<li>Integrate blockchain solutions with existing web or mobile applications using APIs and SDKs</li>
+						<li>Write and test secure, efficient, and scalable code, primarily in languages like Solidity, Rust, or Go</li>
+						<li>Collaborate with frontend and backend developers to ensure seamless integration of blockchain functionality</li>
+						<li>Conduct smart contract audits and implement security best practices to safeguard against vulnerabilities</li>
+					</ol>
+					
+					<h3 class="jobs-prereqs-title">Prerequisites:</h3>
+					<div class="jobs-prerequisites">
+						<div>
+							<h4>Essential</h4>
+							<ul>
+								<li>Proficiency in SQL and Microsoft Excel</li>
+								<li>Experience with data visualization tools</li>
+								<li>Strong analytical and problem-solving skills</li>
+								<li>Bachelor's degree in Data Science, Statistics, or a related field</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Preferable</h4>
+							<ul>
+								<li>Experience with Python for data analysis</li>
+								<li>Familiarity with cloud platforms like AWS or Azure</li>
+								<li>Knowledge of machine learning basics</li>
+								<li>Previous experience in a data analysis role</li>
+							</ul>
+						</div>
+					</div>
+	
+					<h3>Expected Salary Range:</h3>
+					<p>$90,000 to $105,000</p>
+				</section>
+			</div>
 		</main>
 		<footer>
 			<p>&copy; 2025 The Merge Masters. All Rights Reserved.<br>
@@ -142,3 +201,48 @@
 		</footer>
 	</body>
 </html>
+
+
+<!--
+
+Template:
+
+<div class="jobs-dropdown">
+				<input type="checkbox" id="jobs-[JOBNAME]-dropdown">
+				<label class="jobs-dropdown-title" for="jobs-[JOBNAME]-dropdown"><em class="arrow"></em><strong>  Blockchain Developer</strong></label>
+				<section class="jobs-dropdown-content">
+					<aside class="jobs-aside">
+						<strong>Job ID: </strong>AA999<br><br>
+						<strong>You will report to:</strong><br>
+						TITLE<br>
+						(current is RANDOM FUNNY PERSON)
+					</aside>
+					<p class="jobs-description">DESCRIPTION</p>
+					
+					<h3>You will be expected to:</h3>
+					<ol>
+						<li>EXIST</li>
+					</ol>
+					
+					<h3 class="jobs-prereqs-title">Prerequisites:</h3>
+					<div class="jobs-prerequisites">
+						<div>
+							<h4>Essential</h4>
+							<ul>
+								<li>KNOWLEDGE OF HOW TO BREATHE</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Preferable</h4>
+							<ul>
+								<li>NOT BEING A DOUCHE</li>
+							</ul>
+						</div>
+					</div>
+	
+					<h3>Expected Salary Range:</h3>
+					<p>$0 - $INFINITY</p>
+				</section>
+			</div>
+
+-->
