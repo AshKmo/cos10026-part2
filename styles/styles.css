@@ -2,7 +2,7 @@
 filename: styles.css
 author: Ash, Hayden, Tim, Max
 created: 2025-03-28
-last modified: 2025-03-28
+last modified: 2025-04-10
 description: Stylesheet for all pages
 */
 
@@ -121,6 +121,7 @@ dl {
 
 /*****************************/
 /* jobs.html specific styles */
+/*       Author: Max         */
 /*****************************/
 
 /* Set jobs title colour to the typical header colour */
@@ -165,11 +166,6 @@ dl {
     margin: 20px 0px;
 }
 
-/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
-.jobs-dropdown input:checked ~ .jobs-dropdown-content {
-    max-height: 2000px;
-}
-
 /* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
 .jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
     transform: rotate(45deg);
@@ -198,9 +194,15 @@ dl {
     transition: color 0.2s ease, font-size 0.2s ease;
 }
 
+/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
+.jobs-dropdown input:checked ~ .jobs-dropdown-content {
+    max-height: 2000px;
+    /* fade out, then shrink */    
+}
+
 /* Base formatting for the unexpanded job details. Max height set to 0 to get the 'unexpanded' effect */
 .jobs-dropdown-content {
-    max-height: 0;
+    max-height: 0px;
     overflow: hidden;
     transition: max-height 0.4s ease;
     padding: 0px 20px;
