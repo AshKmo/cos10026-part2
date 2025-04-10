@@ -59,7 +59,14 @@ nav ul {
 }
 nav ul li {
     display: inline;
+    transform: scale(1, 1);
+    transition: transform 0.15s ease;
 }
+
+nav ul li:hover {
+    transform: scale(1.05, 1.05);
+}
+
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -230,6 +237,32 @@ dl {
     width: 40%;
 }
 
+.jobs-apply-button {
+    margin-top: 35px;
+}
+
+.jobs-apply-button a {
+    text-decoration: none;
+    padding: 10px 25px;
+    border: 1px solid #8b8b8b;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(233, 248, 252);
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(0, 91, 122);
+    
+    transition: all 0.1s ease;
+}
+
+.jobs-apply-button a:visited {
+    color: rgb(0, 91, 122)
+}
+
+.jobs-apply-button a:hover {
+    background-color: rgb(209, 229, 235);
+}
+
 /* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
 
 /******************************/
@@ -260,7 +293,7 @@ dl {
 }
 #about_contributions dt {
     font-weight: bold;
-    color: #0073e6;
+    color: rgb(9, 121, 159);
 }
 #about_contributions dd {
     margin-bottom: 10px;
