@@ -2,7 +2,7 @@
 filename: styles.css
 author: Ash, Hayden, Tim, Max
 created: 2025-03-28
-last modified: 2025-03-28
+last modified: 2025-04-10
 description: Stylesheet for all pages
 */
 
@@ -12,6 +12,10 @@ description: Stylesheet for all pages
 
 * {
 	font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: rgb(9, 121, 159);
 }
 
 body {
@@ -36,6 +40,7 @@ nav {
     border-radius: 0px 10px 10px 0px;
     position: relative;
     overflow: visible;
+    box-shadow: 4px 4px 3px #bcbcbc;
 }
 .nav-logo {
     position: absolute;
@@ -54,14 +59,20 @@ nav ul {
 }
 nav ul li {
     display: inline;
+    transform: scale(1, 1);
+    transition: transform 0.15s ease;
 }
+
+nav ul li:hover {
+    transform: scale(1.05, 1.05);
+}
+
 nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: color 0.4s ease-in-out;
-    /* Suggestion: change to 0.2s, ease (discuss on friday) */
+    transition: color 0.25s ease;
 }
 nav ul li a:hover {
     color: #00BFFF;
@@ -125,12 +136,8 @@ dl {
 
 /*****************************/
 /* jobs.html specific styles */
+/*       Author: Max         */
 /*****************************/
-
-/* Set jobs title colour to the typical header colour */
-#jobs-title {
-    color: rgb(9, 121, 159);
-}
 
 /* Setting correct colour for subtitles within the job details */
 .jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
@@ -153,10 +160,8 @@ dl {
     /* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
     padding: 0.25em;
     margin: 0 10px;
-    /* Two transforms are used to help with browser compatability */
     transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
   }
 
 /* Set appropriate formating and styling for the job dropdowns */
@@ -169,15 +174,9 @@ dl {
     margin: 20px 0px;
 }
 
-/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
-.jobs-dropdown input:checked ~ .jobs-dropdown-content {
-    max-height: 2000px;
-}
-
 /* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
 .jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
 }
 
 /* The job titles get slightly bigger and become more blue when hovered over */
@@ -202,9 +201,15 @@ dl {
     transition: color 0.2s ease, font-size 0.2s ease;
 }
 
+/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
+.jobs-dropdown input:checked ~ .jobs-dropdown-content {
+    max-height: 2000px;
+    /* fade out, then shrink */    
+}
+
 /* Base formatting for the unexpanded job details. Max height set to 0 to get the 'unexpanded' effect */
 .jobs-dropdown-content {
-    max-height: 0;
+    max-height: 0px;
     overflow: hidden;
     transition: max-height 0.4s ease;
     padding: 0px 20px;
@@ -234,6 +239,32 @@ dl {
 /* Not entirely sure why this works but if you set the width below 30% or use auto then everything looks bad so... */
 .jobs-prerequisites div {
     width: 40%;
+}
+
+.jobs-apply-button {
+    margin-top: 35px;
+}
+
+.jobs-apply-button a {
+    text-decoration: none;
+    padding: 10px 25px;
+    border: 1px solid #8b8b8b;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(233, 248, 252);
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(0, 91, 122);
+    
+    transition: all 0.1s ease;
+}
+
+.jobs-apply-button a:visited {
+    color: rgb(0, 91, 122)
+}
+
+.jobs-apply-button a:hover {
+    background-color: rgb(209, 229, 235);
 }
 
 /* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
@@ -266,7 +297,7 @@ dl {
 }
 #about_contributions dt {
     font-weight: bold;
-    color: #0073e6;
+    color: rgb(9, 121, 159);
 }
 #about_contributions dd {
     margin-bottom: 10px;
