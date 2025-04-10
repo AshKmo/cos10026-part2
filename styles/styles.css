@@ -78,9 +78,11 @@ main {
     overflow: hidden;
 }
 
+/* Discuss this on Friday
 main p {
 	font-size: 20px;
 }
+*/
 
 section {
     margin-bottom: 20px;
@@ -121,6 +123,116 @@ dl {
 /* jobs.html specific styles */
 /*****************************/
 
+/* Set jobs title colour to the typical header colour */
+#jobs-title {
+    color: rgb(9, 121, 159);
+}
+
+/* Setting correct colour for subtitles within the job details */
+.jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
+    color: rgb(9, 121, 159)
+}
+
+/* Job ID - sets it to the right of the screen, with a width of 25% of that job's container size */
+.jobs-aside {
+    text-align: right;
+    padding: 3%;
+    width: 25%;
+    float: right;
+}
+
+/* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
+.arrow {
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    /* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
+    padding: 0.25em;
+    margin: 0 10px;
+    /* Two transforms are used to help with browser compatability */
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+  }
+
+/* Set appropriate formating and styling for the job dropdowns */
+.jobs-dropdown {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f4f8fa;
+    margin: 20px 0px;
+}
+
+/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
+.jobs-dropdown input:checked ~ .jobs-dropdown-content {
+    max-height: 2000px;
+}
+
+/* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
+.jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+/* The job titles get slightly bigger and become more blue when hovered over */
+.jobs-dropdown-title:hover {
+    color: rgb(51, 160, 255);
+    font-size: 1.6em;
+}
+
+/* Removes the checkbox from appearing next to the job title (required to look nice due to the textbook being a checkbox input in order to have the expanding description) */
+.jobs-dropdown input {
+    display: none;
+}
+
+/* Add formatting to each job titles. Bottom padding is not needed as it is already added from somewhere which I cannot for the life of me find */
+.jobs-dropdown-title {
+    font-size: 1.5em;
+    padding-top: 20px;
+    padding-left: 15px;
+    display: block;
+    cursor: pointer;
+    color: rgb(9, 121, 159);
+    transition: color 0.2s ease, font-size 0.2s ease;
+}
+
+/* Base formatting for the unexpanded job details. Max height set to 0 to get the 'unexpanded' effect */
+.jobs-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0px 20px;
+    margin-left: 2%;
+}
+
+/* Removes the space that would otherwise be below the 'Prerequisites:' subtitle */
+.jobs-prereqs-title {
+    margin-bottom: 0px;
+}
+
+/* Restricts the width of the job description (only particularly relevant when using a shrunk screen) */
+.jobs-description {
+    width: 70%;
+}
+
+/* Sets the style of the 'container' for the essential and preferable prerequisites; gives them flex style to sit side by side */
+.jobs-prerequisites {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+/* Not entirely sure why this works but if you set the width below 30% or use auto then everything looks bad so... */
+.jobs-prerequisites div {
+    width: 40%;
+}
+
+/* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
 
 /******************************/
 /* apply.html specific styles */
