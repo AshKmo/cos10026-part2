@@ -75,7 +75,7 @@
 					<label for="apply-phone">Phone number: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="phone" id="apply-phone" placeholder="0000 000 000" pattern="[a-zA-Z0-9 ]{8,12}" required>
+					<input type="text" name="phone" id="apply-phone" placeholder="0000 000 000" pattern="[0-9 ]{8,12}" required>
 					</p>
 
 					<p>
@@ -107,7 +107,7 @@
 					<label for="apply-postcode">Postcode: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="postcode" id="apply-postcode" maxlength="4" minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}">
+					<input type="text" name="postcode" id="apply-postcode" maxlength="4" minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}" required>
 					</p>
 
 					<p>
@@ -149,6 +149,8 @@
 						<option value="">Please select</option>
 						<option value="IT427">IT Support Technician</option>
 						<option value="DA193">Data Analyst</option>
+						<option value="BC123">Blockchain Developer</option>
+						<option value="QA666">QA Tester</option>
 					</select>
 					</p>
 
@@ -195,11 +197,53 @@
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
 								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
 							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-qa">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_qa_testing" value="qa_testing" checked>
+								<label for="apply-required-technical-skills_qa_testing">Experience in software quality assurance or testing</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-qa">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_test_cases" value="test_cases" checked>
+								<label for="apply-required-technical-skills_test_cases">Ability to write comprehensive test plans and test cases</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-qa">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bug_tracking" value="bug_tracking" checked>
+								<label for="apply-required-technical-skills_bug_tracking">Familiarity with bug tracking tools</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-qa">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sdlc" value="sdlc" checked>
+								<label for="apply-required-technical-skills_sdlc">Understanding of the Software Development Life Cycle</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-blockchain">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_smart_contract" value="smart_contract" checked>
+								<label for="apply-required-technical-skills_smart_contract">Proficiency in a smart contract language</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-blockchain">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_architecture" value="architecture" checked>
+								<label for="apply-required-technical-skills_architecture">Strong understanding of blockchain architecture and principles</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-blockchain">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_blockchain_dev_tools" value="blockchain_dev_tools" checked>
+								<label for="apply-required-technical-skills_blockchain_dev_tools">Familiarity with blockchain development tools</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-blockchain">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_backend" value="backend" checked>
+								<label for="apply-required-technical-skills_backend">Proficiency in a backend programming language</label>
+							</div>
 						</div>
 					</fieldset>
 
-					<label for="apply-other-skills">Other skills:</label>
-					<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
+					<div>
+						<label for="apply-other-skills">Other skills:</label>
+						<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
+					</div>
 				</fieldset>
 
 				<input type="submit" value="Apply" class="apply-fancy-button">
