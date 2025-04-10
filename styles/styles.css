@@ -92,10 +92,25 @@ footer {
     color: white;
 }
 
+/* add a little icon for external links to indicate that they are, in fact, external */
+a[target="_blank"]::after {
+	content: "";
+	display: inline-block;
+	background-image: url("images/external-link.svg");
+	background-size: contain;
+	width: 12px;
+	height: 12px;
+	margin-left: 2px;
+}
+
+dl {
+    padding: 15px;
+    border-radius: 5px;
+}
+
 /******************************/
 /* index.html specific styles */
 /******************************/
-
 
 /*****************************/
 /* jobs.html specific styles */
