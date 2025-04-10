@@ -9,13 +9,17 @@ description: Stylesheet for all pages
 /*************************************/
 /* non page-specific styles (global) */
 /*************************************/
+
+* {
+	font-family: Arial, sans-serif;
+}
+
 body {
     background-image: linear-gradient(to bottom, #efefef, #e3ebee);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333;
 }
@@ -56,7 +60,8 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.4s ease-in-out;
+    /* Suggestion: change to 0.2s, ease (discuss on friday) */
 }
 nav ul li a:hover {
     color: #00BFFF;
@@ -92,10 +97,25 @@ footer {
     color: white;
 }
 
+/* add a little icon for external links to indicate that they are, in fact, external */
+a[target="_blank"]::after {
+	content: "";
+	display: inline-block;
+	background-image: url("images/external-link.svg");
+	background-size: contain;
+	width: 12px;
+	height: 12px;
+	margin-left: 2px;
+}
+
+dl {
+    padding: 15px;
+    border-radius: 5px;
+}
+
 /******************************/
 /* index.html specific styles */
 /******************************/
-
 
 /*****************************/
 /* jobs.html specific styles */

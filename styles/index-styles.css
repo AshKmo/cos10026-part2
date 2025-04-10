@@ -18,28 +18,71 @@ figcaption {
     clear: right;
 }
 
-#benefits {
+#index-benefits {
     border-radius: 15px;
+    width: 100%;
     background-color: #747474;
     display: flex;
     justify-content: space-around;
 }
 
-#benefits figure {
+#index-benefits figure {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#benefits figure img {
+#index-benefits figure img {
     max-width: 100px;
     border-radius: 25px;
 }
 
-#benefits figure figcaption {
+#index-benefits figure figcaption {
     color: white;
 }
 
-#company-info {
-    /*max-width: 400px;*/
+#index-benefits input {
+    position: absolute;
+    right: 100%;
+  }
+  
+#index-benefits input:checked+div {
+    display: block;
+  }
+  
+#index-benefits div {
+    display: none;
+  }
+
+#index-pricing {
+    max-width: 45%;
+    float: left;
+    padding-right: 100px;
+    width: 100%;
+    flex: 1;
+}
+#index-pricing table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#index-pricing th, #index-pricing td {
+    padding: 10px;
+    text-align: left;
+}
+#index-pricing th {
+    background: #747474;
+    color: white;
+    text-align: center;
+}
+#index-pricing td {
+    background-color: #efefef;
+}
+#index-pricing td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #cfe9f0);
+}
+
+#index-vision {
+    float: right;
+    max-width: 45%;
 }

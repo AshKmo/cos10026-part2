@@ -43,6 +43,9 @@
 		<main>
 			<h1>Apply for a position</h1>
 
+			<p>Tolstra is always committed to providing premium employment opportunities to those who need them the most. Please submit your application below, and welcome aboard!</p>
+
+			<!-- HTML form containing all fields for submission -->
 			<form method="POST" action="https://mercury.swin.edu.au/it000000/formtest.php">
 				<fieldset>
 					<legend>Personal details</legend>
@@ -51,14 +54,14 @@
 					<label for="apply-first-name">First name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required></input>
+					<input type="text" name="first-name" id="apply-first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required>
 					</p>
 
 					<p>
 					<label for="apply-last-name">Last name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required></input>
+					<input type="text" name="last-name" id="apply-last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required>
 					</p>
 
 					<p>
@@ -77,12 +80,12 @@
 
 					<p>
 					<label for="apply-address">Street address: </label>
-					<input type="text" id="apply-address" name="address" size="40" maxlength="40" placeholder="Your street address here" required></input>
+					<input type="text" id="apply-address" name="address" size="40" maxlength="40" placeholder="Your street address here" required>
 					</p>
 
 					<p>
 					<label for="apply-town">Suburb/town: </label>
-					<input type="text" id="apply-town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required></input>
+					<input type="text" id="apply-town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required>
 					</p>
 
 					<p>
@@ -131,70 +134,72 @@
 						</p>
 
 						<p>
-						<input type="radio" name="gender" value="unspecified" id="apply-gender_unspecified" required>
+						<input type="radio" name="gender" value="unspecified" id="apply-gender_unspecified" required checked>
 						<label for="apply-gender_unspecified">Prefer not to say</label>
 						</p>
 					</fieldset>
 				</fieldset>
 
-				<fieldset>
+				<fieldset id="apply-employment-details">
 					<legend>Employment details</legend>
 
 					<p>
 					<label for="apply-job-reference-number">Position of interest: </label>
 					<select name="job-reference-number" id="apply-job-reference-number" required>
 						<option value="">Please select</option>
-						<option value="support">IT Support Technician</option>
-						<option value="analyst">Data Analyst</option>
+						<option value="IT427">IT Support Technician</option>
+						<option value="DA193">Data Analyst</option>
 					</select>
 					</p>
 
 					<fieldset>
 						<legend>Required technical skills:</legend>
 
-						<div class="apply-checkbox-container">
-							<div id="">
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sql" value="sql" required>
-								<label for="apply-required-technical-skills_sql">Understanding of SQL and Python</label>
+						<div class="apply-checkbox-set-container">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sql" value="sql" checked>
+								<label for="apply-required-technical-skills_sql">Understanding of SQL</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_networks" value="networks" required>
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_python" value="python" checked>
+								<label for="apply-required-technical-skills_python">Understanding of Python</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_networks" value="networks" checked>
 								<label for="apply-required-technical-skills_networks">Understanding of networks</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_excel" value="excel" required>
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_excel" value="excel" checked>
 								<label for="apply-required-technical-skills_excel">Proficiency in Microsoft Excel</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" required>
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" checked>
 								<label for="apply-required-technical-skills_vistools">Experience with data visualisation tools</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" required>
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
 								<label for="apply-required-technical-skills_problem_solving">Analytical and problem-solving skills</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" required>
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
 								<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data Science</label>
 							</div>
 
-							<div>
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" required>
+							<div class="apply-checkbox-container apply-checkbox-set-support">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
 								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
 							</div>
 						</div>
 					</fieldset>
 
-					<fieldset class="apply-text-fieldset">
-						<legend>Other skills</legend>
-
-						<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
-					</fieldset>
+					<label for="apply-other-skills">Other skills:</label>
+					<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
 				</fieldset>
 
 				<input type="submit" value="Apply" class="apply-fancy-button">
@@ -206,6 +211,9 @@
 		<footer>
 			<p>&copy; 2025 The Merge Masters. All Rights Reserved.<br>
 			Disclaimer: Tolstra is a fictional project created for educational purposes. It is not affiliated with, endorsed by, or associated with Telstra Corporation Limited.</p>
+			<p>
+				<a href="https://merge-masters-project.atlassian.net/jira/" title="Merge Masters Jira" target="_blank">Jira Project</a>
+			</p>
 		</footer>
 	</body>
 </html>
