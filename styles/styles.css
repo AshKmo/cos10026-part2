@@ -14,6 +14,10 @@ description: Stylesheet for all pages
 	font-family: Arial, sans-serif;
 }
 
+h1 {
+    color: rgb(9, 121, 159);
+}
+
 body {
     background-image: linear-gradient(to bottom, #efefef, #e3ebee);
     background-size: cover;
@@ -123,11 +127,6 @@ dl {
 /* jobs.html specific styles */
 /*       Author: Max         */
 /*****************************/
-
-/* Set jobs title colour to the typical header colour */
-#jobs-title {
-    color: rgb(9, 121, 159);
-}
 
 /* Setting correct colour for subtitles within the job details */
 .jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
