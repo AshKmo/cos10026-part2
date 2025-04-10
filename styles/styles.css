@@ -149,10 +149,8 @@ dl {
     /* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
     padding: 0.25em;
     margin: 0 10px;
-    /* Two transforms are used to help with browser compatability */
     transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
   }
 
 /* Set appropriate formating and styling for the job dropdowns */
@@ -168,7 +166,6 @@ dl {
 /* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
 .jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
 }
 
 /* The job titles get slightly bigger and become more blue when hovered over */
