@@ -40,6 +40,7 @@ nav {
     position: relative;
     height: 20px;
     overflow: visible;
+    box-shadow: 4px 4px 3px #bcbcbc;
 }
 .nav-logo {
     position: absolute;
@@ -64,8 +65,7 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: color 0.4s ease-in-out;
-    /* Suggestion: change to 0.2s, ease (discuss on friday) */
+    transition: color 0.25s ease;
 }
 nav ul li a:hover {
     color: #00BFFF;
