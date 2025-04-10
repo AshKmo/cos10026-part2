@@ -78,6 +78,10 @@ main {
     overflow: hidden;
 }
 
+h2, h3, h4, h5, h6 {
+    color: #09799f;
+}
+
 /* Discuss this on Friday
 main p {
 	font-size: 20px;
@@ -130,7 +134,7 @@ dl {
 
 /* Setting correct colour for subtitles within the job details */
 .jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
-    color: rgb(9, 121, 159)
+    color: #09799f;
 }
 
 /* Job ID - sets it to the right of the screen, with a width of 25% of that job's container size */
