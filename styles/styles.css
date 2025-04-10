@@ -2,7 +2,7 @@
 filename: styles.css
 author: Ash, Hayden, Tim, Max
 created: 2025-03-28
-last modified: 2025-03-28
+last modified: 2025-04-10
 description: Stylesheet for all pages
 */
 
@@ -12,6 +12,10 @@ description: Stylesheet for all pages
 
 * {
 	font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: rgb(9, 121, 159);
 }
 
 body {
@@ -26,6 +30,7 @@ body {
 
 /* navigation menu */
 nav {
+    height: 20px;
     display: flex;
     align-items: center;
     background: #747474;
@@ -34,8 +39,8 @@ nav {
     max-width: 800px;
     border-radius: 0px 10px 10px 0px;
     position: relative;
-    height: 20px;
     overflow: visible;
+    box-shadow: 4px 4px 3px #bcbcbc;
 }
 .nav-logo {
     position: absolute;
@@ -54,13 +59,20 @@ nav ul {
 }
 nav ul li {
     display: inline;
+    transform: scale(1, 1);
+    transition: transform 0.15s ease;
 }
+
+nav ul li:hover {
+    transform: scale(1.05, 1.05);
+}
+
 nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.25s ease;
 }
 nav ul li a:hover {
     color: #00BFFF;
@@ -77,16 +89,21 @@ main {
     overflow: hidden;
 }
 
+h2, h3, h4, h5, h6 {
+    color: #09799f;
+}
+
+/* Discuss this on Friday
 main p {
 	font-size: 20px;
 }
+*/
 
 section {
     margin-bottom: 20px;
 }
 
 footer {
-    text-align: center;
     padding: 20px;
     width: 80%;
     margin: auto;
@@ -94,6 +111,7 @@ footer {
     background: #747474;
     border-radius: 0 0 5px 5px;
     color: white;
+    text-align: center;
 }
 
 /* add a little icon for external links to indicate that they are, in fact, external */
@@ -118,8 +136,138 @@ dl {
 
 /*****************************/
 /* jobs.html specific styles */
+/*       Author: Max         */
 /*****************************/
 
+/* Setting correct colour for subtitles within the job details */
+.jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
+    color: #09799f;
+}
+
+/* Job ID - sets it to the right of the screen, with a width of 25% of that job's container size */
+.jobs-aside {
+    text-align: right;
+    padding: 3%;
+    width: 25%;
+    float: right;
+}
+
+/* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
+.arrow {
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    /* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
+    padding: 0.25em;
+    margin: 0 10px;
+    transform: rotate(-45deg);
+    transition: transform 0.4s ease;
+  }
+
+/* Set appropriate formating and styling for the job dropdowns */
+.jobs-dropdown {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f4f8fa;
+    margin: 20px 0px;
+}
+
+/* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
+.jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
+    transform: rotate(45deg);
+}
+
+/* The job titles get slightly bigger and become more blue when hovered over */
+.jobs-dropdown-title:hover {
+    color: rgb(51, 160, 255);
+    font-size: 1.6em;
+}
+
+/* Removes the checkbox from appearing next to the job title (required to look nice due to the textbook being a checkbox input in order to have the expanding description) */
+.jobs-dropdown input {
+    display: none;
+}
+
+/* Add formatting to each job titles. Bottom padding is not needed as it is already added from somewhere which I cannot for the life of me find */
+.jobs-dropdown-title {
+    font-size: 1.5em;
+    padding-top: 20px;
+    padding-left: 15px;
+    display: block;
+    cursor: pointer;
+    color: rgb(9, 121, 159);
+    transition: color 0.2s ease, font-size 0.2s ease;
+}
+
+/* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
+.jobs-dropdown input:checked ~ .jobs-dropdown-content {
+    max-height: 2000px;
+    /* fade out, then shrink */    
+}
+
+/* Base formatting for the unexpanded job details. Max height set to 0 to get the 'unexpanded' effect */
+.jobs-dropdown-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0px 20px;
+    margin-left: 2%;
+}
+
+/* Removes the space that would otherwise be below the 'Prerequisites:' subtitle */
+.jobs-prereqs-title {
+    margin-bottom: 0px;
+}
+
+/* Restricts the width of the job description (only particularly relevant when using a shrunk screen) */
+.jobs-description {
+    width: 70%;
+}
+
+/* Sets the style of the 'container' for the essential and preferable prerequisites; gives them flex style to sit side by side */
+.jobs-prerequisites {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+/* Not entirely sure why this works but if you set the width below 30% or use auto then everything looks bad so... */
+.jobs-prerequisites div {
+    width: 40%;
+}
+
+.jobs-apply-button {
+    margin-top: 35px;
+}
+
+.jobs-apply-button a {
+    text-decoration: none;
+    padding: 10px 25px;
+    border: 1px solid #8b8b8b;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(233, 248, 252);
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(0, 91, 122);
+    
+    transition: all 0.1s ease;
+}
+
+.jobs-apply-button a:visited {
+    color: rgb(0, 91, 122)
+}
+
+.jobs-apply-button a:hover {
+    background-color: rgb(209, 229, 235);
+}
+
+/* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
 
 /******************************/
 /* apply.html specific styles */
@@ -149,7 +297,7 @@ dl {
 }
 #about_contributions dt {
     font-weight: bold;
-    color: #0073e6;
+    color: rgb(9, 121, 159);
 }
 #about_contributions dd {
     margin-bottom: 10px;
@@ -224,18 +372,50 @@ dl {
 
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 @media only screen and (max-width: 600px) {
-	nav {
-		width: 90%;
-	}
-
-	nav ul li {
-		padding: 0;
-	}
-
-	main {
+	main, footer {
 		box-sizing: border-box;
 		width: 100%;
 		padding-left: 10px;
 		padding-right: 10px;
 	}
+
+    /* The nav css code for mobile devices below was generated using GenAI, with personal modifications added in.
+    GenAI prompt: “{insert nav html and css here} I want to modify this code
+    for a navigation menu so that when on mobile devices change it so that there is 2 columns, each containing two
+    menu items. place the columns next to the logo with the center of the items level with the middle of the logo” */
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin: auto;
+        border-radius: 0px;
+    }
+    .nav-logo {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 80px;
+    }
+    nav ul {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px 20px;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+    nav ul li {
+        display: block;
+        margin: 0;
+    }
+    nav ul li a {
+        display: block;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
 }

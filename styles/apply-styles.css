@@ -59,7 +59,7 @@ input[type="text"]:focus {
 }
 
 /* hide everything under the "Employment details" section except for the select box, but only if an option is not chosen */
-#apply-employment-details:has(option[value=""]:checked) fieldset {
+#apply-employment-details:has(option[value=""]:checked) :is(fieldset, div) {
 	display: none;
 }
 
@@ -70,6 +70,16 @@ input[type="text"]:focus {
 
 /* show the checkboxes relevant for the DA193 profession when it is selected */
 #apply-employment-details:has(option[value="DA193"]:checked) .apply-checkbox-set-analyst {
+	display: block;
+}
+
+/* show the checkboxes relevant for the DA193 profession when it is selected */
+#apply-employment-details:has(option[value="BC123"]:checked) .apply-checkbox-set-blockchain {
+	display: block;
+}
+
+/* show the checkboxes relevant for the DA193 profession when it is selected */
+#apply-employment-details:has(option[value="QA666"]:checked) .apply-checkbox-set-qa {
 	display: block;
 }
 
