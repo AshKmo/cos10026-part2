@@ -39,20 +39,8 @@ figcaption {
 
 #index-benefits figure figcaption {
     color: white;
+    text-align: center;
 }
-
-#index-benefits input {
-    position: absolute;
-    right: 100%;
-  }
-  
-#index-benefits input:checked+div {
-    display: block;
-  }
-  
-#index-benefits div {
-    display: none;
-  }
 
 #index-pricing {
     max-width: 45%;
@@ -85,4 +73,34 @@ figcaption {
 #index-vision {
     float: right;
     max-width: 45%;
+}
+
+.links {
+    display: inline;
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        height: auto;
+    }
+
+    #index-benefits {
+        justify-content: space-between;
+    }
+
+    #index-benefits figure {
+        margin: 10px 5px 10px 5px;
+    }
+
+    #index-benefits figure img {
+        max-width: 50px;
+    }
+
+	#index-vision {
+        max-width: 100%;
+    }
+
+    #index-pricing {
+        max-width: 100%;
+    }
 }
