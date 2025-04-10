@@ -24,7 +24,7 @@ fieldset:not(:last-child) {
 }
 
 /* remove the ability to select the text on a label and increase its font size slightly */
-form p label {
+form label, form p label {
 	user-select: none;
 	font-size: 110%;
 }
@@ -41,8 +41,8 @@ input[type="text"] {
 	border-bottom: solid #404040 2px;
 }
 
-/* make text inputs have a blue bottom border when they are selected or hovered over */
-input[type="text"]:where(:focus, :hover) {
+/* make text inputs have a blue bottom border when they are selected */
+input[type="text"]:focus {
 	border-bottom: solid #0073e6 2px;
 }
 
@@ -91,11 +91,12 @@ input[type="text"]:where(:focus, :hover) {
 	padding: 10px 20px 10px 20px;
 	font-size: 24px;
 	cursor: pointer;
+	margin-right: 15px;
 }
 
-/* make sure that the buttons are not squished together */
-.apply-fancy-button {
-	margin-right: 15px;
+/* make the outline on the buttons more visible for keyboard users when they are focused */
+.apply-fancy-button:focus {
+	outline-offset: 4px;
 }
 
 /* make the buttons slightly darker when hovered over */
@@ -113,35 +114,32 @@ input[type="text"]:where(:focus, :hover) {
 	background-color: #88000C;
 }
 
-/* apply a darker border to the text input fieldset to distinguish it from the others */
-.apply-text-fieldset {
-	border: solid #404040 2px;
-}
-
-/* remove the borders and outlining from the textarea to make it seamlessly fit within the styled fieldset */
-.apply-text-fieldset textarea {
+/* add a darker border to the textarea box and make it fill the width of the fieldset */
+#apply-other-skills {
 	width: 100%;
 	height: 150px;
-	border: none;
-	outline: none;
-	resize: vertical;
+	box-sizing: border-box;
+	border: solid #606060 2px;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 16px;
 }
 
-.apply-text-fieldset:has(textarea:where(:focus, :hover)) {
-	border: solid #0073e6 2px;
-}
-
+/* update the styles for mobile devices */
 @media only screen and (max-width: 600px) {
+	/* make text inputs almost fill the line so they're easy to interact with on mobile */
 	input[type="text"] {
 		padding-top: 10px;
 		width: 98%;
 		margin-left: 2%;
 	}
 
+	/* make only one column of checkboxes so that the text isn't squished */
 	.apply-checkbox-container {
 		flex-basis: 100%;
 	}
 
+	/* make each button fill the line so that it's easier to press them */
 	.apply-fancy-button {
 		display: block;
 		width: 100%;
