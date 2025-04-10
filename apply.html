@@ -54,14 +54,14 @@
 					<label for="apply-first-name">First name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required></input>
+					<input type="text" name="first-name" id="apply-first-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here" required>
 					</p>
 
 					<p>
 					<label for="apply-last-name">Last name: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input type="text" name="last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required></input>
+					<input type="text" name="last-name" id="apply-last-name" pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here" required>
 					</p>
 
 					<p>
@@ -80,12 +80,12 @@
 
 					<p>
 					<label for="apply-address">Street address: </label>
-					<input type="text" id="apply-address" name="address" size="40" maxlength="40" placeholder="Your street address here" required></input>
+					<input type="text" id="apply-address" name="address" size="40" maxlength="40" placeholder="Your street address here" required>
 					</p>
 
 					<p>
 					<label for="apply-town">Suburb/town: </label>
-					<input type="text" id="apply-town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required></input>
+					<input type="text" id="apply-town" name="town" size="40" maxlength="40" placeholder="Your suburb or town name here" required>
 					</p>
 
 					<p>
@@ -177,32 +177,29 @@
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-support">
-								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" checked>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" checked>
 								<label for="apply-required-technical-skills_vistools">Experience with data visualisation tools</label>
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-support">
-								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
 								<label for="apply-required-technical-skills_problem_solving">Analytical and problem-solving skills</label>
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-support">
-								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
 								<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data Science</label>
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-support">
-								<input type="checkbox" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
 								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
 							</div>
 						</div>
 					</fieldset>
 
-					<fieldset class="apply-text-fieldset">
-						<legend>Other skills</legend>
-
-						<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
-					</fieldset>
+					<label for="apply-other-skills">Other skills:</label>
+					<textarea id="apply-other-skills" name="other-skills" placeholder="Enter any other skills you'd like to share here..."></textarea>
 				</fieldset>
 
 				<input type="submit" value="Apply" class="apply-fancy-button">
@@ -214,6 +211,9 @@
 		<footer>
 			<p>&copy; 2025 The Merge Masters. All Rights Reserved.<br>
 			Disclaimer: Tolstra is a fictional project created for educational purposes. It is not affiliated with, endorsed by, or associated with Telstra Corporation Limited.</p>
+			<p>
+				<a href="https://merge-masters-project.atlassian.net/jira/" title="Merge Masters Jira" target="_blank">Jira Project</a>
+			</p>
 		</footer>
 	</body>
 </html>
