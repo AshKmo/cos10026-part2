@@ -487,6 +487,17 @@ input[type="text"]:focus {
 	resize: vertical;
 }
 
+/* line up the text input fields */
+#apply-personal-text-fields-container label {
+	display: inline-block;
+	width: 150px;
+}
+
+/* make all the text input fields the same width on desktop */
+#apply-personal-text-fields-container input {
+	width: 400px;
+}
+
 /******************************/
 /* about.html specific styles */
 /******************************/

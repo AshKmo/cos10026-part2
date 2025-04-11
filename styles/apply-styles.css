@@ -1,0 +1,8 @@
+#apply-personal-text-fields-container label {
+	display: inline-block;
+	width: 150px;
+}
+
+#apply-personal-text-fields-container input {
+	width: 400px;
+}
