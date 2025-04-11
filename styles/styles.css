@@ -525,7 +525,7 @@ input[type="text"]:focus {
     flex: 1;
 }
 #about_interests table {
-    width: 90%;
+    width: 89%;
     margin: 10px auto;
     border-collapse: collapse;
     border: 1px solid #ccc;
