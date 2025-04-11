@@ -483,28 +483,6 @@ input[type="text"]:focus {
 	resize: vertical;
 }
 
-/* update the styles for mobile devices */
-@media only screen and (max-width: 600px) {
-	/* make text inputs almost fill the line so they're easy to interact with on mobile */
-	input[type="text"] {
-		padding-top: 10px;
-		width: 98%;
-		margin-left: 2%;
-	}
-
-	/* make only one column of checkboxes so that the text isn't squished */
-	.apply-checkbox-container {
-		flex-basis: 100%;
-	}
-
-	/* make each button fill the line so that it's easier to press them */
-	.apply-fancy-button {
-		display: block;
-		width: 100%;
-		margin-top: 20px;
-	}
-}
-
 /******************************/
 /* about.html specific styles */
 /******************************/
@@ -670,4 +648,23 @@ input[type="text"]:focus {
     #index-pricing {
         max-width: 100%;
     }
+
+	/* make text inputs almost fill the line so they're easy to interact with on mobile */
+	input[type="text"] {
+		padding-top: 10px;
+		width: 98%;
+		margin-left: 2%;
+	}
+
+	/* make only one column of checkboxes so that the text isn't squished */
+	.apply-checkbox-container {
+		flex-basis: 100%;
+	}
+
+	/* make each button fill the line so that it's easier to press them */
+	.apply-fancy-button {
+		display: block;
+		width: 100%;
+		margin-top: 20px;
+	}
 }
