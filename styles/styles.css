@@ -45,6 +45,7 @@ nav {
     position: relative;
     overflow: visible;
     box-shadow: 4px 4px 3px #bcbcbc;
+    font-weight: bold;
 }
 .nav-logo {
     position: absolute;
@@ -210,6 +211,10 @@ dl {
 /* jobs.html specific styles */
 /*       Author: Max         */
 /*****************************/
+
+#jobs-title {
+    font: bold 2em verdana, sans-serif;
+}
 
 /* Setting correct colour for subtitles within the job details */
 .jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
