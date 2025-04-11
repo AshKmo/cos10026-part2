@@ -414,7 +414,7 @@ input[type="text"]:focus {
 }
 
 /* show the checkboxes relevant for the DA193 profession when it is selected */
-#apply-employment-details:has(option[value="BC123"]:checked) .apply-checkbox-set-blockchain {
+#apply-employment-details:has(option[value="BC279"]:checked) .apply-checkbox-set-blockchain {
 	display: block;
 }
 
