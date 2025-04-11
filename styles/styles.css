@@ -661,7 +661,7 @@ input[type="text"]:focus {
 	/* make text inputs almost fill the line so they're easy to interact with on mobile */
 	input[type="text"] {
 		padding-top: 10px;
-		width: 98%;
+		width: 98% !important;
 		margin-left: 2%;
 	}
 
