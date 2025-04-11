@@ -11,7 +11,7 @@ description: Stylesheet for all pages
 /*************************************/
 
 :root {
-	--nav-footer-background-color: #444444;
+	--nav-footer-background-color: #333333;
 }
 
 * {
@@ -121,6 +121,10 @@ footer {
     border-radius: 0 0 5px 5px;
     color: white;
     text-align: center;
+}
+
+footer a {
+	color: #0fc3ff;
 }
 
 /* add a little icon for external links to indicate that they are, in fact, external */
