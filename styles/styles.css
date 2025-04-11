@@ -93,6 +93,11 @@ h2, h3, h4, h5, h6 {
     color: #09799f;
 }
 
+/* Makes the Jira & email link take up the same line */
+footer p a {
+    display: inline;
+}
+
 /* Discuss this on Friday
 main p {
 	font-size: 20px;
@@ -133,6 +138,65 @@ dl {
 /******************************/
 /* index.html specific styles */
 /******************************/
+
+/* Make the benefits have a banner look */
+#index-benefits {
+    border-radius: 15px;
+    width: 100%;
+    background-color: #747474;
+    display: flex;
+    justify-content: space-around;
+}
+
+#index-benefits figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#index-benefits figure img {
+    max-width: 100px;
+    border-radius: 25px;
+}
+
+#index-benefits figure figcaption {
+    color: white;
+    text-align: center;
+}
+
+/* Table showing pricing, using Tim's css */
+#index-pricing {
+    max-width: 45%;
+    float: left;
+    padding-right: 100px;
+    width: 100%;
+    flex: 1;
+}
+#index-pricing table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#index-pricing th, #index-pricing td {
+    padding: 10px;
+    text-align: left;
+}
+#index-pricing th {
+    background: #747474;
+    color: white;
+    text-align: center;
+}
+#index-pricing td {
+    background-color: #efefef;
+}
+#index-pricing td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #cfe9f0);
+}
+
+#index-vision {
+    float: right;
+    max-width: 45%;
+}
 
 /*****************************/
 /* jobs.html specific styles */
@@ -417,5 +481,26 @@ dl {
         display: block;
         padding: 5px 10px;
         font-size: 16px;
+    }
+
+    /* Index.html changes */
+    
+    /* Make benefits banner images smaller to fit on smaller screen */
+    #index-benefits figure {
+        margin: 10px 5px 10px 5px;
+    }
+
+    #index-benefits figure img {
+        max-width: 50px;
+    }
+
+    /* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
+    instead of just 45% */
+	#index-vision {
+        max-width: 100%;
+    }
+
+    #index-pricing {
+        max-width: 100%;
     }
 }
