@@ -498,6 +498,14 @@ input[type="text"]:focus {
 	width: 400px;
 }
 
+#apply-postcode {
+	width: 46px;
+}
+
+#apply-date-of-birth {
+	width: 110px;
+}
+
 /******************************/
 /* about.html specific styles */
 /******************************/
