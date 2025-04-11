@@ -142,7 +142,7 @@ dl {
 #index-benefits {
     border-radius: 15px;
     width: 100%;
-    background-color: #747474;
+    background-color: #333;
     display: flex;
     justify-content: space-around;
 }
@@ -547,14 +547,17 @@ input[type="text"]:focus {
     width: 100%;
     flex: 1;
 }
+#about_interests h2 {
+    text-align: center;
+}
 #about_interests table {
-    width: 89%;
+    width: 75%;
     margin: 10px auto;
     border-collapse: collapse;
     border: 1px solid #ccc;
 }
 #about_interests th {
-    background: #747474;
+    background: #333;
     color: white;
     text-align: center;
     font-weight: bold;
@@ -621,7 +624,7 @@ input[type="text"]:focus {
         flex-wrap: nowrap;
         width: 100%;
         height: auto;
-        padding: 10px;
+        padding: 25px 0px;
         margin: auto;
         border-radius: 0px;
     }
@@ -688,4 +691,8 @@ input[type="text"]:focus {
 		width: 100%;
 		margin-top: 20px;
 	}
+
+    #about_group-info {
+        padding-left: 0px;
+    }
 }
