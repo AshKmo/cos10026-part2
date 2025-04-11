@@ -118,6 +118,7 @@
 					<input type="text" name="date-of-birth" id="apply-date-of-birth" placeholder="dd/mm/yyyy" size="10" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" required>
 					</p>
 
+					<!-- radio fieldset for gender selection -->
 					<fieldset>
 						<legend>Gender</legend>
 
@@ -146,6 +147,7 @@
 				<fieldset id="apply-employment-details">
 					<legend>Employment details</legend>
 
+					<!-- set all the options for the job selection box and create the selection box -->
 					<p>
 					<label for="apply-job-reference-number">Position of interest: </label>
 					<select name="job-reference-number" id="apply-job-reference-number" required>
@@ -157,6 +159,9 @@
 					</select>
 					</p>
 
+					<!-- a series of checkboxes for each required technical skill for each job -->
+					<!-- the relevant checkboxes for each job are shown only when that job is selected above -->
+					<!-- this is done by applying a class to each checkbox indicating the job to which it is assigned -->
 					<fieldset>
 						<legend>Required technical skills:</legend>
 
@@ -249,6 +254,7 @@
 					</div>
 				</fieldset>
 
+				<!-- add the buttons to submit and reset the form -->
 				<input type="submit" value="Apply" class="apply-fancy-button">
 				<input type="reset" value="Reset" class="apply-fancy-button apply-fancy-button-bad">
 			</form>
