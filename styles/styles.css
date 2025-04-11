@@ -214,7 +214,7 @@ dl {
     width: 25%;
     float: right;
     /*I really hate this border but it's required for the CSS :( */
-    border: 1px solid #c2d2d8;
+    border: 1px solid #d4dee2;
     padding: 10px;
     border-radius: 10px;
 }
@@ -319,12 +319,12 @@ dl {
 }
 
 .jobs-apply-button {
-    margin-top: 35px;
+margin-top: 35px;
 }
 
 .jobs-apply-button a {
     text-decoration: none;
-    padding: 10px 25px;
+    padding: 10px 35px;
     border: 1px solid #8b8b8b;
     cursor: pointer;
     border-radius: 5px;
