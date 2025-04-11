@@ -10,6 +10,10 @@ description: Stylesheet for all pages
 /* non page-specific styles (global) */
 /*************************************/
 
+:root {
+	--nav-footer-background-color: #333333;
+}
+
 * {
 	font-family: Arial, sans-serif;
 }
@@ -33,7 +37,7 @@ nav {
     height: 20px;
     display: flex;
     align-items: center;
-    background: #747474;
+    background: var(--nav-footer-background-color);
     padding: 10px;
     margin: 20px 0 20px 0;
     max-width: 800px;
@@ -114,10 +118,14 @@ footer {
     width: 80%;
     margin: auto;
     padding-left: 50px;
-    background: #747474;
+    background: var(--nav-footer-background-color);
     border-radius: 0 0 5px 5px;
     color: white;
     text-align: center;
+}
+
+footer a {
+	color: #0fc3ff;
 }
 
 /* add a little icon for external links to indicate that they are, in fact, external */
@@ -341,7 +349,148 @@ dl {
 /******************************/
 /* apply.html specific styles */
 /******************************/
+/* make each fieldset have a rounded, solid border */
+fieldset {
+	border-radius: 10px;
+	border: solid #B0B0B0 2px;
+}
 
+/* add a box shadow to all the top-level fieldsets */
+form > fieldset {
+	box-shadow: 8px 8px rgb(200, 200, 200);
+}
+
+/* make the fieldset legends more obvious */
+fieldset legend {
+	font-weight: bold;
+}
+
+/* make the legends of the top-level fieldsets slightly larger in font size */
+form > fieldset > legend {
+	font-size: 24px;
+}
+
+/* add a bit of spacing between the fieldsets */
+fieldset:not(:last-child) {
+	margin-bottom: 20px;
+}
+
+/* remove the ability to select the text on a label and increase its font size slightly */
+form label, form p label {
+	user-select: none;
+	font-size: 110%;
+}
+
+/* bump the font size on all major form elements for easy readability */
+form label, form input, form legend, form select {
+	font-size: 20px;
+}
+
+/* make text inputs have only a grey bottom border */
+input[type="text"] {
+	outline: none;
+	border: none;
+	border-bottom: solid #404040 2px;
+}
+
+/* make text inputs have a blue bottom border when they are selected */
+input[type="text"]:focus {
+	border-bottom: solid #0073e6 2px;
+}
+
+/* initially hide all the checkboxes but ensure that they consume half the available width when displayed */
+.apply-checkbox-container {
+	display: none;
+	flex-basis: 50%;
+}
+
+/* remove the padding from the bottom of the "Employment details" section so that there isn't a massive gap betweeen the end of the textarea and the end of the fieldset */
+#apply-employment-details fieldset {
+	padding-bottom: 0;
+}
+
+/* hide everything under the "Employment details" section except for the select box, but only if an option is not chosen */
+#apply-employment-details:has(option[value=""]:checked) :is(fieldset, div) {
+	display: none;
+}
+
+/* show the checkboxes relevant for the IT427 profession when it is selected */
+#apply-employment-details:has(option[value="IT427"]:checked) .apply-checkbox-set-support {
+	display: block;
+}
+
+/* show the checkboxes relevant for the DA193 profession when it is selected */
+#apply-employment-details:has(option[value="DA193"]:checked) .apply-checkbox-set-analyst {
+	display: block;
+}
+
+/* show the checkboxes relevant for the DA193 profession when it is selected */
+#apply-employment-details:has(option[value="BC123"]:checked) .apply-checkbox-set-blockchain {
+	display: block;
+}
+
+/* show the checkboxes relevant for the DA193 profession when it is selected */
+#apply-employment-details:has(option[value="QA666"]:checked) .apply-checkbox-set-qa {
+	display: block;
+}
+
+/* add some padding to the checkbox set container and wrap the contents into a nice set of columns */
+.apply-checkbox-set-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px 5px 0px 5px;
+}
+
+/* make the checkboxes more spaced out */
+.apply-checkbox-container {
+	margin-bottom: 20px;
+}
+
+/* establish the default button styles with rounded corners, comfortable padding, an easily-readable font size and an appropriate cursor icon when hovered over */
+.apply-fancy-button {
+	background-color: #0073e6;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	font-size: 24px;
+	cursor: pointer;
+	margin-right: 15px;
+}
+
+/* make the outline on the buttons more visible for keyboard users when they are focused */
+.apply-fancy-button:focus {
+	outline-offset: 4px;
+}
+
+/* make the buttons slightly darker when hovered over */
+.apply-fancy-button:hover {
+	background-color: #003B73;
+}
+
+/* set a different colour for buttons with a negative or destructive meaning */
+.apply-fancy-button-bad {
+	background-color: #FF0019;
+}
+
+/* make the buttons slightly darker when hovered over */
+.apply-fancy-button-bad:hover {
+	background-color: #88000C;
+}
+
+#apply-other-skills {
+	/* add a darker rounded border to the textarea box, make it fill the width of the fieldset, and add inner padding so that the text nicely fits inside */
+	width: 100%;
+	height: 150px;
+	box-sizing: border-box;
+	border: solid #606060 2px;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 16px;
+
+	/* disable changes to the width of the textarea so that it doesn't collide with the edges of the main element */
+	resize: vertical;
+}
 
 /******************************/
 /* about.html specific styles */
@@ -508,4 +657,23 @@ dl {
     #index-pricing {
         max-width: 100%;
     }
+
+	/* make text inputs almost fill the line so they're easy to interact with on mobile */
+	input[type="text"] {
+		padding-top: 10px;
+		width: 98%;
+		margin-left: 2%;
+	}
+
+	/* make only one column of checkboxes so that the text isn't squished */
+	.apply-checkbox-container {
+		flex-basis: 100%;
+	}
+
+	/* make each button fill the line so that it's easier to press them */
+	.apply-fancy-button {
+		display: block;
+		width: 100%;
+		margin-top: 20px;
+	}
 }
