@@ -157,7 +157,7 @@ dl {
 #index-benefits {
     border-radius: 15px;
     width: 100%;
-    background-color: #333;;
+    background-color: #333;
     display: flex;
     justify-content: space-around;
 }
@@ -303,6 +303,16 @@ dl {
     width: 40%;
 }
 
+.jobs-extra-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+.jobs-extra-details div {
+    width: 100%;
+}
+
 .jobs-apply-button {
     margin-top: 35px;
 }
@@ -409,7 +419,7 @@ input[type="text"]:focus {
 }
 
 /* show the checkboxes relevant for the DA193 profession when it is selected */
-#apply-employment-details:has(option[value="BC123"]:checked) .apply-checkbox-set-blockchain {
+#apply-employment-details:has(option[value="BC279"]:checked) .apply-checkbox-set-blockchain {
 	display: block;
 }
 
