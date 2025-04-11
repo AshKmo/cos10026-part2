@@ -308,6 +308,16 @@ dl {
     width: 40%;
 }
 
+.jobs-extra-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+.jobs-extra-details div {
+    width: 100%;
+}
+
 .jobs-apply-button {
     margin-top: 35px;
 }
