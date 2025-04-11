@@ -189,6 +189,7 @@ dl {
     flex: 1;
 }
 
+/* Have the vision description float to the right on bigger screens */
 #index-vision {
     float: right;
     max-width: 45%;
