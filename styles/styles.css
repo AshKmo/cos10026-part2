@@ -212,6 +212,9 @@ dl {
     padding: 3%;
     width: 25%;
     float: right;
+    border: 1px solid #c2d2d8;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 /* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
