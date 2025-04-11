@@ -94,13 +94,28 @@ main {
     overflow: hidden;
 }
 
-/* Makes the Jira & email link take up the same line */
-footer p a {
-    display: inline;
-}
-
 section {
     margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+th {
+    background: var(--nav-footer-background-color);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+td {
+    background-color: #efefef;
+    border: 1px solid #ccc;
+}
+td:hover {
+    background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
 footer {
@@ -170,26 +185,6 @@ dl {
     padding-right: 100px;
     width: 100%;
     flex: 1;
-}
-#index-pricing table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-#index-pricing th, #index-pricing td {
-    padding: 10px;
-    text-align: left;
-}
-#index-pricing th {
-    background: #747474;
-    color: white;
-    text-align: center;
-}
-#index-pricing td {
-    background-color: #efefef;
-}
-#index-pricing td:hover {
-    background-image: linear-gradient(to bottom right, #efefef, #cfe9f0);
 }
 
 #index-vision {
@@ -532,6 +527,11 @@ input[type="text"]:focus {
 }
 
 /* Team member interests table */
+#about_interests table {
+    width: 75%;
+    margin: 10px auto;
+}
+
 #about_interests {
     padding-right: 100px;
     width: 100%;
@@ -539,27 +539,6 @@ input[type="text"]:focus {
 }
 #about_interests h2 {
     text-align: center;
-}
-#about_interests table {
-    width: 75%;
-    margin: 10px auto;
-    border-collapse: collapse;
-    border: 1px solid #ccc;
-}
-#about_interests th {
-    background: #747474;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-#about_interests td {
-    background-color: #efefef;
-    border: 1px solid #ccc;
-}
-#about_interests td:hover {
-    background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
 /* Team information aside */
