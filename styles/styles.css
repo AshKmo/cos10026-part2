@@ -124,6 +124,7 @@ footer {
     width: 80%;
     margin: auto;
     padding-left: 50px;
+    padding-right: 50px;
     background: var(--nav-footer-background-color);
     border-radius: 0 0 5px 5px;
     color: white;
