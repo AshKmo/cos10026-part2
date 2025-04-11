@@ -121,7 +121,7 @@
 					</p>
 
 					<!-- radio fieldset for gender selection -->
-					<fieldset>
+					<fieldset id="apply-fieldset-gender">
 						<legend>Gender</legend>
 
 						<p>
@@ -137,6 +137,11 @@
 						<p>
 						<input type="radio" name="gender" value="other" id="apply-gender_other" required>
 						<label for="apply-gender_other">Other</label>
+						</p>
+
+						<p id="apply-specific-gender-paragraph">
+						<label for="apply-specific-gender">Description: </label>
+						<input type="text" name="specific-gender" id="apply-specific-gender" placeholder="Please describe your gender here" size="30">
 						</p>
 
 						<p>

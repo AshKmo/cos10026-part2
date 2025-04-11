@@ -513,6 +513,14 @@ input[type="text"]:focus {
 	width: 110px;
 }
 
+#apply-specific-gender-paragraph {
+	display: none;
+}
+
+#apply-fieldset-gender:has(input[value="other"]:checked) #apply-specific-gender-paragraph {
+	display: initial;
+}
+
 /******************************/
 /* about.html specific styles */
 /******************************/
