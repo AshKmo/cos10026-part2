@@ -197,6 +197,7 @@ dl {
 /*       Author: Max         */
 /*****************************/
 
+/* Setting the font of the jobs main title, as required */
 #jobs-title {
     font: bold 2em verdana, sans-serif;
 }
@@ -212,6 +213,7 @@ dl {
     padding: 3%;
     width: 25%;
     float: right;
+    /*I really hate this border but it's required for the CSS :( */
     border: 1px solid #c2d2d8;
     padding: 10px;
     border-radius: 10px;
