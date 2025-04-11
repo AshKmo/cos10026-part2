@@ -537,8 +537,11 @@ input[type="text"]:focus {
     width: 100%;
     flex: 1;
 }
+#about_interests h2 {
+    text-align: center;
+}
 #about_interests table {
-    width: 89%;
+    width: 75%;
     margin: 10px auto;
     border-collapse: collapse;
     border: 1px solid #ccc;
