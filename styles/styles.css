@@ -589,9 +589,9 @@ input[type="text"]:focus {
 	color: #555;
 }
 
-/* these styles only apply to browsers with a viewport width smaller than 600 pixels, such as browsers on mobile devices */
-/* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
-@media only screen and (max-width: 600px) {
+/* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
+/* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
+@media only screen and (max-width: 800px) {
 	/* make the page content and footer fill the page so that it's not squashed or hard to read */
 	main, footer {
 		box-sizing: border-box;
