@@ -543,6 +543,10 @@ input[type="text"]:focus {
 	margin: 10px auto;
 }
 
+#about_interests table td {
+	padding-right: 10px;
+}
+
 #about_interests {
 	padding-right: 100px;
 	width: 100%;
@@ -596,83 +600,87 @@ input[type="text"]:focus {
 	GenAI prompt: “{insert nav html and css here} I want to modify this code
 	for a navigation menu so that when on mobile devices change it so that there is 2 columns, each containing two
 	menu items. place the columns next to the logo with the center of the items level with the middle of the logo” */
-nav {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	flex-wrap: nowrap;
-	width: 100%;
-	height: auto;
-	padding: 25px 0px;
-	margin: auto;
-	border-radius: 0px;
-}
-.nav-logo {
-	position: relative;
-	top: 0;
-	left: 0;
-	height: 80px;
-}
-nav ul {
-	display: grid;
-	grid-template-columns: repeat(2, auto);
-	gap: 10px 20px;
-	padding: 0;
-	margin: 0;
-	align-items: center;
-}
-nav ul li {
-	display: block;
-	margin: 0;
-}
-nav ul li a {
-	display: block;
-	padding: 5px 10px;
-	font-size: 16px;
-}
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		width: 100%;
+		height: auto;
+		padding: 25px 0px;
+		margin: auto;
+		border-radius: 0px;
+	}
+	.nav-logo {
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 80px;
+	}
+	nav ul {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		gap: 10px 20px;
+		padding: 0;
+		margin: 0;
+		align-items: center;
+	}
+	nav ul li {
+		display: block;
+		margin: 0;
+	}
+	nav ul li a {
+		display: block;
+		padding: 5px 10px;
+		font-size: 16px;
+	}
+	
+	/* Index.html changes */
+	
+	/* Make benefits banner images smaller to fit on smaller screen */
+	#index-benefits figure {
+		margin: 10px 5px 10px 5px;
+	}
+	
+	#index-benefits figure img {
+		max-width: 50px;
+	}
+	
+	/* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
+	instead of just 45% */
+	#index-vision {
+		max-width: 100%;
+	}
+	
+	#index-pricing {
+		max-width: 100%;
+	}
+	
+	/* make text inputs almost fill the line so they're easy to interact with on mobile */
+	input[type="text"] {
+		padding-top: 10px;
+		width: 98% !important;
+		margin-left: 2%;
+	}
+	
+	/* make only one column of checkboxes so that the text isn't squished */
+	.apply-checkbox-container {
+		flex-basis: 100%;
+	}
+	
+	/* make each button fill the line so that it's easier to press them */
+	.apply-fancy-button {
+		display: block;
+		width: 100%;
+		margin-top: 20px;
+	}
+	
+	#about_group-info {
+		padding-left: 0px;
+	}
 
-/* Index.html changes */
-
-/* Make benefits banner images smaller to fit on smaller screen */
-#index-benefits figure {
-	margin: 10px 5px 10px 5px;
-}
-
-#index-benefits figure img {
-	max-width: 50px;
-}
-
-/* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
-instead of just 45% */
-#index-vision {
-	max-width: 100%;
-}
-
-#index-pricing {
-	max-width: 100%;
-}
-
-/* make text inputs almost fill the line so they're easy to interact with on mobile */
-input[type="text"] {
-	padding-top: 10px;
-	width: 98% !important;
-	margin-left: 2%;
-}
-
-/* make only one column of checkboxes so that the text isn't squished */
-.apply-checkbox-container {
-	flex-basis: 100%;
-}
-
-/* make each button fill the line so that it's easier to press them */
-.apply-fancy-button {
-	display: block;
-	width: 100%;
-	margin-top: 20px;
-}
-
-#about_group-info {
-	padding-left: 0px;
-}
+	#about_interests table {
+		width: 100%;
+	}
 }
