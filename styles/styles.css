@@ -217,9 +217,10 @@ dl {
 	width: 25%;
 	float: right;
 	/*I really hate this border but it's required for the CSS :( */
-	border: 1px solid #d4dee2;
+	border: 2px solid #d4dee2;
 	padding: 10px;
 	border-radius: 10px;
+	margin-right: 10px;
 }
 
 /* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
@@ -579,6 +580,7 @@ input[type="text"]:focus {
 #about_team-photo figure img {
 	max-width: 350px;
 	border-radius: 25px;
+	border: solid black 3px;
 	box-shadow: 10px 10px 5px lightgray;
 }
 #about_team-photo figcaption {
@@ -587,8 +589,10 @@ input[type="text"]:focus {
 	color: #555;
 }
 
+/* these styles only apply to browsers with a viewport width smaller than 600 pixels, such as browsers on mobile devices */
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 @media only screen and (max-width: 600px) {
+	/* make the page content and footer fill the page so that it's not squashed or hard to read */
 	main, footer {
 		box-sizing: border-box;
 		width: 100%;
@@ -636,8 +640,6 @@ input[type="text"]:focus {
 		font-size: 16px;
 	}
 	
-	/* Index.html changes */
-	
 	/* Make benefits banner images smaller to fit on smaller screen */
 	#index-benefits figure {
 		margin: 10px 5px 10px 5px;
@@ -656,7 +658,7 @@ input[type="text"]:focus {
 	#index-pricing {
 		max-width: 100%;
 	}
-	
+
 	/* make text inputs almost fill the line so they're easy to interact with on mobile */
 	input[type="text"] {
 		padding-top: 10px;
@@ -681,6 +683,23 @@ input[type="text"]:focus {
 	}
 
 	#about_interests table {
+		width: 100%;
+	}
+
+	/* make the jobs-aside aside elements full size and not floating when on mobile so it isn't squashed */
+	.jobs-aside {
+		float: initial;
+		width: calc(100% - 30px);
+		margin-top: 20px;
+	}
+
+	/* disable the flex styling when on mobile so that the content isn't squashed into two columns */
+	.jobs-prerequisites, .jobs-extra-details {
+		display: initial;
+	}
+
+	/* make the elements that would have been in a flexbox fill up the width of the container so they aren't squashed */
+	.jobs-prerequisites div, .jobs-description {
 		width: 100%;
 	}
 }
