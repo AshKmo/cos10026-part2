@@ -73,7 +73,7 @@
 						<label for="apply-email">Email address: </label>
 						<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 						<!-- availabe at https://regexr.com/ -->
-						<input type="text" name="email" id="apply-email" placeholder="asdf@asdf.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+" required>
+						<input type="text" name="email" id="apply-email" placeholder="asdf@asdf.com" pattern="\w+@([\w\-]+\.)+[\w\-]{2,}" required>
 						</p>
 
 						<p>
@@ -98,14 +98,14 @@
 					<label for="apply-state">State: </label>
 					<select name="state" id="apply-state" required>
 						<option value="">Please select</option>
-						<option value="vic">Victoria</option>
-						<option value="nsw">New South Wales</option>
-						<option value="qld">Queensland</option>
-						<option value="wa">Western Australia</option>
-						<option value="sa">South Australia</option>
-						<option value="tas">Tasmania</option>
-						<option value="act">Australian Capital Territory</option>
-						<option value="nt">Northern Territory</option>
+						<option value="VIC">VIC</option>
+						<option value="NSW">NSW</option>
+						<option value="QLD">QLD</option>
+						<option value="NT">NT</option>
+						<option value="WA">WA</option>
+						<option value="SA">SA</option>
+						<option value="TAS">TAS</option>
+						<option value="ACT">ACT</option>
 					</select>
 					</p>
 
@@ -160,63 +160,69 @@
 					<label for="apply-job-reference-number">Position of interest: </label>
 					<select name="job-reference-number" id="apply-job-reference-number" required>
 						<option value="">Please select</option>
-						<option value="IT427">IT Support Technician</option>
-						<option value="DA193">Data Analyst</option>
-						<option value="BC279">Blockchain Developer</option>
-						<option value="QA666">QA Tester</option>
+						<option value="IT427">IT Support Technician (IT427)</option>
+						<option value="DA193">Data Analyst (DA193)</option>
+						<option value="BC279">Blockchain Developer (BC279)</option>
+						<option value="QA666">QA Tester (QA666)</option>
 					</select>
 					</p>
 
 					<!-- a series of checkboxes for each required technical skill for each job -->
 					<!-- the relevant checkboxes for each job are shown only when that job is selected above -->
 					<!-- this is done by applying a class to each checkbox indicating the job to which it is assigned -->
+					<!-- although this means that there might be values sent to the server that are not necessarily relevant for the selected job, the server should (in practice) be able to ignore them based on which job was selected -->
 					<fieldset>
 						<legend>Required technical skills:</legend>
 
 						<div class="apply-checkbox-set-container">
-							<div class="apply-checkbox-container apply-checkbox-set-analyst apply-checkbox-set-support">
+							<div class="apply-checkbox-container apply-checkbox-set-support apply-checkbox-set-analyst">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_sql" value="sql" checked>
 								<label for="apply-required-technical-skills_sql">Understanding of SQL</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+							<div class="apply-checkbox-container apply-checkbox-set-support">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_python" value="python" checked>
 								<label for="apply-required-technical-skills_python">Understanding of Python</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+							<div class="apply-checkbox-container apply-checkbox-set-support">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_networks" value="networks" checked>
 								<label for="apply-required-technical-skills_networks">Understanding of networks</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-support">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_excel" value="excel" checked>
 								<label for="apply-required-technical-skills_excel">Proficiency in Microsoft Excel</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-support">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_vistools" value="vistools" checked>
 								<label for="apply-required-technical-skills_vistools">Experience with data visualisation tools</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-support">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
-								<label for="apply-required-technical-skills_problem_solving">Analytical and problem-solving skills</label>
+								<label for="apply-required-technical-skills_problem_solving">Strong analytical and problem-solving skills</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-support">
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
 								<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data Science</label>
 							</div>
 
-							<div class="apply-checkbox-container apply-checkbox-set-support">
-								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
+							<div class="apply-checkbox-container apply-checkbox-set-analyst">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats">
 								<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in Statistics</label>
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-qa">
 								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_qa_testing" value="qa_testing" checked>
-								<label for="apply-required-technical-skills_qa_testing">Experience in software quality assurance or testing</label>
+								<label for="apply-required-technical-skills_qa_testing">Proven experience in software quality assurance or testing</label>
+							</div>
+
+							<div class="apply-checkbox-container apply-checkbox-set-qa">
+								<input type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_qa_methodologies" value="qa_methodologies" checked>
+								<label for="apply-required-technical-skills_qa_methodologies">Strong understanding of QA methodologies, tools, and processes</label>
 							</div>
 
 							<div class="apply-checkbox-container apply-checkbox-set-qa">
