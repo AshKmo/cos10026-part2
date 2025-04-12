@@ -4,7 +4,7 @@ author: Ash, Hayden, Tim, Max
 created: 2025-03-28
 last modified: 2025-04-10
 description: Stylesheet for all pages
-*/
+ */
 
 /*************************************/
 /* non page-specific styles (global) */
@@ -19,116 +19,116 @@ description: Stylesheet for all pages
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: rgb(9, 121, 159);
+	color: rgb(9, 121, 159);
 }
 
 body {
-    background-image: linear-gradient(to bottom, #efefef, #e3ebee);
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    color: #333;
+	background-image: linear-gradient(to bottom, #efefef, #e3ebee);
+	background-size: cover;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	color: #333;
 }
 
 /* navigation menu */
 nav {
-    height: 20px;
-    display: flex;
-    align-items: center;
-    background: var(--nav-footer-background-color);
-    padding: 10px;
-    margin: 20px 0 20px 0;
-    max-width: 800px;
-    border-radius: 0px 10px 10px 0px;
-    position: relative;
-    overflow: visible;
-    box-shadow: 4px 4px 3px #bcbcbc;
-    font-weight: bold;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	background: var(--nav-footer-background-color);
+	padding: 10px;
+	margin: 20px 0 20px 0;
+	max-width: 800px;
+	border-radius: 0px 10px 10px 0px;
+	position: relative;
+	overflow: visible;
+	box-shadow: 4px 4px 3px #bcbcbc;
+	font-weight: bold;
 }
 .nav-logo {
-    position: absolute;
-    top: -28px;
-    left: 10px;
-    height: 100px;
-    z-index: 10; 
+	position: absolute;
+	top: -28px;
+	left: 10px;
+	height: 100px;
+	z-index: 10; 
 }
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-grow: 1;
+	list-style: none;
+	display: flex;
+	gap: 30px;
+	flex-wrap: wrap;
+	justify-content: center;
+	flex-grow: 1;
 }
 nav ul li {
-    display: inline;
-    transform: scale(1, 1);
-    transition: transform 0.15s ease;
+	display: inline;
+	transform: scale(1, 1);
+	transition: transform 0.15s ease;
 }
 
 nav ul li:hover {
-    transform: scale(1.05, 1.05);
+	transform: scale(1.05, 1.05);
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px;
-    transition: color 0.25s ease;
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 10px;
+	transition: color 0.25s ease;
 }
 nav ul li a:hover {
-    color: #00BFFF;
+	color: #00BFFF;
 }
 
 main {
-    padding: 20px;
-    width: 80%;
-    margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
+	padding: 20px;
+	width: 80%;
+	margin: auto;
+	padding-left: 50px;
+	padding-right: 50px;
+	background: white;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 5px 5px 0 0;
+	overflow: hidden;
 }
 
 section {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 table {
-    border-collapse: collapse;
-    border: 1px solid #ccc;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
 }
 th {
-    background: var(--nav-footer-background-color);
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-    border: 1px solid #ccc;
+	background: var(--nav-footer-background-color);
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	padding: 10px;
+	border: 1px solid #ccc;
 }
 td {
-    background-color: #efefef;
-    border: 1px solid #ccc;
+	background-color: #efefef;
+	border: 1px solid #ccc;
 }
 td:hover {
-    background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
+	background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
 footer {
-    padding: 20px;
-    width: 80%;
-    margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
-    background: var(--nav-footer-background-color);
-    border-radius: 0 0 5px 5px;
-    color: white;
-    text-align: center;
+	padding: 20px;
+	width: 80%;
+	margin: auto;
+	padding-left: 50px;
+	padding-right: 50px;
+	background: var(--nav-footer-background-color);
+	border-radius: 0 0 5px 5px;
+	color: white;
+	text-align: center;
 }
 
 footer a {
@@ -147,8 +147,8 @@ a[target="_blank"]::after {
 }
 
 dl {
-    padding: 15px;
-    border-radius: 5px;
+	padding: 15px;
+	border-radius: 5px;
 }
 
 /******************************/
@@ -157,42 +157,42 @@ dl {
 
 /* Make the benefits have a banner look */
 #index-benefits {
-    border-radius: 15px;
-    width: 100%;
-    background-color: #333;
-    display: flex;
-    justify-content: space-around;
+	border-radius: 15px;
+	width: 100%;
+	background-color: #333;
+	display: flex;
+	justify-content: space-around;
 }
 
 #index-benefits figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #index-benefits figure img {
-    max-width: 100px;
-    border-radius: 25px;
+	max-width: 100px;
+	border-radius: 25px;
 }
 
 #index-benefits figure figcaption {
-    color: white;
-    text-align: center;
+	color: white;
+	text-align: center;
 }
 
 /* Table showing pricing, using Tim's css */
 #index-pricing {
-    max-width: 45%;
-    float: left;
-    padding-right: 100px;
-    width: 100%;
-    flex: 1;
+	max-width: 45%;
+	float: left;
+	padding-right: 100px;
+	width: 100%;
+	flex: 1;
 }
 
 /* Have the vision description float to the right on bigger screens */
 #index-vision {
-    float: right;
-    max-width: 45%;
+	float: right;
+	max-width: 45%;
 }
 
 /*****************************/
@@ -202,148 +202,133 @@ dl {
 
 /* Setting the font of the jobs main title, as required */
 #jobs-title {
-    font: bold 2em verdana, sans-serif;
+	font: bold 2em verdana, sans-serif;
 }
 
 /* Setting correct colour for subtitles within the job details */
 .jobs-dropdown-content h3, .jobs-dropdown-content h4, .jobs-dropdown-content strong {
-    color: #09799f;
+	color: #09799f;
 }
 
 /* Job ID - sets it to the right of the screen, with a width of 25% of that job's container size */
 .jobs-aside {
-    text-align: right;
-    padding: 3%;
-    width: 25%;
-    float: right;
-    /*I really hate this border but it's required for the CSS :( */
-    border: 1px solid #d4dee2;
-    padding: 10px;
-    border-radius: 10px;
+	text-align: right;
+	padding: 3%;
+	width: 25%;
+	float: right;
+	/*I really hate this border but it's required for the CSS :( */
+	border: 1px solid #d4dee2;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 /* Puts a border around the bottom-right corner what would otherwise be empty space and rotates it 45 deg to create an arrow */
 .arrow {
-    border: solid black;
-    border-width: 0 4px 4px 0;
-    display: inline-block;
-    /* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
-    padding: 0.25em;
-    margin: 0 10px;
-    transform: rotate(-45deg);
-    transition: transform 0.4s ease;
-  }
+	border: solid black;
+	border-width: 0 4px 4px 0;
+	display: inline-block;
+	/* Padding gives the arrow actual size instead of being a dot due to it not containing any text */
+	padding: 0.25em;
+	margin: 0 10px;
+	transform: rotate(-45deg);
+	transition: transform 0.4s ease;
+}
 
 /* Set appropriate formating and styling for the job dropdowns */
 .jobs-dropdown {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #f4f8fa;
-    margin: 20px 0px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: #f4f8fa;
+	margin: 20px 0px;
 }
 
 /* When the title is clicked on, the arrow will rotate 90 deg down (starts at -45 deg) to point down */
 .jobs-dropdown input:checked ~ .jobs-dropdown-title .arrow {
-    transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 /* The job titles get slightly bigger and become more blue when hovered over */
 .jobs-dropdown-title:hover {
-    color: rgb(51, 160, 255);
-    font-size: 1.6em;
+	color: rgb(51, 160, 255);
+	font-size: 1.6em;
 }
 
 /* Removes the checkbox from appearing next to the job title (required to look nice due to the textbook being a checkbox input in order to have the expanding description) */
 .jobs-dropdown input {
-    display: none;
+	display: none;
 }
 
 /* Add formatting to each job titles. Bottom padding is not needed as it is already added from somewhere which I cannot for the life of me find */
 .jobs-dropdown-title {
-    font-size: 1.5em;
-    padding-top: 20px;
-    padding-left: 15px;
-    display: block;
-    cursor: pointer;
-    color: rgb(9, 121, 159);
-    transition: color 0.2s ease, font-size 0.2s ease;
+	font-size: 1.5em;
+	padding-top: 20px;
+	padding-left: 15px;
+	display: block;
+	cursor: pointer;
+	color: rgb(9, 121, 159);
+	transition: color 0.2s ease, font-size 0.2s ease;
+	margin: 0;
+	padding: 0;
+}
+
+.jobs-dropdown-title label {
+	display: inline-block;
+	padding-left: 15px;
+	padding-top: 20px;
+	width: 100%;
+	cursor: pointer;
 }
 
 /* When the input (the job title) is clicked on, max height is set to an arbitrarily high value to fit all the text (auto doesnt work :( ) */
 .jobs-dropdown input:checked ~ .jobs-dropdown-content {
-    max-height: 2000px;
-    /* fade out, then shrink */    
+	max-height: 2000px;
+	/* fade out, then shrink */    
 }
 
 /* Base formatting for the unexpanded job details. Max height set to 0 to get the 'unexpanded' effect */
 .jobs-dropdown-content {
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0px 20px;
-    margin-left: 2%;
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height 0.4s ease;
+	padding: 0px 20px;
+	margin-left: 2%;
 }
 
 /* Removes the space that would otherwise be below the 'Prerequisites:' subtitle */
 .jobs-prereqs-title {
-    margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 /* Restricts the width of the job description (only particularly relevant when using a shrunk screen) */
 .jobs-description {
-    width: 70%;
+	width: 70%;
 }
 
 /* Sets the style of the 'container' for the essential and preferable prerequisites; gives them flex style to sit side by side */
 .jobs-prerequisites {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    gap: 20%;
-    padding-top: 0px;
-    margin-top: 0px;
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	gap: 20%;
+	padding-top: 0px;
+	margin-top: 0px;
 }
 
 /* Not entirely sure why this works but if you set the width below 30% or use auto then everything looks bad so... */
 .jobs-prerequisites div {
-    width: 40%;
+	width: 40%;
 }
 
 .jobs-extra-details {
-    display: flex;
-    justify-content: space-between;
-    margin: 0px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0px;
 }
 
 .jobs-extra-details div {
-    width: 100%;
-}
-
-.jobs-apply-button {
-margin-top: 35px;
-}
-
-.jobs-apply-button a {
-    text-decoration: none;
-    padding: 10px 35px;
-    border: 1px solid #8b8b8b;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: rgb(233, 248, 252);
-    font-weight: bold;
-    font-size: 1.2em;
-    color: rgb(0, 91, 122);
-    transition: all 0.15s ease-out;
-}
-
-.jobs-apply-button a:visited {
-    color: rgb(0, 91, 122)
-}
-
-.jobs-apply-button a:hover {
-    background-color: rgb(209, 229, 235);
+	width: 100%;
 }
 
 /* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
@@ -526,76 +511,76 @@ input[type="text"]:focus {
 /******************************/
 /* About page custom container class which organises sections neatly */
 .about_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 /* Team member contribution section */
 #about_contributions dl {
-    padding: 15px;
-    border-radius: 5px;
+	padding: 15px;
+	border-radius: 5px;
 }
 #about_contributions dt {
-    font-weight: bold;
-    color: rgb(9, 121, 159);
+	font-weight: bold;
+	color: rgb(9, 121, 159);
 }
 #about_contributions dd {
-    margin-bottom: 10px;
-    padding-left: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
 }
 
 /* Company summary section */
 #about_summary {
-    flex: 1 1 300px;
-    max-width: 100%;
+	flex: 1 1 300px;
+	max-width: 100%;
 }
 
 /* Team member interests table */
 #about_interests table {
-    width: 75%;
-    margin: 10px auto;
+	width: 75%;
+	margin: 10px auto;
 }
 
 #about_interests {
-    padding-right: 100px;
-    width: 100%;
-    flex: 1;
+	padding-right: 100px;
+	width: 100%;
+	flex: 1;
 }
 #about_interests h2 {
-    text-align: center;
+	text-align: center;
 }
 
 /* Team information aside */
 #about_group-info {
-    max-width: 350px;
-    padding-left: 100px;
+	max-width: 350px;
+	padding-left: 100px;
 }
 #about_group-info li {
-    margin-bottom: 5px;
-    list-style-type: none;
+	margin-bottom: 5px;
+	list-style-type: none;
 }
 
 /* Team photo aside */
 #about_team-photo {
-    float: right;
-    clear: right;
+	float: right;
+	clear: right;
 }
 #about_team-photo figure {
-    text-align: right;
-    float: right;
-    margin: 20px 0;
+	text-align: right;
+	float: right;
+	margin: 20px 0;
 }
 #about_team-photo figure img {
-    max-width: 350px;
-    border-radius: 25px;
-    box-shadow: 10px 10px 5px lightgray;
+	max-width: 350px;
+	border-radius: 25px;
+	box-shadow: 10px 10px 5px lightgray;
 }
 #about_team-photo figcaption {
-    font-style: italic;
-    margin-top: 5px;
-    color: #555;
+	font-style: italic;
+	margin-top: 5px;
+	color: #555;
 }
 
 /* mobile device criteria from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
@@ -607,87 +592,87 @@ input[type="text"]:focus {
 		padding-right: 10px;
 	}
 
-    /* The nav css code for mobile devices below was generated using GenAI, with personal modifications added in.
-    GenAI prompt: “{insert nav html and css here} I want to modify this code
-    for a navigation menu so that when on mobile devices change it so that there is 2 columns, each containing two
-    menu items. place the columns next to the logo with the center of the items level with the middle of the logo” */
-    nav {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        width: 100%;
-        height: auto;
-        padding: 25px 0px;
-        margin: auto;
-        border-radius: 0px;
-    }
-    .nav-logo {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 80px;
-    }
-    nav ul {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        gap: 10px 20px;
-        padding: 0;
-        margin: 0;
-        align-items: center;
-    }
-    nav ul li {
-        display: block;
-        margin: 0;
-    }
-    nav ul li a {
-        display: block;
-        padding: 5px 10px;
-        font-size: 16px;
-    }
+	/* The nav css code for mobile devices below was generated using GenAI, with personal modifications added in.
+	GenAI prompt: “{insert nav html and css here} I want to modify this code
+	for a navigation menu so that when on mobile devices change it so that there is 2 columns, each containing two
+	menu items. place the columns next to the logo with the center of the items level with the middle of the logo” */
+nav {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: auto;
+	padding: 25px 0px;
+	margin: auto;
+	border-radius: 0px;
+}
+.nav-logo {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 80px;
+}
+nav ul {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	gap: 10px 20px;
+	padding: 0;
+	margin: 0;
+	align-items: center;
+}
+nav ul li {
+	display: block;
+	margin: 0;
+}
+nav ul li a {
+	display: block;
+	padding: 5px 10px;
+	font-size: 16px;
+}
 
-    /* Index.html changes */
-    
-    /* Make benefits banner images smaller to fit on smaller screen */
-    #index-benefits figure {
-        margin: 10px 5px 10px 5px;
-    }
+/* Index.html changes */
 
-    #index-benefits figure img {
-        max-width: 50px;
-    }
+/* Make benefits banner images smaller to fit on smaller screen */
+#index-benefits figure {
+	margin: 10px 5px 10px 5px;
+}
 
-    /* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
-    instead of just 45% */
-	#index-vision {
-        max-width: 100%;
-    }
+#index-benefits figure img {
+	max-width: 50px;
+}
 
-    #index-pricing {
-        max-width: 100%;
-    }
+/* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
+instead of just 45% */
+#index-vision {
+	max-width: 100%;
+}
 
-	/* make text inputs almost fill the line so they're easy to interact with on mobile */
-	input[type="text"] {
-		padding-top: 10px;
-		width: 98% !important;
-		margin-left: 2%;
-	}
+#index-pricing {
+	max-width: 100%;
+}
 
-	/* make only one column of checkboxes so that the text isn't squished */
-	.apply-checkbox-container {
-		flex-basis: 100%;
-	}
+/* make text inputs almost fill the line so they're easy to interact with on mobile */
+input[type="text"] {
+	padding-top: 10px;
+	width: 98% !important;
+	margin-left: 2%;
+}
 
-	/* make each button fill the line so that it's easier to press them */
-	.apply-fancy-button {
-		display: block;
-		width: 100%;
-		margin-top: 20px;
-	}
+/* make only one column of checkboxes so that the text isn't squished */
+.apply-checkbox-container {
+	flex-basis: 100%;
+}
 
-    #about_group-info {
-        padding-left: 0px;
-    }
+/* make each button fill the line so that it's easier to press them */
+.apply-fancy-button {
+	display: block;
+	width: 100%;
+	margin-top: 20px;
+}
+
+#about_group-info {
+	padding-left: 0px;
+}
 }
