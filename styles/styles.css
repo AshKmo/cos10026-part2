@@ -162,6 +162,10 @@ dl {
 	background-color: #333;
 	display: flex;
 	justify-content: space-around;
+	/* The code or content below was created using GenAI. GenAI prompt: "create a repeating pattern with #333333 as the background color, with a waves of rgb(9, 121, 159)" */
+	background-image: url("images/banner-pattern.png");
+	background-repeat: repeat-x;
+	background-size: 30%;
 }
 
 #index-benefits figure {
@@ -647,6 +651,10 @@ input[type="text"]:focus {
 	
 	#index-benefits figure img {
 		max-width: 50px;
+	}
+
+	#index-benefits {
+		background-size: 75%;
 	}
 	
 	/* Vision and Pricing elements no longer float to either side on smaller screens and take up entire width,
