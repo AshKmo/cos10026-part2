@@ -319,9 +319,10 @@ dl {
 	gap: 20%;
 	padding-top: 0px;
 	margin-top: 0px;
+    margin-bottom: 0;
 }
 
-/* Not entirely sure why this works but if you set the width below 30% or use auto then everything looks bad so... */
+/* Not entirely sure why this works but after some experimentation I found that if you set the width below 30% or use auto then everything looks bad so... */
 .jobs-prerequisites div {
 	width: 40%;
 }

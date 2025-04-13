@@ -4,28 +4,23 @@
 
 <!-- the page language is set to English -->
 <html lang="en">
+	<!-- Defining all relevant meta tags-->
 	<head>
-		<!-- set the charset to UTF-8 -->
+		<!-- Set the charset to UTF-8 -->
 		<meta charset="UTF-8">
-
-		<!-- set the page description -->
+		<!-- Set page description -->
 		<meta name="description" content="Available job positions at Tolstra">
-
-		<!-- set keywords for SEO -->
+		<!-- Set keywords -->
 		<meta name="keywords" content="Tolstra, jobs, positions">
-
-		<!-- state the author of the page -->
+		<!-- Set page authors -->
 		<meta name="author" content="Ash, Hayden, Max, Tim">
-
-		<!-- set the page width to follow the device width and set the initial zoom scale to 1.0 -->
+		<!-- Set the page width to follow the device width and set the initial zoom scale to 1.0 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- import the main stylesheet -->
+		<!-- Import the main stylesheet -->
 		<link rel="stylesheet" type="text/css" href="styles/styles.css">
-
-		<!-- set the page title -->
+		<!-- Set the page title -->
 		<title>Job Positions</title>
-		<!-- Favicon made by ChatGPT -->
+		<!-- Set the favicon (favicon made by ChatGPT) -->
 		<link rel="icon" type="image/x-icon" href="images/favicon.png">
 	</head>
 
@@ -33,8 +28,9 @@
 		<!-- define the page header -->
 		<header>
 			<nav>
-				<!-- The code or content below was created using GenAI. GenAI prompt: “generate a logo using the letter T, coloured with #00BFFF, not too edgy and separate a triangle at the bottom” -->
+				<!-- The logo was created using ChatGPT (prompt: generate a logo using the letter T, coloured with #00BFFF, not too edgy and separate a triangle at the bottom) -->
 				<img src="images/logo.png" alt="Tolstra Logo" class="nav-logo">
+				<!-- Defining the nav bar at the top of the screen; clicking one of them sends the user to the appropriate page thanks to the href tag -->
 				<ul>
 					<li><a title="Tolstra Home" href="index.html">Home</a></li>
 					<li><a title="About Tolstra" href="about.html">About</a></li>
@@ -47,26 +43,32 @@
 
 		<!-- define the main body content of the page -->
 		<main>
+			<!-- Form main title -->
 			<h1 id="jobs-title">Available Jobs</h1>
-
+			<!-- Anchor tag sends user to the application page -->
 			<p>Thank you for considering a position at Tolstra. <a title="Applications" href="apply.html#">Visit the application form</a> to apply for any listed position.</p>
-
 			<hr>
 
 			<!-- Support Technician details -->
 			<section class="jobs-dropdown">
-				<!-- Making the title into a clickable checkbox so that, when clicked, the CSS will modify the height of the content to display everything -->
+				<!-- Making the title into a clickable checkbox so that, when clicked, the CSS will modify the height of the content to display the job description -->
 				<input type="checkbox" id="jobs-it-support-dropdown">
+				<!-- the em tag is used to create an arrow through CSS; even without any text, the CSS creates a border on one corner, uses padding to give the arrow width, then rotates it to look like an arrow -->
 				<h2 class="jobs-dropdown-title"><label for="jobs-it-support-dropdown"><em class="arrow"></em><strong>  IT Support Technician</strong></label></h2>
 				<section class="jobs-dropdown-content">
+
+					<!-- Defining the content to appear on the side of the screen -->
 					<aside class="jobs-aside">
 						<strong>Job ID: </strong>IT427<br><br>
 						<strong>You will report to:</strong><br>
 						Assistant Network Administrator<br>
 						(current is John Monash)
 					</aside>
+
+					<!-- Set the content that appears below the job's title -->
 					<p class="jobs-description">As and IT Support Technician, you will assist staff and customers in any hardware and software dificulties that they may face. You will work and talk with many people around Australia, lending a hand and potentially teaching them about networking within their home or office environment.</p>
 					
+					<!-- Set the job expectations, with the title first before the rest of the content as an ordered list -->
 					<h3>You will be expected to:</h3>
 					<ol>
 						<li>Understand the underlying systems through which our network operates</li>
@@ -74,10 +76,13 @@
 						<li>Bugfix and assist with the management of our networks and devices should any issues arise</li>
 					</ol>
 
+					<!-- Define the prerequisites information, starting with the title -->
 					<h3 class="jobs-prereqs-title">Prerequisites:</h3>
-					<div class="jobs-prerequisites">
+					<!-- Section with the "jobs-prerequisites" class is used to contain the essential and preferable prerequisites so that the CSS can style them to sit side-by-side with a flexbox -->
+					<section class="jobs-prerequisites">
 						<div>
 							<h4>Essential</h4>
+							<!-- Unordered list for all essential prerequisites -->
 							<ul>
 								<li>Understanding of SQL and Python</li>
 								<li>
@@ -92,13 +97,16 @@
 						</div>
 						<div>
 							<h4>Preferable</h4>
+							<!-- Unordered list for all preferable prerequisites -->
 							<ul>
 								<li>Bachelor's degree in Computer Science or a related field (or equivalent practical experience)</li>
 								<li>Clear communication skills and ability to explain complex concepts to others</li>
 								<li>A friendly attitude and a lot of patience</li>
 							</ul>
 						</div>
-					</div>
+					</section>
+
+					<!-- Same as the prerequisites; section with "jobs-extra-details" class is used for formatting -->
 					<section class="jobs-extra-details">
 						<div>
 							<h3>Expected Salary Range:</h3>
@@ -117,6 +125,7 @@
 			</section>
 			
 			<!-- Data Analyst details -->
+			<!-- Follows same structure as IT Support Technician; use that for reference -->
 			<section class="jobs-dropdown">
 				<input type="checkbox" id="jobs-data-analyst-dropdown">
 				<h2 class="jobs-dropdown-title"><label for="jobs-data-analyst-dropdown"><em class="arrow"></em><strong>  Data Analyst</strong></label></h2>
@@ -176,6 +185,8 @@
 				</section>
 			</section>
 			
+			<!-- Blockchain Developer Details -->
+			<!-- Follows same structure as IT Support Technician; use that for reference -->
 			<section class="jobs-dropdown">
 				<input type="checkbox" id="jobs-blockchain-developer-dropdown">
 				<h2 class="jobs-dropdown-title"><label for="jobs-blockchain-developer-dropdown"><em class="arrow"></em><strong>  Blockchain Developer</strong></label></h2>
@@ -236,6 +247,8 @@
 				</section>
 			</section>
 
+			<!-- QA Tester Details -->
+			<!-- Follows same structure as IT Support Technician; use that for reference -->
 			<section class="jobs-dropdown">
 				<input type="checkbox" id="jobs-qa-tester-dropdown">
 				<h2 class="jobs-dropdown-title"><label for="jobs-qa-tester-dropdown"><em class="arrow"></em><strong>  QA Tester</strong></label></h2>
@@ -296,12 +309,16 @@
 				</section>
 			</section>
 		</main>
+
+		<!-- Define the page footer; same as all other pages -->
 		<footer>
+			<!-- "&copy;" is the copyright symbol -->
 			<p>
 				&copy; 2025 The Merge Masters. All Rights Reserved.<br>
 				Disclaimer: Tolstra is a fictional project created for educational purposes. It is not affiliated with, endorsed by, or associated with Telstra Corporation Limited.
 			</p>
 			<p>
+				<!-- Anchor tags send to appropriate links when clicked, including an email prompt for the "Contact Us" link -->
 				<a href="https://merge-masters-project.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiNTNkYjFhZGYyM2JkNGVmYTlmOGJjMGU1OTE1MmQ1MWUiLCJwIjoiaiJ9" target="_blank" title="Merge Masters Jira">Jira Project</a>
 				&nbsp;
 				<a href="https://github.com/AshKmo/cos10026-part1" target="_blank" title="AshKmo/cos10026-part1 on GitHub">Site GitHub repository</a>
