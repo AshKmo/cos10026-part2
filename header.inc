@@ -7,6 +7,7 @@
             <li><a title="About Tolstra" href="about.php">About</a></li>
             <li><a title="Job Positions" href="jobs.php">Job Descriptions</a></li>
             <li><a title="Applications" href="apply.php">Apply Here</a></li>
+            <li><a title="Applications" href="enhancements.php">Webpage Enhancements</a></li>
             <li><a title="info@tolstra.com.au" href="mailto:info@tolstra.com.au">Contact Us</a></li>
         </ul>
     </nav>
