@@ -152,7 +152,7 @@ dl {
 }
 
 /******************************/
-/* index.html specific styles */
+/* index.php specific styles */
 /******************************/
 
 /* Make the benefits have a banner look */
@@ -200,7 +200,7 @@ dl {
 }
 
 /*****************************/
-/* jobs.html specific styles */
+/* jobs.php specific styles */
 /*       Author: Max         */
 /*****************************/
 
@@ -340,7 +340,7 @@ dl {
 /* Thanks to W3Schools (link: https://www.w3schools.com/howto/howto_css_arrows.asp) for teaching extra CSS, including how to make arrows */
 
 /******************************/
-/* apply.html specific styles */
+/* apply.php specific styles */
 /******************************/
 /* make each fieldset have a rounded, solid border */
 fieldset {
@@ -513,7 +513,7 @@ input[type="text"]:focus {
 }
 
 /******************************/
-/* about.html specific styles */
+/* about.php specific styles */
 /******************************/
 /* About page custom container class which organises sections neatly */
 .about_container {
