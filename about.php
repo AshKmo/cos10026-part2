@@ -80,7 +80,7 @@
 					<dt>Max</dt>
 					<dd>Jobs Positions page &#40;jobs.php&#41;, CSS, Jira </dd>
 					<dt>Tim</dt>
-					<dd>About Us page &#40;about.php&#41;, CSS, Jira</dd>
+					<dd>About Us page &#40;about.php&#41;, Manage page &#40;manage.php&#41;, CSS, Jira</dd>
 				</dl>
 			</section>
 

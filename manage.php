@@ -33,30 +33,30 @@
 			<form method="get" action="manage.php" class="filter-bar">
 				<!-- List All -->
 				<div class="filter-group">
-					<button type="submit" name="manage" value="all">List All</button>
+					<button type="submit" name="filter" value="all">List All EOIs</button>
 				</div>
 
 				<!-- Job Ref Filter -->
 				<div class="filter-group">
 					<label for="job_ref">Job Ref:
 					<input type="text" name="job_ref"></label>
-					<button type="submit" name="action" value="filter_by_job">Search</button>
+					<button type="submit" name="filter" value="ref">Search</button>
 				</div>
 
 				<!-- Name Filter -->
 				<div class="filter-group">
-					<label for="first_name">First:
-					<input type="text" name="first_name" placeholder="First Name"></label>
-					<label for="last_name">Last:
-					<input type="text" name="last_name" placeholder="Last Name"></label>
-					<button type="submit" name="action" value="filter_by_name">Search</button>
+					<label for="fname">First:
+					<input type="text" name="fname" placeholder="First Name"></label>
+					<label for="lname">Last:
+					<input type="text" name="lname" placeholder="Last Name"></label>
+					<button type="submit" name="filter" value="name">Search</button>
 				</div>
 
 				<!-- Delete by Job Ref -->
 				<div class="filter-group">
 					<label for="delete_job_ref">Delete Job Ref:
 					<input type="text" name="delete_job_ref"></label>
-					<button type="submit" name="action" value="delete_by_job" onclick="return confirm('Delete all EOIs for this job?');">Delete</button>
+					<button type="submit" name="filter"onclick="return confirm('Delete all EOIs for this job?');">Delete</button>
 				</div>
 			</form>
 		</section>
@@ -76,41 +76,40 @@
 				</tr>
 			<?php
 				if($dbconn) {
-					if(isset($_GET['manage'])) {
-						if($_GET['manage'] == "all") {
-							$query = "SELECT * FROM eoi";
-							$result = mysqli_query($dbconn, $query);
+					if(isset($_GET['filter'])) {
+						switch($_GET['filter']) {
+							case 'all':
+								$query = "SELECT * FROM eoi";
+								$result = mysqli_query($dbconn, $query);
 
-							if (mysqli_num_rows($result) > 0) {
-								while ($row = mysqli_fetch_assoc($result)) {
-									echo "<tr>";
-									echo "<td>" . $row['EOInumber'] . "</td>";
-									echo "<td>" . $row['Job Reference number'] . "</td>";
-									echo "<td>" . $row['First name'] . " " . $row['Last name'] . "</td>";
-									echo "<td>" . $row['Address'] . "</td>";
-									echo "<td>" . $row['Email'] . "</td>";
-									echo "<td>" . $row['Phone'] . "</td>";
-									echo "<td>" . $row['Skills'] . "</td>";
-									echo "<td>" . $row['Other skills'] . "</td>";
-									echo "<td>";
-									echo "<form method='post' action='manage.php'>";
-									echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
-									echo "<select name='new_status'>";
-									$statuses = ['New', 'Current', 'Final'];
-									foreach ($statuses as $status) {
-										$selected = ($row['Status'] === $status) ? "selected" : "";
-										echo "<option value='$status' $selected>$status</option>";
-									}
-									echo "</select> ";
-									echo "</form>";
-									echo "</td>";
-									echo "</tr>";
+								include("manage_table.inc");
+								
+								break;
+							case 'ref':
+								if(isset($_GET['job_ref'])) {
+									$ref = $_GET['job_ref'];
+									$query = "SELECT * FROM eoi WHERE `Job Reference number` = $ref";
+									$result = mysqli_query($dbconn, $query);
+
+									include("manage_table.inc");
 								}
-							} else {
-								echo "<tr>";
-								echo "<td>There are no eoi to display.</td>";
-								echo "</tr>";
-							}
+								break;
+							case 'name':
+								if(isset($_GET['fname']) && !isset($_GET['lname'])) {
+									$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
+									$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
+									$result = mysqli_query($dbconn, $query);
+
+									include("manage_table.inc");
+								}
+								if(isset($_GET['lname']) && !isset($_GET['fname'])) {
+									$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
+									$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
+									$result = mysqli_query($dbconn, $query);
+
+									include("manage_table.inc");
+								}
+								break;
 						}
 					}
 					mysqli_close($dbconn);

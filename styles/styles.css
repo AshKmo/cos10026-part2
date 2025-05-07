@@ -607,9 +607,13 @@ input[type="text"]:focus {
 	margin: 10px auto;
 }
 
-#manage_eoi table td {
+#manage_eoi table td:not(.status) {
 	text-align: center;
 	padding: 0px 25px 0 25px;
+}
+
+#manage_eoi table th {
+	padding: 5px;
 }
 
 .filter-bar {
