@@ -513,6 +513,11 @@ dl {
 	display: initial;
 }
 
+#apply-error-message {
+	color: red;
+	font-weight: bold;
+}
+
 /******************************/
 /* about.php specific styles */
 /******************************/
