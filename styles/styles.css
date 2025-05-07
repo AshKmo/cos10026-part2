@@ -86,6 +86,7 @@ nav ul li a:hover {
 main {
 	padding: 20px;
 	width: 80%;
+	min-height: 1000px;
 	margin: auto;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -593,6 +594,54 @@ dl {
 	margin-top: 5px;
 	color: #555;
 }
+
+/******************************/
+/* manage.php specific styles */
+/******************************/
+
+#manage_eoi {
+	width: 100%;
+}
+
+#manage_eoi table {
+	margin: 10px auto;
+}
+
+#manage_eoi table td:not(.status) {
+	text-align: center;
+	padding: 0px 25px 0 25px;
+}
+
+#manage_eoi table th {
+	padding: 5px;
+}
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    justify-content: flex-start;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    border-right: 1px solid #ddd;
+    padding-right: 12px;
+}
+
+.filter-group input,
+.filter-group select,
+.filter-group button {
+    padding: 4px 6px;
+}
+
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
