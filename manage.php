@@ -29,7 +29,7 @@
 
 	<!-- define the main body content of the page -->
 	<main>
-		<section id="manage_form">
+		<section id="filter">
 			<form method="get" action="manage.php" class="filter-bar">
 				<!-- List All -->
 				<div class="filter-group">

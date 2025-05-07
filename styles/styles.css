@@ -618,8 +618,6 @@ input[type="text"]:focus {
     gap: 16px;
     align-items: center;
     padding: 10px;
-    font-family: sans-serif;
-    font-size: 13px;
     border: 1px solid #ccc;
     border-radius: 8px;
     justify-content: flex-start;
