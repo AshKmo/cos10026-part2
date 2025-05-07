@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 
 <!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part1/apply.php -->
@@ -30,8 +34,14 @@
 		<p>Tolstra is always committed to providing premium employment opportunities to those who need them the most.
 			Please submit your application below, and welcome aboard!</p>
 
+		<?php
+		if (isset($_SESSION["APPLY_FORM_ERROR_MESSAGE"])) {
+			echo '<hr><p id="apply-error-message">' . ($_SESSION["APPLY_FORM_ERROR_MESSAGE"]) . '</p>';
+		}
+		?>
+
 		<!-- HTML form containing all fields for submission -->
-		<form class="apply-form" method="POST" action="https://mercury.swin.edu.au/it000000/formtest.php">
+		<form class="apply-form" method="POST" action="process_eoi.php">
 			<fieldset class="apply-fieldset">
 				<legend>Personal details</legend>
 
@@ -40,16 +50,18 @@
 						<label for="apply-first-name">First name: </label>
 						<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 						<!-- availabe at https://regexr.com/ -->
-						<input class="apply-input" type="text" name="first-name" id="apply-first-name" pattern="[a-zA-Z]{1,20}" size="20"
-							maxlength="20" placeholder="Your first name here" required>
+						<input class="apply-input" type="text" name="first-name" id="apply-first-name"
+							pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your first name here"
+							required>
 					</p>
 
 					<p>
 						<label for="apply-last-name">Last name: </label>
 						<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 						<!-- availabe at https://regexr.com/ -->
-						<input class="apply-input" type="text" name="last-name" id="apply-last-name" pattern="[a-zA-Z]{1,20}" size="20"
-							maxlength="20" placeholder="Your last name here" required>
+						<input class="apply-input" type="text" name="last-name" id="apply-last-name"
+							pattern="[a-zA-Z]{1,20}" size="20" maxlength="20" placeholder="Your last name here"
+							required>
 					</p>
 
 					<p>
@@ -64,14 +76,14 @@
 						<label for="apply-phone">Phone number: </label>
 						<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 						<!-- availabe at https://regexr.com/ -->
-						<input class="apply-input" type="text" name="phone" id="apply-phone" placeholder="0000 000 000" maxlength="12"
-							pattern="[0-9 ]{8,12}" required>
+						<input class="apply-input" type="text" name="phone" id="apply-phone" placeholder="0000 000 000"
+							maxlength="12" pattern="[0-9 ]{8,12}" required>
 					</p>
 
 					<p>
 						<label for="apply-address">Street address: </label>
-						<input class="apply-input" type="text" id="apply-address" name="address" size="40" maxlength="40"
-							placeholder="Your street address here" required>
+						<input class="apply-input" type="text" id="apply-address" name="address" size="40"
+							maxlength="40" placeholder="Your street address here" required>
 					</p>
 
 					<p>
@@ -82,7 +94,7 @@
 				</div>
 
 				<p>
-					<label for="apply-state">State: </label>
+					<label for="apply-state">State/territory: </label>
 					<select name="state" id="apply-state" required>
 						<option value="">Please select</option>
 						<option value="VIC">VIC</option>
@@ -100,14 +112,15 @@
 					<label for="apply-postcode">Postcode: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 					<!-- availabe at https://regexr.com/ -->
-					<input class="apply-input" type="text" name="postcode" id="apply-postcode" maxlength="4" minlength="4" size="4"
-						placeholder="0000" pattern="[0-9]{4}" required>
+					<input class="apply-input" type="text" name="postcode" id="apply-postcode" maxlength="4"
+						minlength="4" size="4" placeholder="0000" pattern="[0-9]{4}" required>
 				</p>
 
 				<p>
 					<label for="apply-date-of-birth">Date of birth: </label>
-					<input class="apply-input" type="text" name="date-of-birth" id="apply-date-of-birth" placeholder="dd/mm/yyyy" size="10"
-						maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" required>
+					<input class="apply-input" type="text" name="date-of-birth" id="apply-date-of-birth"
+						placeholder="dd/mm/yyyy" size="10" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}"
+						required>
 				</p>
 
 				<!-- radio fieldset for gender selection -->
@@ -115,17 +128,20 @@
 					<legend>Gender</legend>
 
 					<p>
-						<input class="apply-input" type="radio" name="gender" value="male" id="apply-gender_male" required>
+						<input class="apply-input" type="radio" name="gender" value="male" id="apply-gender_male"
+							required>
 						<label for="apply-gender_male">Male</label>
 					</p>
 
 					<p>
-						<input class="apply-input" type="radio" name="gender" value="female" id="apply-gender_female" required>
+						<input class="apply-input" type="radio" name="gender" value="female" id="apply-gender_female"
+							required>
 						<label for="apply-gender_female">Female</label>
 					</p>
 
 					<p>
-						<input class="apply-input" type="radio" name="gender" value="other" id="apply-gender_other" required>
+						<input class="apply-input" type="radio" name="gender" value="other" id="apply-gender_other"
+							required>
 						<label for="apply-gender_other">Other</label>
 					</p>
 
@@ -136,8 +152,8 @@
 					</p>
 
 					<p>
-						<input class="apply-input" type="radio" name="gender" value="unspecified" id="apply-gender_unspecified" required
-							checked>
+						<input class="apply-input" type="radio" name="gender" value="unspecified"
+							id="apply-gender_unspecified" required checked>
 						<label for="apply-gender_unspecified">Prefer not to say</label>
 					</p>
 				</fieldset>
