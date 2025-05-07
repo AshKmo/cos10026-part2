@@ -343,51 +343,51 @@ dl {
 /* apply.php specific styles */
 /******************************/
 /* make each fieldset have a rounded, solid border */
-fieldset {
+.apply-fieldset {
 	border-radius: 10px;
 	border: solid #B0B0B0 2px;
 }
 
 /* add a box shadow to all the top-level fieldsets */
-form > fieldset {
+.apply-form > .apply-fieldset {
 	box-shadow: 8px 8px rgb(200, 200, 200);
 }
 
 /* make the fieldset legends more obvious */
-fieldset legend {
+.apply-fieldset legend {
 	font-weight: bold;
 }
 
 /* make the legends of the top-level fieldsets slightly larger in font size */
-form > fieldset > legend {
+.apply-form > .apply-fieldset > legend {
 	font-size: 24px;
 }
 
 /* add a bit of spacing between the fieldsets */
-fieldset:not(:last-child) {
+.apply-fieldset:not(:last-child) {
 	margin-bottom: 20px;
 }
 
 /* remove the ability to select the text on a label and increase its font size slightly */
-form label, form p label {
+.apply-form label, .apply-form p label {
 	user-select: none;
 	font-size: 110%;
 }
 
 /* bump the font size on all major form elements for easy readability */
-form label, form input, form legend, form select {
+.apply-form label, .apply-form input, .apply-form legend, .apply-form select {
 	font-size: 20px;
 }
 
 /* make text inputs have only a grey bottom border */
-input[type="text"] {
+.apply-input[type="text"] {
 	outline: none;
 	border: none;
 	border-bottom: solid #404040 2px;
 }
 
 /* make text inputs have a blue bottom border when they are selected */
-input[type="text"]:focus {
+.apply-input[type="text"]:focus {
 	border-bottom: solid #0073e6 2px;
 }
 
@@ -671,7 +671,7 @@ input[type="text"]:focus {
 	}
 
 	/* make text inputs almost fill the line so they're easy to interact with on mobile */
-	input[type="text"] {
+	.apply-input[type="text"] {
 		padding-top: 10px;
 		width: 98% !important;
 		margin-left: 2%;
