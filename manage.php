@@ -39,7 +39,22 @@
 				<!-- Job Ref Filter -->
 				<div class="filter-group">
 					<label for="job_ref">Job Ref:
-					<input type="text" name="job_ref"></label>
+					<select name="job_ref">
+						<?php
+							if($dbconn) {
+								$query = "SELECT DISTINCT `Job Reference number` FROM eoi";
+								$result = mysqli_query($dbconn, $query);
+
+								if (mysqli_num_rows($result) > 0) {
+									while ($row = mysqli_fetch_assoc($result)) {
+										echo "<option value='" . $row['Job Reference number'] . "'>" . $row['Job Reference number'] . "</option>";
+									}
+								} else {
+									echo "<option>No job references found</option>";
+								}
+							}
+						?>
+					</select></label>
 					<button type="submit" name="filter" value="ref">Search</button>
 				</div>
 
@@ -87,10 +102,10 @@
 								break;
 							case 'ref':
 								if(isset($_GET['job_ref'])) {
-									$ref = $_GET['job_ref'];
-									$query = "SELECT * FROM eoi WHERE `Job Reference number` = $ref";
+									$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+									$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
 									$result = mysqli_query($dbconn, $query);
-
+									
 									include("manage_table.inc");
 								}
 								break;
