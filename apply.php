@@ -110,8 +110,8 @@
 						maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" required>
 				</p>
 
-				<!-- radio fieldset class="apply-fieldset" for gender selection -->
-				<fieldset class="apply-fieldset" id="apply-fieldset class="apply-fieldset"-gender">
+				<!-- radio fieldset for gender selection -->
+				<fieldset class="apply-fieldset" id="apply-fieldset-gender">
 					<legend>Gender</legend>
 
 					<p>
@@ -140,8 +140,8 @@
 							checked>
 						<label for="apply-gender_unspecified">Prefer not to say</label>
 					</p>
-				</fieldset class="apply-fieldset">
-			</fieldset class="apply-fieldset">
+				</fieldset>
+			</fieldset>
 
 			<fieldset class="apply-fieldset" id="apply-employment-details">
 				<legend>Employment details</legend>
@@ -282,14 +282,14 @@
 								language</label>
 						</div>
 					</div>
-				</fieldset class="apply-fieldset">
+				</fieldset>
 
 				<div>
 					<label for="apply-other-skills">Other skills:</label>
 					<textarea id="apply-other-skills" name="other-skills"
 						placeholder="Enter any other skills you'd like to share here..."></textarea>
 				</div>
-			</fieldset class="apply-fieldset">
+			</fieldset>
 
 			<!-- add the buttons to submit and reset the form -->
 			<input type="submit" value="Apply" class="apply-fancy-button">
