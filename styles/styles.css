@@ -605,6 +605,7 @@ input[type="text"]:focus {
 
 #manage_eoi table {
 	margin: 10px auto;
+	width: 100%;
 }
 
 #manage_eoi table td:not(.status) {
@@ -616,23 +617,14 @@ input[type="text"]:focus {
 	padding: 5px;
 }
 
-.filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
+#filter-bar {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    justify-content: flex-start;
 }
 
 .filter-group {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    border-right: 1px solid #ddd;
+	padding: 5px;
     padding-right: 12px;
 }
 
