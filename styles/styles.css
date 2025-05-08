@@ -622,10 +622,38 @@ dl {
 	padding: 5px;
 }
 
-#filter-bar {
+/*#filter-bar {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
+}
+
+#filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+	border: 1px solid #ccc;
+    border-radius: 8px;
+}*/
+
+#filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    position: relative;
+}
+
+#filter-options {
+	flex: 1;
+	min-width: 300px;
 }
 
 #filter-bar h4 {
@@ -641,6 +669,15 @@ dl {
 .filter-group select,
 .filter-group button {
     padding: 4px 6px;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 
@@ -763,4 +800,11 @@ dl {
 	.jobs-prerequisites div, .jobs-description {
 		width: 100%;
 	}
+
+	.sort-controls {
+        position: static;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
 }
