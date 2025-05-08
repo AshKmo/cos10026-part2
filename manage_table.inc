@@ -11,7 +11,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['Skills'] . "</td>";
         echo "<td>" . $row['Other skills'] . "</td>";
         echo "<td class='status'>";
-        echo "<form method='post' action='manage.php'>";
+        echo "<form method='get' action='manage.php'>";
         echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
         echo "<select name='new_status' id='new_status'>";
         $statuses = ['New', 'Current', 'Final'];
@@ -20,6 +20,7 @@ if (mysqli_num_rows($result) > 0) {
             echo "<option value='$status' $selected>$status</option>";
         }
         echo "</select> ";
+        echo "<button type='submit' name='update' value='status'>Update</button>";
         echo "</form>";
         echo "</td>";
         echo "</tr>";

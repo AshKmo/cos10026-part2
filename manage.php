@@ -68,7 +68,7 @@ if (!$dbconn) {
 						</select>
 					</label>
 					<button type="submit" name="filter" value="ref">Search</button>
-					<button type="submit" name="action" value="delete">Delete EOIs</button>
+					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
 				</div>
 			</form>
 		</div>
