@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else {
     echo "<tr>";
-    echo "<td>There are no eoi to display.</td>";
+    echo "<td colspan='9'>There are no eoi to display.</td>";
     echo "</tr>";
 }
 ?>

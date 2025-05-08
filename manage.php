@@ -1,5 +1,10 @@
 <?php
-	require_once("settings.php");
+require_once("settings.php");
+$dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+if (!$dbconn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 ?>
 
 <!DOCTYPE html>
@@ -88,65 +93,106 @@
 					<th>Status</th>
 				</tr>
 			<?php
-				if($dbconn) {
-					if(isset($_GET['filter'])) {
-						switch($_GET['filter']) {
-							case 'all':
-								$query = "SELECT * FROM eoi";
-								$result = mysqli_query($dbconn, $query);
-
-								include("manage_table.inc");
-								
-								break;
-							case 'ref':
-								if(isset($_GET['job_ref'])) {
-									$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-									$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-									$result = mysqli_query($dbconn, $query);
-									
-									include("manage_table.inc");
-								}
-								break;
-							case 'name':
-								if(!empty($_GET['fname']) && empty($_GET['lname'])) {
-									$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
-									$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
-									$result = mysqli_query($dbconn, $query);
-
-									include("manage_table.inc");
-								}
-								if(!empty($_GET['lname']) && empty($_GET['fname'])) {
-									$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
-									$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
-									$result = mysqli_query($dbconn, $query);
-
-									include("manage_table.inc");
-								}
-								if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
-									$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
-									$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
-									$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
-									$result = mysqli_query($dbconn, $query);
-
-									include("manage_table.inc");
-								}
-								break;
-						}
-					}
-					if(isset($_GET['action'])) {
-						if($_GET['action'] == "delete") {
-							$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-							$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+			if($dbconn) {
+				$ref;
+				$query;
+				if(isset($_GET['filter'])) {
+					switch($_GET['filter']) {
+						case 'all':
+							$query = "SELECT * FROM eoi";
 							$result = mysqli_query($dbconn, $query);
 
-							if (mysqli_num_rows($result) > 0) {
-								$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
-								mysqli_query($dbconn, $query);
+							if(!isset($_GET['sort_by'])) {
+								include_once("manage_table.inc");
 							}
+							break;
+						case 'ref':
+							if(isset($_GET['job_ref'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+								$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+								$result = mysqli_query($dbconn, $query);
+								
+								if(!isset($_GET['sort_by'])) {
+									include_once("manage_table.inc");
+								}
+							}
+							break;
+						case 'name':
+							if(!empty($_GET['fname']) && empty($_GET['lname'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
+								$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
+								$result = mysqli_query($dbconn, $query);
+
+								if(!isset($_GET['sort_by'])) {
+									include_once("manage_table.inc");
+								}
+							}
+							if(!empty($_GET['lname']) && empty($_GET['fname'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
+								$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
+								$result = mysqli_query($dbconn, $query);
+								if(!isset($_GET['sort_by'])) {
+									include_once("manage_table.inc");
+								}
+							}
+							if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
+								$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
+								$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
+								$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
+								$result = mysqli_query($dbconn, $query);
+
+								if(!isset($_GET['sort_by'])) {
+									include_once("manage_table.inc");
+								}
+							}
+							break;
+					}
+				} else {
+					$query = "SELECT * FROM eoi";
+					$result = mysqli_query($dbconn, $query);
+
+					if(!isset($_GET['sort_by'])) {
+						include_once("manage_table.inc");
+					}
+				}
+				if(isset($_GET['sort_by'])) {
+					switch($_GET['sort_by']) {
+						case 'eoi_id':
+							$query = $query . " ORDER BY `EOInumber` ASC";
+							$result = mysqli_query($dbconn, $query);
+
+							include_once("manage_table.inc");
+							break;
+						case 'job_ref':
+							$query = $query . " ORDER BY `Job Reference number` ASC";
+							$result = mysqli_query($dbconn, $query);
+
+							include_once("manage_table.inc");
+							break;
+						case 'name':
+							$query = $query . " ORDER BY `First name` ASC";
+							$result = mysqli_query($dbconn, $query);
+
+							include_once("manage_table.inc");
+							break;
+						default:
+							include_once("manage_table.inc");
+							break;
+					}
+				}
+				if(isset($_GET['action'])) {
+					if($_GET['action'] == "delete") {
+						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+						$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+						$result = mysqli_query($dbconn, $query);
+
+						if (mysqli_num_rows($result) > 0) {
+							$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
+							mysqli_query($dbconn, $query);
 						}
 					}
-					
 				}
+			}
 			?>
 			</table>
 		</section>

@@ -628,6 +628,10 @@ dl {
     border-radius: 8px;
 }
 
+#filter-bar h4 {
+    margin: 10px 5px 5px 5px;
+}
+
 .filter-group {
 	padding: 5px;
     padding-right: 12px;
