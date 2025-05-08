@@ -69,6 +69,20 @@ if (!$dbconn) {
 					</label>
 					<button type="submit" name="filter" value="ref">Search</button>
 					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
+					<?php
+					if(isset($_GET['action']) && $_GET['action'] == "delete") {
+						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+						$query = "SELECT COUNT(*) as count FROM eoi WHERE `Job Reference number` = '$ref'";
+						$result = mysqli_query($dbconn, $query);
+						$row = mysqli_fetch_assoc($result);
+
+						if ($row['count'] > 0) {
+							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($result)['count'] . " EOIs.</p>";
+						} else {
+							echo "<p id='deletion_message'>There are no EOIs to delete.</p>";
+						}
+					}
+					?>
 				</div>
 			</form>
 		</div>
@@ -101,8 +115,9 @@ if (!$dbconn) {
 
 			<button type="submit">Sort</button>
 		</form>
-		</section>
 
+		</section>
+		<hr>
 		<section id="manage_eoi">
 			<table>
 				<tr>
@@ -120,6 +135,18 @@ if (!$dbconn) {
 			if($dbconn) {
 				$ref;
 				$query;
+
+				if(isset($_GET['action']) && $_GET['action'] == "delete") {
+					$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+					$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+					$result = mysqli_query($dbconn, $query);
+
+					if (mysqli_num_rows($result) > 0) {
+						$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
+						mysqli_query($dbconn, $query);
+					}
+				}
+
 				if(isset($_GET['filter'])) {
 					switch($_GET['filter']) {
 						case 'ref':
@@ -254,18 +281,6 @@ if (!$dbconn) {
 						default:
 							include_once("manage_table.inc");
 							break;
-					}
-				}
-				if(isset($_GET['action'])) {
-					if($_GET['action'] == "delete") {
-						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-						$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-						$result = mysqli_query($dbconn, $query);
-
-						if (mysqli_num_rows($result) > 0) {
-							$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
-							mysqli_query($dbconn, $query);
-						}
 					}
 				}
 			}

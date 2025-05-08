@@ -622,23 +622,6 @@ dl {
 	padding: 5px;
 }
 
-/*#filter-bar {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-#filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-    position: relative;
-	border: 1px solid #ccc;
-    border-radius: 8px;
-}*/
-
 #filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -646,11 +629,10 @@ dl {
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     position: relative;
-}
-
+	/*background: radial-gradient(circle,rgba(235, 249, 255, 1) 0%, rgba(230, 246, 255, 1) 71%, rgba(237, 248, 255, 1) 79%, rgba(250, 253, 255, 1) 86%, rgba(255, 255, 255, 1) 100%, rgba(237, 221, 83, 1) 100%);
+*/}
 #filter-options {
 	flex: 1;
 	min-width: 300px;
@@ -678,6 +660,13 @@ dl {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+#deletion_message {
+	color: #FF0019;
+	display: inline;
+	padding-left: 5px;
+	font-weight: bold;
 }
 
 
