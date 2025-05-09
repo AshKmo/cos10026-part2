@@ -34,11 +34,45 @@
 
 		<!-- Support Technician details -->
 		<section class="jobs-dropdown">
+			<?php
+				require_once "settings.php";
+				$dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
+				if ($dbconn) {
+					$query = "SELECT * FROM job_descriptions";
+					$result = mysqli_query($dbconn, $query);
+					if ($result) {
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo "<input type=\"checkbox\" id=\"jobs-" . $row["position"] . "-dropdown\">";
+							echo "<h2 class=\"jobs-dropdown-title\"><label for=\"jobs-" . $row["position"] . "-dropdown\"\><em class=\"arrow\"></em><strong> " . $row["position"] . "</strong></label></h2>";
+							echo "<section class=\"jobs-dropdown-content\">";
+
+							echo "<aside class=\"jobs-aside\">";
+							echo "<strong>Job ID: </strong>" . $row["job_id"] . "<br><br>";
+							echo "<strong>You will report to:</strong><br>";
+							echo $row["report_to_title"];
+							echo "(current is " . $row["report_to_name"] . ")";
+							echo "</aside>";
+
+							echo "<p class=\"jobs-description\">" . $row["description"] . "</p>";
+
+							echo "<h3>You will be expected to:</h3>";
+							echo "<ol>";
+							$expectations = json_decode($row["expectations"]);
+							foreach ($expectations as $expect) {
+								echo "<li>" . $expect . "</li>";
+							}
+
+							echo "</section>";
+						}
+					} else {
+						echo "<p>There are currently no available job positions.</p>";
+					}
+				}
+			?>
 			<!-- Making the title into a clickable checkbox so that, when clicked, the CSS will modify the height of the content to display the job description -->
 			<input type="checkbox" id="jobs-it-support-dropdown">
 			<!-- the em tag is used to create an arrow through CSS; even without any text, the CSS creates a border on one corner, uses padding to give the arrow width, then rotates it to look like an arrow -->
-			<h2 class="jobs-dropdown-title"><label for="jobs-it-support-dropdown"><em class="arrow"></em><strong> IT
-						Support Technician</strong></label></h2>
+			<h2 class="jobs-dropdown-title"><label for="jobs-it-support-dropdown"><em class="arrow"></em><strong> IT Support Technician</strong></label></h2>
 			<section class="jobs-dropdown-content">
 
 				<!-- Defining the content to appear on the side of the screen -->
