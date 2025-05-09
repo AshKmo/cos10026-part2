@@ -133,8 +133,6 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-// TODO: maybe update this based on values obtained from the jobs database table
-// and rewrite apply.php so that it adds the relevent option tags and skills for each job from the database
 $field_name = "job-reference-number";
 $value = $_POST[$field_name];
 check_field(
@@ -143,7 +141,6 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-// TODO: maybe validate the field based on what jobs and skills are available in the jobs database table
 $field_name = "required-technical-skills";
 $value = $_POST[$field_name];
 check_field(

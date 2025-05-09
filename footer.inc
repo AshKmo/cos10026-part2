@@ -5,10 +5,6 @@
         endorsed by, or associated with Telstra Corporation Limited.
     </p>
     <p>
-        <!-- TODO: make the link point to the new Jira project once it's created -->
-        <a href=""
-            target="_blank" title="Merge Masters Jira">Jira Project (TODO)</a>
-        &nbsp;
         <a href="https://github.com/AshKmo/cos10026-part2" target="_blank" title="AshKmo/cos10026-part2 on GitHub">Site
             GitHub repository</a>
         &nbsp;
