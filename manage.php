@@ -87,13 +87,11 @@ if (!$dbconn) {
 			</form>
 		</div>
 
-		<div style="align-self: flex-start;">
-			<form method="get" action="manage.php">
-				<div class="filter-group">
-					<button type="submit" name="filter" value="all">Retrieve All EOIs</button>
-				</div>
-			</form>
-		</div>
+		<form method="get" action="manage.php">
+			<div class="filter-group">
+				<button type="submit" name="filter" value="all">Retrieve All EOIs</button>
+			</div>
+		</form>
 
 		<form method="get" action="manage.php" class="sort-controls">
 			<label for="sort_by">Sort by:</label>

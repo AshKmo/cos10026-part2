@@ -606,6 +606,8 @@ dl {
 
 #manage_eoi {
 	width: 100%;
+	/* overflow-x property below to make table responsive to smaller screens is from W3Schools (https://www.w3schools.com/howto/howto_css_table_responsive.asp) */
+	overflow-x: auto;
 }
 
 #manage_eoi table {
@@ -631,8 +633,7 @@ dl {
     padding: 10px;
     border-radius: 8px;
     position: relative;
-	/*background: radial-gradient(circle,rgba(235, 249, 255, 1) 0%, rgba(230, 246, 255, 1) 71%, rgba(237, 248, 255, 1) 79%, rgba(250, 253, 255, 1) 86%, rgba(255, 255, 255, 1) 100%, rgba(237, 221, 83, 1) 100%);
-*/}
+}
 #filter-options {
 	flex: 1;
 	min-width: 300px;
