@@ -1,6 +1,7 @@
 <?php
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+        
         echo "<tr>";
         echo "<td>" . $row['EOInumber'] . "</td>";
         echo "<td>" . $row['Job Reference number'] . "</td>";
@@ -22,6 +23,9 @@ if (mysqli_num_rows($result) > 0) {
         echo "</select> ";
         echo "<button type='submit' name='update' value='status'>Update</button>";
         echo "</form>";
+        if((isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
+            echo "Updated!";
+        }
         echo "</td>";
         echo "</tr>";
     }

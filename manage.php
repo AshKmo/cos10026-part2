@@ -134,6 +134,15 @@ if (!$dbconn) {
 				$ref;
 				$query;
 
+
+				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
+					$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
+					$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
+					$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
+					
+					mysqli_query($dbconn, $query);
+				}
+
 				if(isset($_GET['action']) && $_GET['action'] == "delete") {
 					$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
 					$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
