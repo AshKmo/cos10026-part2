@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<button type='submit' name='update' value='status'>Update</button>";
         echo "</form>";
         if((isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
-            echo "Updated!";
+            echo "<p id='update_text'>Updated!</p>";
         }
         echo "</td>";
         echo "</tr>";

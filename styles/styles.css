@@ -670,6 +670,12 @@ dl {
 	font-weight: bold;
 }
 
+#update_text {
+	font-weight: bold;
+	color: green;
+	margin: 0;
+}
+
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
