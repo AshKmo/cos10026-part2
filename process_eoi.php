@@ -3,11 +3,13 @@ require_once("settings.php");
 
 session_start();
 
-function sanitise($data) {
+function sanitise($data)
+{
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-function check_field($condition, $message) {
+function check_field($condition, $message)
+{
     if ($condition) {
         return;
     }
@@ -17,7 +19,8 @@ function check_field($condition, $message) {
     exit();
 }
 
-function check_postcode($state, $postcode) {
+function check_postcode($state, $postcode)
+{
     // postcode ranges taken from Wikipedia
     // https://en.wikipedia.org/wiki/Postcodes_in_Australia#Allocation
     return match ($state) {
@@ -130,8 +133,6 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-// TODO: maybe update this based on values obtained from the jobs database table
-// and rewrite apply.php so that it adds the relevent option tags and skills for each job from the database
 $field_name = "job-reference-number";
 $value = $_POST[$field_name];
 check_field(
@@ -140,14 +141,13 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-// TODO: maybe validate the field based on what jobs and skills are available in the jobs database table
 $field_name = "required-technical-skills";
 $value = $_POST[$field_name];
 check_field(
     isset($value),
     "Please select valid technical skills for the job to which you will be applying."
 );
-$field_values[$field_name] = $value;
+$field_values[$field_name] = json_encode(array_map('sanitise', $value));
 
 $field_name = "other-skills";
 $value = $_POST[$field_name];
@@ -157,6 +157,68 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-echo "Wow, you made it!";
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
-// TODO: database logic for adding the record to the table AND creating the table itself if it does not yet exist
+if (!$conn) {
+    echo "Database connection failed: " . mysqli_connect_error();
+    exit();
+}
+
+mysqli_query($conn, '
+    create table if not exists eoi (
+        EOInumber integer auto_increment primary key,
+        jobReferenceNumber varchar(5),
+        firstName varchar(20),
+        lastName varchar(20),
+        streetAddress varchar(40),
+        town varchar(40),
+        state enum("VIC", "NSW", "ACT", "NT", "SA", "WA", "TAS", "QLD"),
+        postcode varchar(4),
+        email text,
+        phone varchar(12),
+        requiredTechnicalSkills text,
+        otherSkills text,
+        status enum("new", "current", "final")
+    )
+');
+
+$stmt = $conn->prepare('insert into eoi values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "new")');
+$stmt->bind_param(
+    'sssssssssss',
+    $field_values["job-reference-number"],
+    $field_values["first-name"],
+    $field_values["last-name"],
+    $field_values["address"],
+    $field_values["town"],
+    $field_values["state"],
+    $field_values["postcode"],
+    $field_values["email"],
+    $field_values["phone"],
+    $field_values["required-technical-skills"],
+    $field_values["other-skills"],
+);
+
+if (!$stmt->execute()) {
+    echo "Database query failed.";
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <?php include("meta.inc") ?>
+
+        <title>Thanks for applying</title>
+    </head>
+
+    <body>
+        <main>
+            <h1>Application submitted</h1>
+            <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>. <a href="index.php">Please click here to return to the home page</a>.</p>
+        </main>
+    </body>
+</html>
