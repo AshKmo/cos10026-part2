@@ -135,12 +135,14 @@ if (!$dbconn) {
 				$query;
 
 
-				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
-					$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
-					$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
-					$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
-					
-					mysqli_query($dbconn, $query);
+				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
+					if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
+						$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
+						$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
+						$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
+						
+						mysqli_query($dbconn, $query);
+					}
 				}
 
 				if(isset($_GET['action']) && $_GET['action'] == "delete") {

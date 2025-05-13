@@ -606,7 +606,7 @@ dl {
 
 #manage_eoi {
 	width: 100%;
-	/* overflow-x property below to make table responsive to smaller screens is from W3Schools (https://www.w3schools.com/howto/howto_css_table_responsive.asp) */
+	/* overflow-x property below is to make table responsive to smaller screens is from W3Schools (https://www.w3schools.com/howto/howto_css_table_responsive.asp) */
 	overflow-x: auto;
 }
 
@@ -618,6 +618,13 @@ dl {
 #manage_eoi table td:not(.status) {
 	text-align: center;
 	padding: 0px 25px 0 25px;
+}
+
+#update_text {
+	font-weight: bold;
+	text-align: center;
+	color: green;
+	margin: 0;
 }
 
 #manage_eoi table th {
@@ -670,11 +677,7 @@ dl {
 	font-weight: bold;
 }
 
-#update_text {
-	font-weight: bold;
-	color: green;
-	margin: 0;
-}
+
 
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
