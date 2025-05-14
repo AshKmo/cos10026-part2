@@ -50,7 +50,7 @@ if (!$dbconn) {
 				<h4>Search or delete EOIs by job reference number</h4>
 				<div class="filter-group">
 					<label for="job_ref">Job Ref:
-						<select name="job_ref">
+						<select name="job_ref" id="job_ref">
 							<?php
 								if($dbconn) {
 									$query = "SELECT DISTINCT `Job Reference number` FROM eoi";
@@ -135,146 +135,146 @@ if (!$dbconn) {
 		</section>
 		<hr>
 		<section id="manage_eoi">
-
-		<!-- mysql queries based on filter and sorting parameters -->
-		<?php
-		if($dbconn) {
-			// sorting function
-			function sortResult($unsortedQuery) {
-				$tableColumns = ['EOInumber', 'Job Reference number', 'First name', 'Last name', 'Email', 'Phone', 'Status'];
-
-				if(isset($_GET['sort_by']) && in_array($_GET['sort_by'], $tableColumns)) {
-					$sortBy = htmlspecialchars($_GET['sort_by']);
-					if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-						$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` DESC";
-					} else {
-						$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` ASC";
-					}
-
-					return $sortedQuery;
-				}
-				return $unsortedQuery;
-			}
-
-			// update eoi status logic
-			if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
-				if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
-					$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
-					$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
-					$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
-					
-					mysqli_query($dbconn, $query);
-				}
-			}
-
-			// filter logic
-			if(isset($_GET['filter'])) {
-				switch($_GET['filter']) {
-					case 'ref':
-						if(isset($_GET['job_ref'])) {
-							$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-							$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-							$sortedQuery = sortResult($query);
-							$result = mysqli_query($dbconn, $sortedQuery);
-						}
-
-						break;
-					case 'name':
-						if(!empty($_GET['fname']) && empty($_GET['lname'])) {
-							$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
-							$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
-							$sortedQuery = sortResult($query);
-							$result = mysqli_query($dbconn, $sortedQuery);
-						}
-						if(!empty($_GET['lname']) && empty($_GET['fname'])) {
-							$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
-							$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
-							$sortedQuery = sortResult($query);
-							$result = mysqli_query($dbconn, $sortedQuery);
-						}
-						if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
-							$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
-							$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
-							$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
-							$sortedQuery = sortResult($query);
-							$result = mysqli_query($dbconn, $sortedQuery);
-						}
-
-						break;
-					default:
-						$query = "SELECT * FROM eoi";
-						$sortedQuery = sortResult($query);
-						$result = mysqli_query($dbconn, $sortedQuery);
-
-						break;
-				}
-			} else {
-				$query = "SELECT * FROM eoi";
-				$sortedQuery = sortResult($query);
-				$result = mysqli_query($dbconn, $sortedQuery);
-			}
-		}
-		?>
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>Job Reference</th>
-					<th>Name</th>
-					<th>Address</th>
-					<th>Email</th>
-					<th>Phone</th>
-					<th>Skills</th>
-					<th>Other skills</th>
-					<th>Status</th>
-				</tr>
-			<!-- below php block populates the table -->
+			<h3>Manage EOIs</h3>
+			<!-- mysql queries based on filter and sorting parameters -->
 			<?php
-			if (mysqli_num_rows($result) > 0) {
-				while ($row = mysqli_fetch_assoc($result)) {
-					
-					echo "<tr>";
-					echo "<td>" . $row['EOInumber'] . "</td>";
-					echo "<td>" . $row['Job Reference number'] . "</td>";
-					echo "<td>" . $row['First name'] . " " . $row['Last name'] . "</td>";
-					echo "<td>" . $row['Address'] . "</td>";
-					echo "<td>" . $row['Email'] . "</td>";
-					echo "<td>" . $row['Phone'] . "</td>";
-					echo "<td>" . $row['Skills'] . "</td>";
-					echo "<td>" . $row['Other skills'] . "</td>";
-					echo "<td class='status'>";
-					echo "<form method='get' action='manage.php'>";
-					/* below logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
-					$excluded_keys = ['eoi_number', 'update', 'new_status'];
-					foreach ($_GET as $key => $value) {
-						if (!in_array($key, $excluded_keys)) {
-							echo "<input type='hidden' name='" . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
+			if($dbconn) {
+				// sorting function
+				function sortResult($unsortedQuery) {
+					$tableColumns = ['EOInumber', 'Job Reference number', 'First name', 'Last name', 'Email', 'Phone', 'Status'];
+
+					if(isset($_GET['sort_by']) && in_array($_GET['sort_by'], $tableColumns)) {
+						$sortBy = htmlspecialchars($_GET['sort_by']);
+						if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
+							$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` DESC";
+						} else {
+							$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` ASC";
 						}
+
+						return $sortedQuery;
 					}
-					/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
-					echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
-					echo "<select name='new_status' id='new_status'>";
-					$statuses = ['New', 'Current', 'Final'];
-					foreach ($statuses as $status) {
-						$selected = ($row['Status'] === $status) ? "selected" : "";
-						echo "<option value='$status' $selected>$status</option>";
-					}
-					echo "</select> ";
-					echo "<button type='submit' name='update' value='status'>Update</button>";
-					echo "</form>";
-					if(isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) {
-						if (isset($_GET['update']) && $_GET['update'] == 'status') {
-							echo "<p id='update_text'>Updated!</p>";
-						}
-					}
-					echo "</td>";
-					echo "</tr>";
+					return $unsortedQuery;
 				}
-			} else {
-				echo "<tr>";
-				echo "<td colspan='9'>There are no eoi to display.</td>";
-				echo "</tr>";
+
+				// update eoi status logic
+				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
+					if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
+						$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
+						$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
+						$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
+						
+						mysqli_query($dbconn, $query);
+					}
+				}
+
+				// filter logic
+				if(isset($_GET['filter'])) {
+					switch($_GET['filter']) {
+						case 'ref':
+							if(isset($_GET['job_ref'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+								$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+								$sortedQuery = sortResult($query);
+								$result = mysqli_query($dbconn, $sortedQuery);
+							}
+
+							break;
+						case 'name':
+							if(!empty($_GET['fname']) && empty($_GET['lname'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
+								$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
+								$sortedQuery = sortResult($query);
+								$result = mysqli_query($dbconn, $sortedQuery);
+							}
+							if(!empty($_GET['lname']) && empty($_GET['fname'])) {
+								$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
+								$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
+								$sortedQuery = sortResult($query);
+								$result = mysqli_query($dbconn, $sortedQuery);
+							}
+							if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
+								$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
+								$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
+								$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
+								$sortedQuery = sortResult($query);
+								$result = mysqli_query($dbconn, $sortedQuery);
+							}
+
+							break;
+						default:
+							$query = "SELECT * FROM eoi";
+							$sortedQuery = sortResult($query);
+							$result = mysqli_query($dbconn, $sortedQuery);
+
+							break;
+					}
+				} else {
+					$query = "SELECT * FROM eoi";
+					$sortedQuery = sortResult($query);
+					$result = mysqli_query($dbconn, $sortedQuery);
+				}
 			}
 			?>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Job Reference</th>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Skills</th>
+						<th>Other skills</th>
+						<th>Status</th>
+					</tr>
+				<!-- below php block populates the table -->
+				<?php
+				if (mysqli_num_rows($result) > 0) {
+					while ($row = mysqli_fetch_assoc($result)) {
+						
+						echo "<tr>";
+						echo "<td>" . $row['EOInumber'] . "</td>";
+						echo "<td>" . $row['Job Reference number'] . "</td>";
+						echo "<td>" . $row['First name'] . " " . $row['Last name'] . "</td>";
+						echo "<td>" . $row['Address'] . "</td>";
+						echo "<td>" . $row['Email'] . "</td>";
+						echo "<td>" . $row['Phone'] . "</td>";
+						echo "<td>" . $row['Skills'] . "</td>";
+						echo "<td>" . $row['Other skills'] . "</td>";
+						echo "<td class='status'>";
+						echo "<form method='get' action='manage.php'>";
+						/* below logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
+						$excluded_keys = ['eoi_number', 'update', 'new_status'];
+						foreach ($_GET as $key => $value) {
+							if (!in_array($key, $excluded_keys)) {
+								echo "<input type='hidden' name='" . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
+							}
+						}
+						/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
+						echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
+						echo "<select name='new_status'>";
+						$statuses = ['New', 'Current', 'Final'];
+						foreach ($statuses as $status) {
+							$selected = ($row['Status'] === $status) ? "selected" : "";
+							echo "<option value='$status' $selected>$status</option>";
+						}
+						echo "</select> ";
+						echo "<button type='submit' name='update' value='status'>Update</button>";
+						echo "</form>";
+						if(isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) {
+							if (isset($_GET['update']) && $_GET['update'] == 'status') {
+								echo "<p id='update_text'>Updated!</p>";
+							}
+						}
+						echo "</td>";
+						echo "</tr>";
+					}
+				} else {
+					echo "<tr>";
+					echo "<td colspan='9'>There are no eoi to display.</td>";
+					echo "</tr>";
+				}
+				?>
 
 			</table>
 		</section>
