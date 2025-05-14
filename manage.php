@@ -6,7 +6,6 @@ if (!$dbconn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 ?>
-
 <!DOCTYPE html>
 
 <!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part2/manage.php -->
@@ -54,11 +53,11 @@ if (!$dbconn) {
 						<select name="job_ref">
 							<?php
 								if($dbconn) {
-									$query = "SELECT DISTINCT `Job Reference number` FROM eoi";
-									$result = mysqli_query($dbconn, $query);
-									if (mysqli_num_rows($result) > 0) {
-										while ($row = mysqli_fetch_assoc($result)) {
-											echo "<option value='" . $row['Job Reference number'] . "'>" . $row['Job Reference number'] . "</option>";
+									$jquery = "SELECT DISTINCT `Job Reference number` FROM eoi";
+									$jresult = mysqli_query($dbconn, $jquery);
+									if (mysqli_num_rows($jresult) > 0) {
+										while ($jrow = mysqli_fetch_assoc($jresult)) {
+											echo "<option value='" . $jrow['Job Reference number'] . "'>" . $jrow['Job Reference number'] . "</option>";
 										}
 									} else {
 										echo "<option>No job references found</option>";
@@ -71,13 +70,13 @@ if (!$dbconn) {
 					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
 					<?php
 					if(isset($_GET['action']) && $_GET['action'] == "delete") {
-						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-						$query = "SELECT COUNT(*) as count FROM eoi WHERE `Job Reference number` = '$ref'";
-						$result = mysqli_query($dbconn, $query);
-						$row = mysqli_fetch_assoc($result);
+						$dref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+						$dquery = "SELECT COUNT(*) as count FROM eoi WHERE `Job Reference number` = '$dref'";
+						$dresult = mysqli_query($dbconn, $dquery);
+						$drow = mysqli_fetch_assoc($dresult);
 
-						if ($row['count'] > 0) {
-							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($result)['count'] . " EOIs.</p>";
+						if ($drow['count'] > 0) {
+							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($dresult)['count'] . " EOIs.</p>";
 						} else {
 							echo "<p id='deletion_message'>There are no EOIs to delete.</p>";
 						}
@@ -94,15 +93,24 @@ if (!$dbconn) {
 		</form>
 
 		<form method="get" action="manage.php" class="sort-controls">
+			<?php
+			/* this php block is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
+			$excluded_keys = ['sort_by', 'sort_order'];
+			foreach ($_GET as $key => $value) {
+				if (!in_array($key, $excluded_keys)) {
+					echo "<input type='hidden' name='" . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
+				}
+			}
+			?>
 			<label for="sort_by">Sort by:</label>
 			<select name="sort_by" id="sort_by">
-				<option value="eoi_id">EOI id</option>
-				<option value="fname" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'fname') echo 'selected'; ?>>First Name</option>
-				<option value="lname" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'lname') echo 'selected'; ?>>Last Name</option>
-				<option value="job_ref" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'job_ref') echo 'selected'; ?>>Job Ref</option>
-				<option value="email" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'email') echo 'selected'; ?>>Email</option>
-				<option value="phone" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'phone') echo 'selected'; ?>>Phone</option>
-				<option value="status" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'status') echo 'selected'; ?>>Status</option>
+				<option value="EOInumber">EOI id</option>
+				<option value="First name" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'First name') echo 'selected'; ?>>First Name</option>
+				<option value="Last name" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'Last name') echo 'selected'; ?>>Last Name</option>
+				<option value="Job Reference number" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'Job Reference number') echo 'selected'; ?>>Job Ref</option>
+				<option value="Email" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'Email') echo 'selected'; ?>>Email</option>
+				<option value="Phone" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'Phone') echo 'selected'; ?>>Phone</option>
+				<option value="Status" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'Status') echo 'selected'; ?>>Status</option>
 			</select>
 
 			<label for="sort_order">Order:</label>
@@ -117,6 +125,101 @@ if (!$dbconn) {
 		</section>
 		<hr>
 		<section id="manage_eoi">
+
+		<!-- mysql queries based on filter and sorting parameters -->
+		<?php
+		if($dbconn) {
+			$ref;
+			$query;
+
+			// sorting function
+			function sortResult($unsortedQuery) {
+				$tableColumns = ['EOInumber', 'Job Reference number', 'First name', 'Last name', 'Email', 'Phone', 'Status'];
+
+				if(isset($_GET['sort_by']) && in_array($_GET['sort_by'], $tableColumns)) {
+					$sortBy = htmlspecialchars($_GET['sort_by']);
+					if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
+						$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` DESC";
+					} else {
+						$sortedQuery = $unsortedQuery . " ORDER BY `$sortBy` ASC";
+					}
+
+					return $sortedQuery;
+				}
+				return $unsortedQuery;
+			}
+
+			// update eoi status logic
+			if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
+				if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
+					$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
+					$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
+					$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
+					
+					mysqli_query($dbconn, $query);
+				}
+			}
+
+			// delete eois logic
+			if(isset($_GET['action']) && $_GET['action'] == "delete") {
+				$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+				$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+				$result = mysqli_query($dbconn, $query);
+
+				if (mysqli_num_rows($result) > 0) {
+					$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
+					mysqli_query($dbconn, $query);
+				}
+			}
+
+			// filter logic
+			if(isset($_GET['filter'])) {
+				switch($_GET['filter']) {
+					case 'ref':
+						if(isset($_GET['job_ref'])) {
+							$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+							$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+							$sortedQuery = sortResult($query);
+							$result = mysqli_query($dbconn, $sortedQuery);
+						}
+
+						break;
+					case 'name':
+						if(!empty($_GET['fname']) && empty($_GET['lname'])) {
+							$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
+							$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
+							$sortedQuery = sortResult($query);
+							$result = mysqli_query($dbconn, $sortedQuery);
+						}
+						if(!empty($_GET['lname']) && empty($_GET['fname'])) {
+							$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
+							$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
+							$sortedQuery = sortResult($query);
+							$result = mysqli_query($dbconn, $sortedQuery);
+						}
+						if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
+							$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
+							$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
+							$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
+							$sortedQuery = sortResult($query);
+							$result = mysqli_query($dbconn, $sortedQuery);
+						}
+
+						break;
+					default:
+						$query = "SELECT * FROM eoi";
+						$sortedQuery = sortResult($query);
+						$result = mysqli_query($dbconn, $sortedQuery);
+
+						break;
+				}
+			} else {
+				$query = "SELECT * FROM eoi";
+				$sortedQuery = sortResult($query);
+				$result = mysqli_query($dbconn, $sortedQuery);
+			}
+		}
+		?>
 			<table>
 				<tr>
 					<th>ID</th>
@@ -129,171 +232,45 @@ if (!$dbconn) {
 					<th>Other skills</th>
 					<th>Status</th>
 				</tr>
+			<!-- below php block populates the table -->
 			<?php
-			if($dbconn) {
-				$ref;
-				$query;
-
-
-				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
-					if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
-						$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
-						$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
-						$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
-						
-						mysqli_query($dbconn, $query);
+			if (mysqli_num_rows($result) > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {
+					
+					echo "<tr>";
+					echo "<td>" . $row['EOInumber'] . "</td>";
+					echo "<td>" . $row['Job Reference number'] . "</td>";
+					echo "<td>" . $row['First name'] . " " . $row['Last name'] . "</td>";
+					echo "<td>" . $row['Address'] . "</td>";
+					echo "<td>" . $row['Email'] . "</td>";
+					echo "<td>" . $row['Phone'] . "</td>";
+					echo "<td>" . $row['Skills'] . "</td>";
+					echo "<td>" . $row['Other skills'] . "</td>";
+					echo "<td class='status'>";
+					echo "<form method='get' action='manage.php'>";
+					echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
+					echo "<select name='new_status' id='new_status'>";
+					$statuses = ['New', 'Current', 'Final'];
+					foreach ($statuses as $status) {
+						$selected = ($row['Status'] === $status) ? "selected" : "";
+						echo "<option value='$status' $selected>$status</option>";
 					}
+					echo "</select> ";
+					echo "<button type='submit' name='update' value='status'>Update</button>";
+					echo "</form>";
+					if((isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
+						echo "<p id='update_text'>Updated!</p>";
+					}
+					echo "</td>";
+					echo "</tr>";
 				}
-
-				if(isset($_GET['action']) && $_GET['action'] == "delete") {
-					$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-					$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-					$result = mysqli_query($dbconn, $query);
-
-					if (mysqli_num_rows($result) > 0) {
-						$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
-						mysqli_query($dbconn, $query);
-					}
-				}
-
-				if(isset($_GET['filter'])) {
-					switch($_GET['filter']) {
-						case 'ref':
-							if(isset($_GET['job_ref'])) {
-								$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-								$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-								$result = mysqli_query($dbconn, $query);
-								
-								if(!isset($_GET['sort_by'])) {
-									include_once("manage_table.inc");
-								}
-							}
-							break;
-						case 'name':
-							if(!empty($_GET['fname']) && empty($_GET['lname'])) {
-								$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
-								$query = "SELECT * FROM eoi WHERE `First name` = '$ref'";
-								$result = mysqli_query($dbconn, $query);
-
-								if(!isset($_GET['sort_by'])) {
-									include_once("manage_table.inc");
-								}
-							}
-							if(!empty($_GET['lname']) && empty($_GET['fname'])) {
-								$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
-								$query = "SELECT * FROM eoi WHERE `Last name` = '$ref'";
-								$result = mysqli_query($dbconn, $query);
-								if(!isset($_GET['sort_by'])) {
-									include_once("manage_table.inc");
-								}
-							}
-							if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
-								$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
-								$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
-								$query = "SELECT * FROM eoi WHERE `First name` = '$ref_fname' AND `Last name` = '$ref_lname'";
-								$result = mysqli_query($dbconn, $query);
-
-								if(!isset($_GET['sort_by'])) {
-									include_once("manage_table.inc");
-								}
-							}
-							break;
-						default:
-							$query = "SELECT * FROM eoi";
-							$result = mysqli_query($dbconn, $query);
-
-							if(!isset($_GET['sort_by'])) {
-								include_once("manage_table.inc");
-							}
-							break;
-					}
-				} else {
-					$query = "SELECT * FROM eoi";
-					$result = mysqli_query($dbconn, $query);
-
-					if(!isset($_GET['sort_by'])) {
-						include_once("manage_table.inc");
-					}
-				}
-				if(isset($_GET['sort_by'])) {
-					switch($_GET['sort_by']) {
-						case 'eoi_id':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `EOInumber` DESC";
-							} else {
-								$query = $query . " ORDER BY `EOInumber` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'job_ref':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `Job Reference number` DESC";
-							} else {
-								$query = $query . " ORDER BY `Job Reference number` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'fname':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `First name` DESC";
-							} else {
-								$query = $query . " ORDER BY `First name` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'lname':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `Last name` DESC";
-							} else {
-								$query = $query . " ORDER BY `Last name` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'email':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `Email` DESC";
-							} else {
-								$query = $query . " ORDER BY `Email` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'phone':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `Phone` DESC";
-							} else {
-								$query = $query . " ORDER BY `Phone` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						case 'status':
-							if(isset($_GET['sort_order']) && $_GET['sort_order'] == "desc") {
-								$query = $query . " ORDER BY `Status` DESC";
-							} else {
-								$query = $query . " ORDER BY `Status` ASC";
-							}
-							$result = mysqli_query($dbconn, $query);
-
-							include_once("manage_table.inc");
-							break;
-						default:
-							include_once("manage_table.inc");
-							break;
-					}
-				}
+			} else {
+				echo "<tr>";
+				echo "<td colspan='9'>There are no eoi to display.</td>";
+				echo "</tr>";
 			}
 			?>
+
 			</table>
 		</section>
 	</main>
