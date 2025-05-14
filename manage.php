@@ -53,11 +53,11 @@ if (!$dbconn) {
 						<select name="job_ref">
 							<?php
 								if($dbconn) {
-									$jquery = "SELECT DISTINCT `Job Reference number` FROM eoi";
-									$jresult = mysqli_query($dbconn, $jquery);
-									if (mysqli_num_rows($jresult) > 0) {
-										while ($jrow = mysqli_fetch_assoc($jresult)) {
-											echo "<option value='" . $jrow['Job Reference number'] . "'>" . $jrow['Job Reference number'] . "</option>";
+									$query = "SELECT DISTINCT `Job Reference number` FROM eoi";
+									$result = mysqli_query($dbconn, $query);
+									if (mysqli_num_rows($result) > 0) {
+										while ($row = mysqli_fetch_assoc($result)) {
+											echo "<option value='" . $row['Job Reference number'] . "'>" . $row['Job Reference number'] . "</option>";
 										}
 									} else {
 										echo "<option>No job references found</option>";
@@ -70,13 +70,13 @@ if (!$dbconn) {
 					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
 					<?php
 					if(isset($_GET['action']) && $_GET['action'] == "delete") {
-						$dref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-						$dquery = "SELECT COUNT(*) as count FROM eoi WHERE `Job Reference number` = '$dref'";
-						$dresult = mysqli_query($dbconn, $dquery);
-						$drow = mysqli_fetch_assoc($dresult);
+						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
+						$query = "SELECT COUNT(*) as count FROM eoi WHERE `Job Reference number` = '$ref'";
+						$result = mysqli_query($dbconn, $query);
+						$row = mysqli_fetch_assoc($result);
 
-						if ($drow['count'] > 0) {
-							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($dresult)['count'] . " EOIs.</p>";
+						if ($row['count'] > 0) {
+							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($result)['count'] . " EOIs.</p>";
 						} else {
 							echo "<p id='deletion_message'>There are no EOIs to delete.</p>";
 						}
@@ -129,9 +129,6 @@ if (!$dbconn) {
 		<!-- mysql queries based on filter and sorting parameters -->
 		<?php
 		if($dbconn) {
-			$ref;
-			$query;
-
 			// sorting function
 			function sortResult($unsortedQuery) {
 				$tableColumns = ['EOInumber', 'Job Reference number', 'First name', 'Last name', 'Email', 'Phone', 'Status'];
