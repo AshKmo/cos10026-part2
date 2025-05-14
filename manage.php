@@ -68,6 +68,8 @@ if (!$dbconn) {
 					</label>
 					<button type="submit" name="filter" value="ref">Search</button>
 					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
+
+					<!-- below php block deletes selected EOIs and displays a confirmation message -->
 					<?php
 					if(isset($_GET['action']) && $_GET['action'] == "delete") {
 						$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
@@ -79,6 +81,14 @@ if (!$dbconn) {
 							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($result)['count'] . " EOIs.</p>";
 						} else {
 							echo "<p id='deletion_message'>There are no EOIs to delete.</p>";
+						}
+
+						$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
+						$result = mysqli_query($dbconn, $query);
+
+						if (mysqli_num_rows($result) > 0) {
+							$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
+							mysqli_query($dbconn, $query);
 						}
 					}
 					?>
@@ -95,7 +105,7 @@ if (!$dbconn) {
 		<form method="get" action="manage.php" class="sort-controls">
 			<?php
 			/* this php block is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
-			$excluded_keys = ['sort_by', 'sort_order'];
+			$excluded_keys = ['sort_by', 'sort_order', 'eoi_number', 'update', 'new_status'];
 			foreach ($_GET as $key => $value) {
 				if (!in_array($key, $excluded_keys)) {
 					echo "<input type='hidden' name='" . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
@@ -153,18 +163,6 @@ if (!$dbconn) {
 					$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
 					$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
 					
-					mysqli_query($dbconn, $query);
-				}
-			}
-
-			// delete eois logic
-			if(isset($_GET['action']) && $_GET['action'] == "delete") {
-				$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
-				$query = "SELECT * FROM eoi WHERE `Job Reference number` = '$ref'";
-				$result = mysqli_query($dbconn, $query);
-
-				if (mysqli_num_rows($result) > 0) {
-					$query = "DELETE FROM eoi WHERE `Job Reference number` = '$ref'";
 					mysqli_query($dbconn, $query);
 				}
 			}
@@ -245,6 +243,14 @@ if (!$dbconn) {
 					echo "<td>" . $row['Other skills'] . "</td>";
 					echo "<td class='status'>";
 					echo "<form method='get' action='manage.php'>";
+					/* below logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
+					$excluded_keys = ['eoi_number', 'update', 'new_status'];
+					foreach ($_GET as $key => $value) {
+						if (!in_array($key, $excluded_keys)) {
+							echo "<input type='hidden' name='" . htmlspecialchars($key) . "' value='" . htmlspecialchars($value) . "'>";
+						}
+					}
+					/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
 					echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
 					echo "<select name='new_status' id='new_status'>";
 					$statuses = ['New', 'Current', 'Final'];
@@ -255,8 +261,10 @@ if (!$dbconn) {
 					echo "</select> ";
 					echo "<button type='submit' name='update' value='status'>Update</button>";
 					echo "</form>";
-					if((isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) && (isset($_GET['update']) && $_GET['update'] == 'status') && isset($_GET['new_status'])) {
-						echo "<p id='update_text'>Updated!</p>";
+					if(isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) {
+						if (isset($_GET['update']) && $_GET['update'] == 'status') {
+							echo "<p id='update_text'>Updated!</p>";
+						}
 					}
 					echo "</td>";
 					echo "</tr>";
