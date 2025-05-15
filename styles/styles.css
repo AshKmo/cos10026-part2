@@ -606,6 +606,8 @@ dl {
 
 #manage_eoi {
 	width: 100%;
+	/* overflow-x property below is to make table responsive to smaller screens is from W3Schools (https://www.w3schools.com/howto/howto_css_table_responsive.asp) */
+	overflow-x: auto;
 }
 
 #manage_eoi table {
@@ -618,27 +620,17 @@ dl {
 	padding: 0px 25px 0 25px;
 }
 
+#update_text {
+	font-weight: bold;
+	text-align: center;
+	color: green;
+	margin: 0;
+}
+
 #manage_eoi table th {
 	padding: 5px;
 }
 
-/*#filter-bar {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-#filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-    position: relative;
-	border: 1px solid #ccc;
-    border-radius: 8px;
-}*/
-
 #filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -646,11 +638,9 @@ dl {
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     position: relative;
 }
-
 #filter-options {
 	flex: 1;
 	min-width: 300px;
@@ -679,6 +669,15 @@ dl {
     bottom: 10px;
     right: 10px;
 }
+
+#deletion_message {
+	color: #FF0019;
+	display: inline;
+	padding-left: 5px;
+	font-weight: bold;
+}
+
+
 
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
