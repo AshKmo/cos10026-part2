@@ -147,7 +147,7 @@ check_field(
     isset($value),
     "Please select valid technical skills for the job to which you will be applying."
 );
-$field_values[$field_name] = json_encode($value);
+$field_values[$field_name] = json_encode(array_map('sanitise', $value));
 
 $field_name = "other-skills";
 $value = $_POST[$field_name];
@@ -158,6 +158,11 @@ check_field(
 $field_values[$field_name] = sanitise($value);
 
 $conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+if (!$conn) {
+    echo "Database connection failed: " . mysqli_connect_error();
+    exit();
+}
 
 mysqli_query($conn, '
     create table if not exists eoi (
@@ -192,7 +197,11 @@ $stmt->bind_param(
     $field_values["required-technical-skills"],
     $field_values["other-skills"],
 );
-$stmt->execute();
+
+if (!$stmt->execute()) {
+    echo "Database query failed.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -201,10 +210,15 @@ $stmt->execute();
     <head>
         <meta charset="UTF-8">
 
+        <?php include("meta.inc") ?>
+
         <title>Thanks for applying</title>
     </head>
 
     <body>
-        <p>Thank you for your application. <a href="index.php">Please click here to return to the home page</a>.</p>
+        <main>
+            <h1>Application submitted</h1>
+            <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>. <a href="index.php">Please click here to return to the home page</a>.</p>
+        </main>
     </body>
 </html>
