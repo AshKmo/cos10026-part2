@@ -178,7 +178,7 @@ mysqli_query($conn, '
         phone varchar(12),
         requiredTechnicalSkills text,
         otherSkills text,
-        status enum("new", "current", "final")
+        status enum("new", "current", "final") default "new"
     )
 ');
 
