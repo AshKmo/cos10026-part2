@@ -149,6 +149,8 @@
 					} else {
 						echo "<p>There are currently no available job positions.</p>";
 					}
+				} else {
+					echo "<p>Connection to our network failed! Please try again later.</p>";
 				}
 			?>
 	</main>
