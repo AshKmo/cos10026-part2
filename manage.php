@@ -271,7 +271,7 @@ if (!$dbconn) {
 					}
 				} else {
 					echo "<tr>";
-					echo "<td colspan='9'>There are no eoi to display.</td>";
+					echo "<td colspan='9'><h4>There are no eoi to display.</h4></td>";
 					echo "</tr>";
 				}
 				?>
