@@ -231,7 +231,6 @@ if (!$dbconn) {
 				<?php
 				if (mysqli_num_rows($result) > 0) {
 					while ($row = mysqli_fetch_assoc($result)) {
-						
 						echo "<tr>";
 						echo "<td>" . $row['EOInumber'] . "</td>";
 						echo "<td>" . $row['Job Reference number'] . "</td>";
@@ -283,5 +282,4 @@ if (!$dbconn) {
 	<!-- include the page footer -->
 	<?php include "footer.inc"; ?>
 </body>
-
 </html>
