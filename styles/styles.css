@@ -677,7 +677,17 @@ dl {
 	font-weight: bold;
 }
 
+/*************************************/
+/* jobs_creation.php specific styles */
+/* Author: Max (With help from Ash   */
+/*************************************/
 
+.jobs-creation-expectations {
+	display: none;
+}
+.jobs-creation-expectations:has(input:not(:placeholder-shown)) + .jobs-creation-expectations, .jobs-creation-expectations:first-child {
+	display:  list-item;
+}
 
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
