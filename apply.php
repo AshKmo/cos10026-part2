@@ -79,6 +79,7 @@ function print_any_sublists($skill)
 		if (isset($_SESSION["APPLY_FORM_ERROR_MESSAGE"])) {
 			echo '<hr><p id="apply-error-message">' . ($_SESSION["APPLY_FORM_ERROR_MESSAGE"]) . '</p>';
 		}
+		unset($_SESSION["APPLY_FORM_ERROR_MESSAGE"]);
 		?>
 
 		<!-- HTML form containing all fields for submission -->
