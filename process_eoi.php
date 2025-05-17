@@ -1,13 +1,17 @@
 <?php
-require_once("settings.php");
+// import the database settings
+require_once "settings.php";
 
+// start the session
 session_start();
 
+// function to sanitise user input so that it's safe to store in the database and echo
 function sanitise($data)
 {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
+// function to check if a field has been submitted correctly and print an error message if it isn't
 function check_field($condition, $message)
 {
     if ($condition) {
@@ -19,6 +23,7 @@ function check_field($condition, $message)
     exit();
 }
 
+// function to validate postcodes based on a selected state
 function check_postcode($state, $postcode)
 {
     // postcode ranges taken from Wikipedia
@@ -43,14 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit();
 }
 
+// connect to the database
 $conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
+// complain if the database fails
 if (!$conn) {
     echo "Database connection failed: " . mysqli_connect_error();
     exit();
 }
 
+// array to store the field values we accumulate from reading the POST body
 $field_values = [];
+
+// the following code checks the validity of each submitted field and either stores the valid values in $field_values or sets an error messasge for one that isn't
 
 $field_name = "first-name";
 $value = $_POST[$field_name];
@@ -147,6 +157,7 @@ if (!$jobs) {
 }
 $jobs = $jobs->fetch_all();
 
+// function to retrieve a job record by its job ID
 function get_job_from_id($jobs, $id)
 {
     foreach ($jobs as $job) {
@@ -158,6 +169,7 @@ function get_job_from_id($jobs, $id)
     return false;
 }
 
+// function to filter submitted technical skills based on which ones are available for the selected job
 function extract_relevant_skills($job, $skills)
 {
     $final_array = [];
@@ -201,6 +213,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// create the EOI table if it does not yet exist
 mysqli_query($conn, '
     create table if not exists eoi (
         EOInumber integer auto_increment primary key,
@@ -219,6 +232,8 @@ mysqli_query($conn, '
     )
 ');
 
+// prepare a query that inserts an entry into the database based on the submitted values
+// this automatically removes the risk of SQL injection by properly escaping each value before adding it to the statement
 $stmt = $conn->prepare('insert into eoi values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "new")');
 $stmt->bind_param(
     'sssssssssss',
@@ -235,6 +250,7 @@ $stmt->bind_param(
     $field_values["other-skills"],
 );
 
+// execute the statement and print an error message if it fails for some reason
 if (!$stmt->execute()) {
     echo "Database query failed.";
     exit();
@@ -248,6 +264,7 @@ if (!$stmt->execute()) {
 <head>
     <meta charset="UTF-8">
 
+    <!-- include common meta tags -->
     <?php include("meta.inc") ?>
 
     <title>Thanks for applying</title>
@@ -256,8 +273,9 @@ if (!$stmt->execute()) {
 <body>
     <main>
         <h1>Application submitted</h1>
-        <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>. <a
-                href="index.php">Please click here to return to the home page</a>.</p>
+        <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>.
+            <a href="index.php">Please click here to return to the home page</a>.
+        </p>
     </main>
 </body>
 

@@ -1,15 +1,20 @@
 <?php
+// start the session
 session_start();
 
+// import the database settings
 require_once "settings.php";
 
+// connect to the database
 $conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
+// complain if the database fails
 if (!$conn) {
 	echo "Database connection failed: " . mysqli_connect_error();
 	exit();
 }
 
+// function to check if a string contains JSON-like content
 function containsJson($string)
 {
 	$start = strpos($string, '[');
@@ -20,6 +25,7 @@ function containsJson($string)
 	return json_last_error() === JSON_ERROR_NONE && is_array($decoded);
 }
 
+// function to extract, format and echo a JSON list from a string, alongside the rest of the string
 function print_any_sublists($skill)
 {
 	$start = strpos($skill, '[');
@@ -76,6 +82,7 @@ function print_any_sublists($skill)
 			Please submit your application below, and welcome aboard!</p>
 
 		<?php
+		// echo the error message if there is one and then delete it from server-side storage so it doesn't stick there forever
 		if (isset($_SESSION["APPLY_FORM_ERROR_MESSAGE"])) {
 			echo '<hr><p id="apply-error-message">' . ($_SESSION["APPLY_FORM_ERROR_MESSAGE"]) . '</p>';
 		}
@@ -135,6 +142,7 @@ function print_any_sublists($skill)
 					</p>
 				</div>
 
+				<!-- state/territory selection box -->
 				<p>
 					<label for="apply-state">State/territory: </label>
 					<select name="state" id="apply-state" required>
@@ -150,6 +158,8 @@ function print_any_sublists($skill)
 					</select>
 				</p>
 
+				<!-- postcode input box -->
+				<!-- the server will validate the postcode based on which state the user has selected -->
 				<p>
 					<label for="apply-postcode">Postcode: </label>
 					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
@@ -160,6 +170,8 @@ function print_any_sublists($skill)
 
 				<p>
 					<label for="apply-date-of-birth">Date of birth: </label>
+					<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
+					<!-- availabe at https://regexr.com/ -->
 					<input class="apply-input" type="text" name="date-of-birth" id="apply-date-of-birth"
 						placeholder="dd/mm/yyyy" size="10" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}"
 						required>
@@ -227,10 +239,10 @@ function print_any_sublists($skill)
 					</select>
 				</p>
 
-				<!-- a series of checkboxes for each required technical skill for each job -->
+				<!-- produce a series of checkboxes for each required technical skill for each job -->
 				<!-- the relevant checkboxes for each job are shown only when that job is selected above -->
 				<!-- this is done by applying a class to each checkbox indicating the job to which it is assigned -->
-				<!-- although this means that there might be values sent to the server that are not necessarily relevant for the selected job, the server should (in practice) be able to ignore them based on which job was selected -->
+				<!-- although this means that there might be values sent to the server that are not necessarily relevant for the selected job, the server will skip them -->
 				<fieldset class="apply-fieldset">
 					<legend>Required technical skills:</legend>
 
@@ -265,6 +277,7 @@ function print_any_sublists($skill)
 					</div>
 				</fieldset>
 
+				<!-- textarea box for other skills the user may want to share -->
 				<div>
 					<label for="apply-other-skills">Other skills:</label>
 					<textarea id="apply-other-skills" name="other-skills"
