@@ -248,10 +248,11 @@ function print_any_sublists($skill)
 							$skills = json_decode($job["essential_prereqs"]);
 
 							foreach ($skills as $skill) {
+								// this hash is only used to uniquely identify the skill amongst the others so it's ok to use a dodgy algorithm like md5
 								$skill_id = hash("md5", $skill);
 								echo '
 									<div class="apply-checkbox-container apply-checkbox-set-' . $job["job_id"] . '">
-										<input class="apply-input" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_' . $skill_id . '" value="' . $skill . '" checked>
+										<input class="apply-input" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_' . $skill_id . '" value="' . $skill_id . '" checked>
 										<label for="apply-required-technical-skills_' . $skill_id . '">';
 
 								print_any_sublists($skill);
