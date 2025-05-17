@@ -1,5 +1,46 @@
 <?php
 session_start();
+
+require_once "settings.php";
+
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+if (!$conn) {
+	echo "Database connection failed: " . mysqli_connect_error();
+	exit();
+}
+
+function containsJson($string)
+{
+	$start = strpos($string, '[');
+	if ($start === false)
+		return false;
+	$jsonPart = substr($string, $start);
+	$decoded = json_decode($jsonPart, false);
+	return json_last_error() === JSON_ERROR_NONE && is_array($decoded);
+}
+
+function print_any_sublists($skill)
+{
+	$start = strpos($skill, '[');
+	if ($start !== false && containsJson($skill)) {
+		$text = substr($skill, 0, $start);
+		$jsonPart = substr($skill, $start);
+		echo $text;
+		echo '</label>';
+		$sublist = json_decode($jsonPart, true);
+		if (is_array($sublist)) {
+			echo '<ul>';
+			foreach ($sublist as $subskill) {
+				echo "<li>$subskill</li>";
+			}
+			echo '</ul>';
+		}
+	} else {
+		echo $skill;
+		echo '</label>';
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -167,10 +208,21 @@ session_start();
 					<label for="apply-job-reference-number">Position of interest: </label>
 					<select name="job-reference-number" id="apply-job-reference-number" required>
 						<option value="">Please select</option>
-						<option value="IT427">IT Support Technician (IT427)</option>
-						<option value="DA193">Data Analyst (DA193)</option>
-						<option value="BC279">Blockchain Developer (BC279)</option>
-						<option value="QA666">QA Tester (QA666)</option>
+
+						<?php
+						$stmt = $conn->prepare('select * from job_descriptions');
+
+						if (!$stmt->execute()) {
+							echo "Database query failed.";
+							exit();
+						}
+
+						$result = $stmt->get_result();
+
+						while ($job = $result->fetch_assoc()) {
+							echo '<option value="' . $job["job_id"] . '">' . $job["position"] . ' (' . $job["job_id"] . ')</option>';
+						}
+						?>
 					</select>
 				</p>
 
@@ -182,121 +234,32 @@ session_start();
 					<legend>Required technical skills:</legend>
 
 					<div class="apply-checkbox-set-container">
-						<div class="apply-checkbox-container apply-checkbox-set-support apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_sql" value="sql" checked>
-							<label for="apply-required-technical-skills_sql">Understanding of SQL</label>
-						</div>
+						<?php
+						$stmt = $conn->prepare('select * from job_descriptions');
 
-						<div class="apply-checkbox-container apply-checkbox-set-support">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_python" value="python" checked>
-							<label for="apply-required-technical-skills_python">Understanding of Python</label>
-						</div>
+						if (!$stmt->execute()) {
+							echo "Database query failed.";
+							exit();
+						}
 
-						<div class="apply-checkbox-container apply-checkbox-set-support">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_networks" value="networks" checked>
-							<label for="apply-required-technical-skills_networks">Understanding of networks</label>
-						</div>
+						$result = $stmt->get_result();
 
-						<div class="apply-checkbox-container apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_excel" value="excel" checked>
-							<label for="apply-required-technical-skills_excel">Proficiency in Microsoft Excel</label>
-						</div>
+						while ($job = $result->fetch_assoc()) {
+							$skills = json_decode($job["essential_prereqs"]);
 
-						<div class="apply-checkbox-container apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_vistools" value="vistools" checked>
-							<label for="apply-required-technical-skills_vistools">Experience with data visualisation
-								tools</label>
-						</div>
+							foreach ($skills as $skill) {
+								$skill_id = hash("md5", $skill);
+								echo '
+									<div class="apply-checkbox-container apply-checkbox-set-' . $job["job_id"] . '">
+										<input class="apply-input" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_' . $skill_id . '" value="' . $skill . '" checked>
+										<label for="apply-required-technical-skills_' . $skill_id . '">';
 
-						<div class="apply-checkbox-container apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_problem_solving" value="problem_solving" checked>
-							<label for="apply-required-technical-skills_problem_solving">Strong analytical and
-								problem-solving skills</label>
-						</div>
+								print_any_sublists($skill);
 
-						<div class="apply-checkbox-container apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_bachelor_data" value="bachelor_data" checked>
-							<label for="apply-required-technical-skills_bachelor_data">Bachelor's degree in Data
-								Science</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-analyst">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_bachelor_stats" value="bachelor_stats" checked>
-							<label for="apply-required-technical-skills_bachelor_stats">Bachelor's degree in
-								Statistics</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-qa">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_qa_testing" value="qa_testing" checked>
-							<label for="apply-required-technical-skills_qa_testing">Proven experience in software
-								quality assurance or testing</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-qa">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_qa_methodologies" value="qa_methodologies" checked>
-							<label for="apply-required-technical-skills_qa_methodologies">Strong understanding of QA
-								methodologies, tools, and processes</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-qa">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_test_cases" value="test_cases" checked>
-							<label for="apply-required-technical-skills_test_cases">Ability to write comprehensive test
-								plans and test cases</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-qa">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_bug_tracking" value="bug_tracking" checked>
-							<label for="apply-required-technical-skills_bug_tracking">Familiarity with bug tracking
-								tools</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-qa">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_sdlc" value="sdlc" checked>
-							<label for="apply-required-technical-skills_sdlc">Understanding of the Software Development
-								Life Cycle</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-blockchain">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_smart_contract" value="smart_contract" checked>
-							<label for="apply-required-technical-skills_smart_contract">Proficiency in a smart contract
-								language</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-blockchain">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_architecture" value="architecture" checked>
-							<label for="apply-required-technical-skills_architecture">Strong understanding of blockchain
-								architecture and principles</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-blockchain">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_blockchain_dev_tools" value="blockchain_dev_tools"
-								checked>
-							<label for="apply-required-technical-skills_blockchain_dev_tools">Familiarity with
-								blockchain development tools</label>
-						</div>
-
-						<div class="apply-checkbox-container apply-checkbox-set-blockchain">
-							<input class="apply-input" type="checkbox" name="required-technical-skills[]"
-								id="apply-required-technical-skills_backend" value="backend" checked>
-							<label for="apply-required-technical-skills_backend">Proficiency in a backend programming
-								language</label>
-						</div>
+								echo '</div>';
+							}
+						}
+						?>
 					</div>
 				</fieldset>
 
