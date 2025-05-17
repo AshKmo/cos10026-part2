@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("settings.php");
 $dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
 
@@ -161,7 +162,7 @@ if (!$dbconn) {
 
 				// update eoi status logic
 				if(isset($_GET['eoi_number']) && (isset($_GET['update']) && $_GET['update'] == 'status')) {
-					if(isset($_GET['new_status']) && ($_GET['new_status'] == "New" || $_GET['new_status'] == "Current" || $_GET['new_status'] == "Final")) {
+					if(isset($_GET['new_status']) && ($_GET['new_status'] == "new" || $_GET['new_status'] == "current" || $_GET['new_status'] == "final")) {
 						$status_ref = mysqli_real_escape_string($dbconn, $_GET['new_status']);
 						$eoi_ref = mysqli_real_escape_string($dbconn, $_GET['eoi_number']);
 						$query = "UPDATE eoi SET Status = '$status_ref' WHERE EOInumber = $eoi_ref";
@@ -177,8 +178,6 @@ if (!$dbconn) {
 							if(isset($_GET['job_ref'])) {
 								$ref = mysqli_real_escape_string($dbconn, $_GET['job_ref']);
 								$query = "SELECT * FROM eoi WHERE `jobReferenceNumber` = '$ref'";
-								$sortedQuery = sortResult($query);
-								$result = mysqli_query($dbconn, $sortedQuery);
 							}
 
 							break;
@@ -186,39 +185,35 @@ if (!$dbconn) {
 							if(!empty($_GET['fname']) && empty($_GET['lname'])) {
 								$ref = mysqli_real_escape_string($dbconn, $_GET['fname']);
 								$query = "SELECT * FROM eoi WHERE `firstName` LIKE '%$ref%'";
-								$sortedQuery = sortResult($query);
-								$result = mysqli_query($dbconn, $sortedQuery);
 							}
-							if(!empty($_GET['lname']) && empty($_GET['fname'])) {
+							elseif(!empty($_GET['lname']) && empty($_GET['fname'])) {
 								$ref = mysqli_real_escape_string($dbconn, $_GET['lname']);
 								$query = "SELECT * FROM eoi WHERE `lastName` LIKE '%$ref%'";
-								$sortedQuery = sortResult($query);
-								$result = mysqli_query($dbconn, $sortedQuery);
 							}
-							if(!empty($_GET['fname']) && !empty($_GET['lname'])) {
+							elseif(!empty($_GET['fname']) && !empty($_GET['lname'])) {
 								$ref_fname = mysqli_real_escape_string($dbconn, $_GET['fname']);
 								$ref_lname = mysqli_real_escape_string($dbconn, $_GET['lname']);
 								$query = "SELECT * FROM eoi WHERE `firstName` LIKE '%$ref_fname%' AND `lastName` LIKE '%$ref_lname%'";
-								$sortedQuery = sortResult($query);
-								$result = mysqli_query($dbconn, $sortedQuery);
+							}
+							else {
+								$query = "SELECT * FROM eoi";
 							}
 
 							break;
 						default:
 							$query = "SELECT * FROM eoi";
-							$sortedQuery = sortResult($query);
-							$result = mysqli_query($dbconn, $sortedQuery);
 
 							break;
 					}
 				} else {
 					$query = "SELECT * FROM eoi";
-					$sortedQuery = sortResult($query);
-					$result = mysqli_query($dbconn, $sortedQuery);
 				}
+
+				$sortedQuery = sortResult($query);
+				$result = mysqli_query($dbconn, $sortedQuery);
 			}
 			?>
-				<table>
+				<table class="manage_table">
 					<tr>
 						<th>ID</th>
 						<th>Job Reference</th>
@@ -255,7 +250,7 @@ if (!$dbconn) {
 						/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
 						echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
 						echo "<select name='new_status'>";
-						$statuses = ['New', 'Current', 'Final'];
+						$statuses = ['new', 'current', 'final'];
 						foreach ($statuses as $status) {
 							$selected = ($row['status'] === $status) ? "selected" : "";
 							echo "<option value='$status' $selected>$status</option>";

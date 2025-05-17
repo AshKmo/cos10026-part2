@@ -116,7 +116,7 @@ td {
 	background-color: #efefef;
 	border: 1px solid #ccc;
 }
-td:hover {
+table:not(.manage_table) td:hover {
 	background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
@@ -629,6 +629,15 @@ dl {
 
 #manage_eoi table th {
 	padding: 5px;
+}
+
+#manage_eoi tr td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+#manage_eoi tr:hover td {
+	background-color: #e2e0e0;
 }
 
 #filter-bar {
