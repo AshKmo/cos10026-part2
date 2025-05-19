@@ -32,7 +32,7 @@
 		<ul>
 			<li>A management login page was added</li>
 			<li>A management registration page was added</li>
-			<li>A job desccription editing page was added</li>
+			<li>A job description editing page was added</li>
 			<li>The job application form now retrieves job ID and required skill information from the job descriptions database for use in the selection menu and server-side validation process</li>
 		</ul>
 
