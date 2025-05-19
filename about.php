@@ -76,11 +76,11 @@
 					<dt>Ash</dt>
 					<dd>Applications page, EOI processing page and database table</dd>
 					<dt>Hayden</dt>
-					<dd>Home page, management login page, administrator view functionality</dd>
+					<dd>Home page, management login page, registration and authentication</dd>
 					<dt>Max</dt>
 					<dd>Job descriptions page and database table, job creation page</dd>
 					<dt>Tim</dt>
-					<dd>EOI management page and related enhancements</dd>
+					<dd>About page, site-wide styling, EOI management page and related enhancements</dd>
 				</dl>
 			</section>
 
