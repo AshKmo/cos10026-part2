@@ -5,29 +5,19 @@
 <!-- the page language is set to English -->
 
 <?php
-	function containsJson($string) {
-		$start = strpos($string, '[');
-    	if ($start === false) return false;
-   		$jsonPart = substr($string, $start);
-    	$decoded = json_decode($jsonPart, false);
-    	return json_last_error() === JSON_ERROR_NONE && is_array($decoded);
-	}
-
 	function recursive_ol($list_items) {
 		echo "<ol>";
 		foreach ($list_items as $item) {
 			echo "<li>";
-			$start = strpos($item, '[');
-        	if ($start !== false && containsJson($item)) {
-            	$text = substr($item, 0, $start);
-            	$jsonPart = substr($item, $start);
-            	echo $text;
-            	$sublist = json_decode($jsonPart, true);
-            	if (is_array($sublist)) {
-                	recursive_ol($sublist);
+			if (isset($item->children)) {
+				echo $item->desc;
+				echo "<ol>";
+				foreach ($item->children as $subitem) {
+					echo "<li>" . $subitem ."</li>";
             	}
+				echo "</ol>";
         	} else {
-            	echo $item;
+            	echo $item->desc;
        		}
 			echo "</li>";
 		}
@@ -38,17 +28,15 @@
 		echo "<ul>";
 		foreach ($list_items as $item) {
 			echo "<li>";
-			$start = strpos($item, '[');
-        	if ($start !== false && containsJson($item)) {
-            	$text = substr($item, 0, $start);
-            	$jsonPart = substr($item, $start);
-            	echo $text;
-            	$sublist = json_decode($jsonPart, true);
-            	if (is_array($sublist)) {
-                	recursive_ul($sublist);
+			if (isset($item->children)) {
+				echo $item->desc;
+				echo "<ul>";
+				foreach ($item->children as $subitem) {
+					echo "<li>" . $subitem ."</li>";
             	}
+				echo "</ul>";
         	} else {
-            	echo $item;
+            	echo $item->desc;
        		}
 			echo "</li>";
 		}
