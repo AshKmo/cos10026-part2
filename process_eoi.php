@@ -1,13 +1,17 @@
 <?php
-require_once("settings.php");
+// import the database settings
+require_once "settings.php";
 
+// start the session
 session_start();
 
+// function to sanitise user input so that it's safe to store in the database and echo
 function sanitise($data)
 {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
+// function to check if a field has been submitted correctly and print an error message if it isn't
 function check_field($condition, $message)
 {
     if ($condition) {
@@ -19,6 +23,7 @@ function check_field($condition, $message)
     exit();
 }
 
+// function to validate postcodes based on a selected state
 function check_postcode($state, $postcode)
 {
     // postcode ranges taken from Wikipedia
@@ -43,7 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     exit();
 }
 
+// connect to the database
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+// complain if the database fails
+if (!$conn) {
+    echo "Database connection failed: " . mysqli_connect_error();
+    exit();
+}
+
+// array to store the field values we accumulate from reading the POST body
 $field_values = [];
+
+// the following code checks the validity of each submitted field and either stores the valid values in $field_values or sets an error messasge for one that isn't
 
 $field_name = "first-name";
 $value = $_POST[$field_name];
@@ -133,10 +150,49 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+$jobs = mysqli_query($conn, "select * from job_descriptions");
+if (!$jobs) {
+    echo 'Job descriptions query failed.';
+    exit();
+}
+$jobs = $jobs->fetch_all();
+
+// function to retrieve a job record by its job ID
+function get_job_from_id($jobs, $id)
+{
+    foreach ($jobs as $job) {
+        if ($job[2] === $id) {
+            return $job;
+        }
+    }
+
+    return false;
+}
+
+// function to filter submitted technical skills based on which ones are available for the selected job
+function extract_relevant_skills($job, $skills)
+{
+    $final_array = [];
+
+    $required_skills = json_decode($job[10]);
+
+    foreach ($required_skills as $skill) {
+        // compare the submitted skill IDs to the calculated IDs of the real skills themselves
+        if (in_array(hash("md5", $skill), $skills)) {
+            array_push($final_array, $skill);
+        }
+    }
+
+    return $final_array;
+}
+
 $field_name = "job-reference-number";
 $value = $_POST[$field_name];
+
+$job = get_job_from_id($jobs, $value);
+
 check_field(
-    isset($value) && in_array($value, ["IT427", "DA193", "BC279", "QA666"]),
+    isset($value) && $job,
     "Please select a valid job from the options provided."
 );
 $field_values[$field_name] = sanitise($value);
@@ -147,7 +203,7 @@ check_field(
     isset($value),
     "Please select valid technical skills for the job to which you will be applying."
 );
-$field_values[$field_name] = json_encode(array_map('sanitise', $value));
+$field_values[$field_name] = json_encode(extract_relevant_skills($job, $value));
 
 $field_name = "other-skills";
 $value = $_POST[$field_name];
@@ -157,13 +213,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-$conn = mysqli_connect($host, $user, $pwd, $sql_db);
-
-if (!$conn) {
-    echo "Database connection failed: " . mysqli_connect_error();
-    exit();
-}
-
+// create the EOI table if it does not yet exist
 mysqli_query($conn, '
     create table if not exists eoi (
         EOInumber integer auto_increment primary key,
@@ -178,10 +228,12 @@ mysqli_query($conn, '
         phone varchar(12),
         requiredTechnicalSkills text,
         otherSkills text,
-        status enum("new", "current", "final")
+        status enum("new", "current", "final") default "new"
     )
 ');
 
+// prepare a query that inserts an entry into the database based on the submitted values
+// this automatically removes the risk of SQL injection by properly escaping each value before adding it to the statement
 $stmt = $conn->prepare('insert into eoi values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "new")');
 $stmt->bind_param(
     'sssssssssss',
@@ -198,6 +250,7 @@ $stmt->bind_param(
     $field_values["other-skills"],
 );
 
+// execute the statement and print an error message if it fails for some reason
 if (!$stmt->execute()) {
     echo "Database query failed.";
     exit();
@@ -207,18 +260,23 @@ if (!$stmt->execute()) {
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
 
-        <?php include("meta.inc") ?>
+<head>
+    <meta charset="UTF-8">
 
-        <title>Thanks for applying</title>
-    </head>
+    <!-- include common meta tags -->
+    <?php include("meta.inc") ?>
 
-    <body>
-        <main>
-            <h1>Application submitted</h1>
-            <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>. <a href="index.php">Please click here to return to the home page</a>.</p>
-        </main>
-    </body>
+    <title>Thanks for applying</title>
+</head>
+
+<body>
+    <main>
+        <h1>Application submitted</h1>
+        <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>.
+            <a href="index.php">Please click here to return to the home page</a>.
+        </p>
+    </main>
+</body>
+
 </html>

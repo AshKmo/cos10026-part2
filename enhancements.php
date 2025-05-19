@@ -30,8 +30,10 @@
 
 		<p>Tolstra is proud to announce that a number of additional enhancements have been added to our website, including...</p>
 		<ul>
-			<!-- TODO: add some enhancements to the list -->
-			<li>TODO</li>
+			<li>A management login page was added</li>
+			<li>A management registration page was added</li>
+			<li>A job desccription editing page was added</li>
+			<li>The job application form now retrieves job ID and required skill information from the job descriptions database for use in the selection menu and server-side validation process</li>
 		</ul>
 
 	</main>
