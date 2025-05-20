@@ -39,6 +39,7 @@ if (!$dbconn) {
 	<!-- define the main body content of the page -->
 	<main>
 		<section id="user-add">
+            <!-- Simple form based off the login form that creates a new user -->
 			<h1>Add User</h1>
             <form action="manage_users.php" method="POST">
                 <label for="username">Username: </label>
@@ -70,7 +71,8 @@ if (!$dbconn) {
 
                 <input type="submit">
             </form>
-
+            
+            <!-- Validates and inserts the new user info into the database -->
             <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $input_username = trim($_POST['username']);
@@ -96,6 +98,13 @@ if (!$dbconn) {
             }
             ?>
 		</section>
+
+        <br><br><br>
+
+        <section id="user-manage">
+            <h1>User Management</h1>
+            
+        </section>
     </main>
 
 	<?php include "footer.inc"; ?>

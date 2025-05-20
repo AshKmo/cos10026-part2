@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: manage_users.php');
                 exit;
             } else {
-                header('Location: index.php');
+                header('Location: manage.php');
                 exit;
             }
         }
