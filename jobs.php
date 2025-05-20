@@ -9,7 +9,7 @@
 		$start = strpos($string, '[');
     	if ($start === false) return false;
    		$jsonPart = substr($string, $start);
-    	$decoded = json_decode($jsonPart, true);
+    	$decoded = json_decode($jsonPart, false);
     	return json_last_error() === JSON_ERROR_NONE && is_array($decoded);
 	}
 
@@ -149,6 +149,8 @@
 					} else {
 						echo "<p>There are currently no available job positions.</p>";
 					}
+				} else {
+					echo "<p>Connection to our network failed! Please try again later.</p>";
 				}
 			?>
 	</main>

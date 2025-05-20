@@ -74,13 +74,13 @@
 				<h2>Team Contributions to the Project</h2>
 				<dl>
 					<dt>Ash</dt>
-					<dd>Applications page &#40;apply.php&#41;, CSS, Jira</dd>
+					<dd>Applications page, EOI processing page and database table</dd>
 					<dt>Hayden</dt>
-					<dd>Home page &#40;index.php&#41;, CSS, Jira</dd>
+					<dd>Home page, management login page, registration and authentication</dd>
 					<dt>Max</dt>
-					<dd>Jobs Positions page &#40;jobs.php&#41;, CSS, Jira </dd>
+					<dd>Job descriptions page and database table, job creation page</dd>
 					<dt>Tim</dt>
-					<dd>About Us page &#40;about.php&#41;, Manage page &#40;manage.php&#41;, CSS, Jira</dd>
+					<dd>About page, site-wide styling, EOI management page and related enhancements</dd>
 				</dl>
 			</section>
 

@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Import the main stylesheet -->
-<link rel="stylesheet" type="text/css" href="styles/styles.css">
+<link rel="stylesheet" type="text/css" href="styles/styles.php">
 
 <!-- Set the favicon (favicon made by ChatGPT) -->
 <link rel="icon" type="image/x-icon" href="images/favicon.png">

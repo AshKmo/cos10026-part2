@@ -1,3 +1,16 @@
+<?php
+header("Content-Type: text/css");
+
+require_once "../settings.php";
+
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+if (!$conn) {
+    echo "Database connection failed: " . mysqli_connect_error();
+    exit();
+}
+?>
+
 /*
 filename: styles.css
 author: Ash, Hayden, Tim, Max
@@ -408,25 +421,24 @@ dl {
 	display: none;
 }
 
-/* show the checkboxes relevant for the IT427 profession when it is selected */
-#apply-employment-details:has(option[value="IT427"]:checked) .apply-checkbox-set-support {
-	display: block;
+<?php
+$stmt = $conn->prepare('select * from job_descriptions');
+
+if (!$stmt->execute()) {
+	echo "Database query failed.";
+	exit();
 }
 
-/* show the checkboxes relevant for the DA193 profession when it is selected */
-#apply-employment-details:has(option[value="DA193"]:checked) .apply-checkbox-set-analyst {
-	display: block;
-}
+$result = $stmt->get_result();
 
-/* show the checkboxes relevant for the DA193 profession when it is selected */
-#apply-employment-details:has(option[value="BC279"]:checked) .apply-checkbox-set-blockchain {
-	display: block;
+while ($job = $result->fetch_assoc()) {
+	echo '
+		#apply-employment-details:has(option[value="'.$job["job_id"].'"]:checked) .apply-checkbox-set-'.$job["job_id"].' {
+			display: block;
+		}
+	';
 }
-
-/* show the checkboxes relevant for the DA193 profession when it is selected */
-#apply-employment-details:has(option[value="QA666"]:checked) .apply-checkbox-set-qa {
-	display: block;
-}
+?>
 
 /* add some padding to the checkbox set container and wrap the contents into a nice set of columns */
 .apply-checkbox-set-container {

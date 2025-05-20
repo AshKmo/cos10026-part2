@@ -30,8 +30,11 @@
 
 		<p>Tolstra is proud to announce that a number of additional enhancements have been added to our website, including...</p>
 		<ul>
-			<!-- TODO: add some enhancements to the list -->
-			<li>TODO</li>
+			<li>The EOI records can now be displayed in the management console ordered by the value of a specific field and in a specific direction (ascending/descending)</li>
+			<li>A manager registration page was created to allow for new users to be added to the management console and job creation pages</li>
+			<li>A manager login page was created and the management console now requires a valid username and password to be submitted to its database prior to use</li>
+			<li>The manager login page will now prevent a user from logging in after they have unsuccessfully attempted to do so three consecutive times</li>
+			<li>A job creation and editing page was added to allow managers to change the positions offered by the company and for which applicants can submit expressions of interest</li>
 		</ul>
 
 	</main>
