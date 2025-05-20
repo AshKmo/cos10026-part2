@@ -9,6 +9,9 @@ session_start();
         <ul>
             <?php
             if (isset($_SESSION['username'])) {
+                if (isset($_SESSION['privilege'])) {
+                    echo '<li><a title="Users" href="manage_users.php">Manage Users</a></li>';
+                }
                 echo '<li><a title="Manage" href="manage.php">Manage EOIs</a></li>';
                 echo '<li><a title="Logout" href="logout.php">Logout</a></li>';
             } else {

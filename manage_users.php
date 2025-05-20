@@ -51,6 +51,14 @@ if (!$dbconn) {
 
                 <br>
 
+                <input type="radio" id="staff" value="staff" name="privilege" checked required>
+                <label for="staff">Staff</label>
+
+                <input type="radio" id="manager" value="manager" name="privilege">
+                <label for="manager">Manager</label>
+
+                <br><br>
+
                 <?php
 				if (isset($_SESSION['error'])) {
 					echo "<section id=error>";
@@ -67,19 +75,23 @@ if (!$dbconn) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $input_username = trim($_POST['username']);
                 $input_password = trim($_POST['password']);
+                $input_privilege = $_POST['privilege'];
+                $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
 
                 $query = "SELECT * FROM users WHERE username = '$input_username'";
 
-                $match = mysqli_query($dbconn, $query);
+                $result = mysqli_query($dbconn, $query);
 
-                if (mysqli_fetch_assoc($match)) {
+                if (mysqli_fetch_assoc($result)) {
                     $_SESSION['error'] = "User already exists.";
 
                     header('Location: manage_users.php');
+                    exit;
                 } else {
-                    $query = "INSERT INTO users (username, password)
-                    VALUES ('$input_username', '$input_password')";
-                    mysqli_query($dbconn, $query);
+                    $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
+                    $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
+                    $stmt -> execute();
+                    exit;
                 }
             }
             ?>

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 session_start();
 require_once("settings.php");
 $dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
@@ -11,17 +15,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input_username = trim($_POST['username']);
     $input_password = trim($_POST['password']);
 
-    $query = "SELECT * FROM users WHERE username = '$input_username' AND password = '$input_password'";
+    $stmt = $dbconn -> prepare("SELECT * FROM users WHERE username = ?");
+    $stmt -> bind_param("s", $input_username);
+    $stmt -> execute();
 
-    $match = mysqli_query($dbconn, $query);
+    $result = $stmt -> get_result();
 
-    if ($user = mysqli_fetch_assoc($match)) {
-        $_SESSION['username'] = $user['username'];
+    if ($user = $result -> fetch_assoc()) {
+        if (password_verify($input_password, $user['password'])) {
+            $_SESSION['username'] = $user['username'];
 
-        header('Location: index.php');
-    } else {
-        $_SESSION['error'] = "Username or password not found. Please try again.";
-        header('Location: login.php');
+            if ($user['privilege'] == "manager") {
+                $_SESSION['privilege'] = $user['privilege'];
+                header('Location: manage_users.php');
+                exit;
+            } else {
+                header('Location: index.php');
+                exit;
+            }
+        }
     }
+
+    $_SESSION['error'] = "Username or password not found. Please try again.";
+    header('Location: login.php');
+    exit;
 }
 ?>
