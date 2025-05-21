@@ -38,10 +38,51 @@ if (!$dbconn) {
 
 	<!-- define the main body content of the page -->
 	<main>
+        <!-- User Management -->
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Validates and inserts the new user info into the database
+            if (isset($_POST['type']) && $_POST['type'] == 'new_user') {
+                $input_username = trim($_POST['username']);
+                $input_password = trim($_POST['password']);
+                $input_privilege = $_POST['privilege'];
+                $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
+
+                $query = "SELECT * FROM users WHERE username = '$input_username'";
+
+                $result = mysqli_query($dbconn, $query);
+
+                if (mysqli_fetch_assoc($result)) {
+                    $_SESSION['new_status'] = "User already exists.";
+                } else {
+                    $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
+                    $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
+                    $stmt -> execute();
+                    $_SESSION['new_status'] = "User created.";
+                }
+                header('Location: manage_users.php');
+                exit;
+
+            } elseif (isset($_POST['type']) && $_POST['type'] == 'delete_user') {
+                $delete_username = $_POST['user'];
+                $query = "DELETE FROM users WHERE username= '$delete_username'";
+                if ($dbconn -> query($query) === TRUE) {
+                    $_SESSION['del_status'] = "User deleted.";
+                } else {
+                    $_SESSION['del_status'] = "Unable to delete user.";
+                }
+                header('Location: manage_users.php');
+                exit;
+            }
+        }
+        ?>
+
 		<section id="user-add">
             <!-- Simple form based off the login form that creates a new user -->
 			<h1>Add User</h1>
             <form action="manage_users.php" method="POST">
+                <input type="hidden" name="type" value="new_user">
+
                 <label for="username">Username: </label>
                 <input type="text" id="username" name="username" required>
 
@@ -61,50 +102,64 @@ if (!$dbconn) {
                 <br><br>
 
                 <?php
-				if (isset($_SESSION['error'])) {
-					echo "<section id=error>";
-					echo '<p>' . $_SESSION['error'] . '</p>';
+				if (isset($_SESSION['new_status'])) {
+					echo "<section id=new_status>";
+					echo '<p>' . $_SESSION['new_status'] . '</p>';
 					echo "</section>";
-					unset($_SESSION['error']);
+					unset($_SESSION['new_status']);
 				}
 				?>
 
-                <input type="submit">
+                <input type="submit" value="Add User">
             </form>
-            
-            <!-- Validates and inserts the new user info into the database -->
-            <?php
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $input_username = trim($_POST['username']);
-                $input_password = trim($_POST['password']);
-                $input_privilege = $_POST['privilege'];
-                $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
-
-                $query = "SELECT * FROM users WHERE username = '$input_username'";
-
-                $result = mysqli_query($dbconn, $query);
-
-                if (mysqli_fetch_assoc($result)) {
-                    $_SESSION['error'] = "User already exists.";
-
-                    header('Location: manage_users.php');
-                    exit;
-                } else {
-                    $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
-                    $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
-                    $stmt -> execute();
-                    exit;
-                }
-            }
-            ?>
-		</section>
-
-        <br><br><br>
-
-        <section id="user-manage">
-            <h1>User Management</h1>
-            
         </section>
+
+            <br><br><br>
+
+        <section id=user-delete>
+            <h1>User Management</h1>
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>Privilege</th>
+                    <th>Manage</th>
+                    
+                    <?php
+                    $query = "SELECT username, privilege FROM users";
+                    $result = $dbconn -> query($query);
+
+                    if ($result -> num_rows > 0) {
+                        while ($row = $result -> fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['username'] . "</td>";
+                            echo "<td>" . $row['privilege'] . "</td>";
+                            
+                            // Delete User Button / Form
+                            echo "<td>";
+                            echo "<form action='manage_users.php' method='POST'>";
+                            echo "<input type='hidden' name='type' value='delete_user'>";
+                            echo "<input type='hidden' name='user' value='" . $row['username'] . "'>";
+                            echo "<input type='submit' value='Delete'>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+            </table>
+
+            <br><br>
+
+            <?php
+			if (isset($_SESSION['del_status'])) {
+			    echo "<section id=del_status>";
+				echo '<p>' . $_SESSION['del_status'] . '</p>';
+				echo "</section>";
+				unset($_SESSION['del_status']);
+			}
+			?>
+            
+		</section>
     </main>
 
 	<?php include "footer.inc"; ?>
