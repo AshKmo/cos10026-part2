@@ -689,6 +689,19 @@ while ($job = $result->fetch_assoc()) {
 	font-weight: bold;
 }
 
+/******************************/
+/* manage.php specific styles */
+/******************************/
+
+#user-manage table td {
+	text-align: center;
+	padding: 10px 25px 10px 25px;
+}
+
+#username,
+#password {
+	padding: 4px 6px;
+}
 
 
 

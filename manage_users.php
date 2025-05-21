@@ -4,6 +4,17 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 session_start();
+
+if (!isset($_SESSION['privilege'])) {
+    if (isset($_SESSION['username'])) {
+        header('Location: manage.php');
+        exit;
+    } else {
+        header('Location: login.php');
+        exit;
+    }
+}
+
 require_once("settings.php");
 $dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
 
@@ -83,15 +94,15 @@ if (!$dbconn) {
             <form action="manage_users.php" method="POST">
                 <input type="hidden" name="type" value="new_user">
 
-                <label for="username">Username: </label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Username: </label><br>
+                <input type="text" id="username" name="username" placeholder="username" required>
 
-                <br>
+                <br><br>
 
-                <label for="username">Password: </label>
-                <input type="text" id="password" name="password" required>
+                <label for="username">Password: </label><br>
+                <input type="password" id="password" name="password" placeholder="password" required>
 
-                <br>
+                <br><br>
 
                 <input type="radio" id="staff" value="staff" name="privilege" checked required>
                 <label for="staff">Staff</label>
@@ -114,9 +125,9 @@ if (!$dbconn) {
             </form>
         </section>
 
-            <br><br><br>
+            <br><hr><br>
 
-        <section id=user-delete>
+        <section id=user-manage>
             <h1>User Management</h1>
             <table>
                 <tr>
@@ -139,7 +150,7 @@ if (!$dbconn) {
                             echo "<form action='manage_users.php' method='POST'>";
                             echo "<input type='hidden' name='type' value='delete_user'>";
                             echo "<input type='hidden' name='user' value='" . $row['username'] . "'>";
-                            echo "<input type='submit' value='Delete'>";
+                            echo "<input type='submit' class='apply-fancy-button-bad' value='Delete'>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";

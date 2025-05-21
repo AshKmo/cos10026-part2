@@ -31,13 +31,13 @@ session_start();
 		<section id="login-ui">
 			<h1>Staff Login</h1>
 			<form action="process_login.php" method="POST">
-				<label for="username">Username:</label>
-				<input type="text" id="username" name="username" required>
+				<label for="username">Username:</label><br>
+				<input type="text" id="username" name="username" placeholder="username" required>
 
-				<br>
+				<br><br>
 				
-				<label for="password">Password:</label>
-				<input type="text" id="password" name="password" required>
+				<label for="password">Password:</label><br>
+				<input type="password" id="password" name="password" placeholder="password" required>
 
 				<br>
 
@@ -49,6 +49,8 @@ session_start();
 					unset($_SESSION['error']);
 				}
 				?>
+
+				<br>
 
 				<input type="submit" value="Login">
 			</form>
