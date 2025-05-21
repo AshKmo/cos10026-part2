@@ -1,5 +1,8 @@
 <?php
-session_start();
+// start a session if one is not already active
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 ?>
 
 <header>
