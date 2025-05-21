@@ -712,7 +712,17 @@ while ($job = $result->fetch_assoc()) {
 	padding: 4px 6px;
 }
 
+/*************************************/
+/* jobs_creation.php specific styles */
+/* Author: Max (With help from Ash)   */
+/*************************************/
 
+.jobs-creation-expectations {
+	display: none;
+}
+.jobs-creation-expectations:has(input:not(:placeholder-shown)) + .jobs-creation-expectations, .jobs-creation-expectations:first-child {
+	display:  list-item;
+}
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
