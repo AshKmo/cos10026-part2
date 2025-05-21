@@ -28,25 +28,16 @@ function containsJson($string)
 }
 
 // function to extract, format and echo a JSON list from a string, alongside the rest of the string
-function print_any_sublists($skill)
+function print_skill($skill)
 {
-	$start = strpos($skill, '[');
-	if ($start !== false && containsJson($skill)) {
-		$text = substr($skill, 0, $start);
-		$jsonPart = substr($skill, $start);
-		echo $text;
-		echo '</label>';
-		$sublist = json_decode($jsonPart, true);
-		if (is_array($sublist)) {
-			echo '<ul>';
-			foreach ($sublist as $subskill) {
-				echo "<li>$subskill</li>";
-			}
-			echo '</ul>';
+	echo $skill->desc;
+	echo "</label>";
+	if (isset($skill->children)) {
+		echo "<ul>";
+		foreach ($skill->children as $subskill) {
+			echo "<li>$subskill</li>";
 		}
-	} else {
-		echo $skill;
-		echo '</label>';
+		echo "</ul>";
 	}
 }
 ?>
@@ -264,13 +255,13 @@ function print_any_sublists($skill)
 
 							foreach ($skills as $skill) {
 								// this hash is only used to uniquely identify the skill amongst the others so it's ok to use a dodgy algorithm like md5
-								$skill_id = hash("md5", $skill);
+								$skill_id = hash("md5", $skill->desc);
 								echo '
 									<div class="apply-checkbox-container apply-checkbox-set-' . $job["job_id"] . '">
 										<input class="apply-input" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_' . $skill_id . '" value="' . $skill_id . '" checked>
 										<label for="apply-required-technical-skills_' . $skill_id . '">';
 
-								print_any_sublists($skill);
+								print_skill($skill);
 
 								echo '</div>';
 							}

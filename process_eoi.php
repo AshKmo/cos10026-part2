@@ -180,7 +180,7 @@ function extract_relevant_skills($job, $skills)
 
     foreach ($required_skills as $skill) {
         // compare the submitted skill IDs to the calculated IDs of the real skills themselves
-        if (in_array(hash("md5", $skill), $skills)) {
+        if (in_array(hash("md5", $skill->desc), $skills)) {
             array_push($final_array, $skill);
         }
     }
