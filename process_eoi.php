@@ -1,9 +1,11 @@
 <?php
+// start a session if one is not already active
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+
 // import the database settings
 require_once "settings.php";
-
-// start the session
-session_start();
 
 // function to sanitise user input so that it's safe to store in the database and echo
 function sanitise($data)
