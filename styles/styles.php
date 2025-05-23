@@ -726,7 +726,7 @@ while ($job = $result->fetch_assoc()) {
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1100px) {
 	/* make the page content and footer fill the page so that it's not squashed or hard to read */
 	main, footer {
 		box-sizing: border-box;
