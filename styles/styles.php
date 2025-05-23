@@ -722,6 +722,7 @@ while ($job = $result->fetch_assoc()) {
 }
 .jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)) + .jobs-manage-list, .jobs-manage-list:has(~ .jobs-manage-list .jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:first-child {
 	display: list-item;
+	padding-bottom: 3px;
 }
 
 .jobs-manage-fieldset {
@@ -731,6 +732,18 @@ while ($job = $result->fetch_assoc()) {
 
 #jobs-manage-create-job strong {
 	font-size: 1.3em;
+}
+
+.jobs-manage-table-position {
+	width: 65%;
+}
+
+.jobs-manage-table-id {
+	width: 20%;
+}
+
+.jobs-manage-table-manage {
+	width: 20%;
 }
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
