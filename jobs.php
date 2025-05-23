@@ -5,6 +5,7 @@
 <!-- the page language is set to English -->
 
 <?php
+	session_start();
 	function recursive_ol($list_items) {
 		echo "<ol>";
 		foreach ($list_items as $item) {
@@ -80,9 +81,10 @@
 					$result = mysqli_query($dbconn, $query);
 					if ($result) {
 						while ($row = mysqli_fetch_assoc($result)) {
+							$pos = strtolower(str_replace(" ", "-", $row["position"]));
 							echo "<section class=\"jobs-dropdown\">";
-							echo "<input type=\"checkbox\" id=\"jobs-" . $row["position"] . "-dropdown\">";
-							echo "<h2 class=\"jobs-dropdown-title\"><label for=\"jobs-" . $row["position"] . "-dropdown\"\><em class=\"arrow\"></em><strong> " . $row["position"] . "</strong></label></h2>";
+							echo "<input type=\"checkbox\" id=\"jobs-" . $pos . "-dropdown\">";
+							echo "<h2 class=\"jobs-dropdown-title\"><label for=\"jobs-" . $pos . "-dropdown\"><em class=\"arrow\"></em><strong> " . $row['position'] . "</strong></label></h2>";
 							echo "<section class=\"jobs-dropdown-content\">";
 
 							echo "<aside class=\"jobs-aside\">";

@@ -712,16 +712,25 @@ while ($job = $result->fetch_assoc()) {
 	padding: 4px 6px;
 }
 
-/*************************************/
-/* jobs_creation.php specific styles */
-/* Author: Max (With help from Ash)   */
-/*************************************/
+/**************************************/
+/*job_modification.php specific styles*/
+/*  Author: Max (With help from Ash)  */
+/**************************************/
 
-.jobs-creation-expectations {
+.jobs-manage-list {
 	display: none;
 }
-.jobs-creation-expectations:has(input:not(:placeholder-shown)) + .jobs-creation-expectations, .jobs-creation-expectations:first-child {
-	display:  list-item;
+.jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)) + .jobs-manage-list, .jobs-manage-list:has(~ .jobs-manage-list .jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:first-child {
+	display: list-item;
+}
+
+.jobs-manage-fieldset {
+	border-radius: 10px;
+	border: solid #B0B0B0 2px;
+}
+
+#jobs-manage-create-job strong {
+	font-size: 1.3em;
 }
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+?>
 
 <!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part1/about.php -->
 
