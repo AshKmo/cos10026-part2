@@ -39,18 +39,16 @@ session_start();
 				<label for="password">Password:</label><br>
 				<input type="password" id="password" name="password" placeholder="password" required>
 
-				<br>
-
 				<?php
-				if ($_SESSION['error']) {
+				if (isset($_SESSION['error'])) {
 					echo "<section id=error>";
 					echo '<p>' . $_SESSION['error'] . '</p>';
 					echo "</section>";
 					unset($_SESSION['error']);
+				} else {
+					echo "<br><br>";
 				}
 				?>
-
-				<br>
 
 				<input type="submit" value="Login">
 			</form>

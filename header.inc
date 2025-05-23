@@ -15,7 +15,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 if (isset($_SESSION['privilege'])) {
                     echo '<li><a title="Users" href="manage_users.php">Manage Users</a></li>';
                 }
-                echo '<li><a title="Manage" href="manage.php">Manage EOIs</a></li>';
+                echo '<li><a title="Manage EOIs" href="manage.php">Manage EOIs</a></li>';
+                echo '<li><a title="Manage Jobs" href="job-manage.php">Manage Jobs</a></li>';
                 echo '<li><a title="Logout" href="logout.php">Logout</a></li>';
             } else {
                 echo '<li><a title="About Tolstra" href="about.php">About</a></li>';
