@@ -2,7 +2,6 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
 session_start();
 
 if (!isset($_SESSION['privilege'])) {
@@ -66,14 +65,26 @@ if (!$dbconn) {
                 if (mysqli_fetch_assoc($result)) {
                     $_SESSION['new_status'] = "User already exists.";
                 } else {
-                    $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
-                    $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
-                    $stmt -> execute();
-                    $_SESSION['new_status'] = "User created.";
+                    // Password strength check. Inspired from: https://stackoverflow.com/questions/8141125/regex-for-password-php
+                    $uppercase = preg_match('@[A-Z]@', $input_password);
+                    $lowercase = preg_match('@[a-z]@', $input_password);
+                    //$number    = preg_match('@[0-9]@', $input_password);
+                    if (!$uppercase || !$lowercase || /*!$number ||*/ strlen($input_password) < 8){
+                        $_SESSION['new_status'] = "Failed to create user. Password must contain at least 8 characters, an uppercase letter, and a lowercase letter.";
+
+                        header('Location: manage_users.php');
+                        exit;
+                    } else {
+                        $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
+                        $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
+                        $stmt -> execute();
+                        $_SESSION['new_status'] = "User created.";
+                    }
                 }
                 header('Location: manage_users.php');
                 exit;
-
+            
+            // User Deletion
             } elseif (isset($_POST['type']) && $_POST['type'] == 'delete_user') {
                 $delete_username = $_POST['user'];
                 $query = "DELETE FROM users WHERE username= '$delete_username'";
@@ -110,8 +121,6 @@ if (!$dbconn) {
                 <input type="radio" id="manager" value="manager" name="privilege">
                 <label for="manager">Manager</label>
 
-                <br><br>
-
                 <?php
 				if (isset($_SESSION['new_status'])) {
 					echo "<section id=new_status>";
@@ -125,8 +134,9 @@ if (!$dbconn) {
             </form>
         </section>
 
-            <br><hr><br>
+        <br><hr><br>
 
+        <!-- Dynamic User Management Form -->
         <section id=user-manage>
             <h1>User Management</h1>
             <table>
@@ -158,8 +168,6 @@ if (!$dbconn) {
                     }
                     ?>
             </table>
-
-            <br><br>
 
             <?php
 			if (isset($_SESSION['del_status'])) {
