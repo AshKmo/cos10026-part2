@@ -616,22 +616,23 @@ while ($job = $result->fetch_assoc()) {
 /* manage.php specific styles */
 /******************************/
 
-#manage_eoi {
+.manage_eoi {
 	width: 100%;
 	/* overflow-x property below is to make table responsive to smaller screens is from W3Schools (https://www.w3schools.com/howto/howto_css_table_responsive.asp) */
 	overflow-x: auto;
 }
 
-#manage_eoi table {
+.manage_eoi table {
 	margin: 10px auto;
 	width: 100%;
 }
 
-#manage_eoi table td:not(.status) {
+.manage_eoi table td:not(.status) {
 	text-align: center;
 	padding: 0px 25px 0 25px;
 }
 
+/* Update eoi status text */
 #update_text {
 	font-weight: bold;
 	text-align: center;
@@ -639,20 +640,23 @@ while ($job = $result->fetch_assoc()) {
 	margin: 0;
 }
 
-#manage_eoi table th {
+/* table header cells */
+.manage_eoi table th {
 	padding: 5px;
 }
 
-#manage_eoi tr td:last-child {
+.manage_eoi tr td:last-child {
     width: 1%;
     white-space: nowrap;
 }
 
-#manage_eoi tr:hover td {
+/* hover effect applied to rows */
+.manage_eoi tr:hover td {
 	background-color: #e2e0e0;
 }
 
-#filter-bar {
+/* filter and sorting section */
+.filter-bar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -662,12 +666,12 @@ while ($job = $result->fetch_assoc()) {
     border-radius: 8px;
     position: relative;
 }
-#filter-options {
+.filter-options {
 	flex: 1;
 	min-width: 300px;
 }
 
-#filter-bar h4 {
+.filter-bar h4 {
     margin: 10px 5px 5px 5px;
 }
 
@@ -682,6 +686,7 @@ while ($job = $result->fetch_assoc()) {
     padding: 4px 6px;
 }
 
+/* sort form */
 .sort-controls {
     display: flex;
     align-items: center;
@@ -691,7 +696,8 @@ while ($job = $result->fetch_assoc()) {
     right: 10px;
 }
 
-#deletion_message {
+/* delete eois confirmation message */
+.deletion_message {
 	color: #FF0019;
 	display: inline;
 	padding-left: 5px;

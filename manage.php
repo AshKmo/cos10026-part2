@@ -40,9 +40,9 @@ if (!$dbconn) {
 
 	<!-- define the main body content of the page -->
 	<main>
-		<section id="filter-bar">
-		<div id="filter-options">
-			<!-- Name Filter -->
+		<section class="filter-bar">
+		<div class="filter-options">
+			<!-- Form to filter table by first name or last name, or both -->
 			<form method="get" action="manage.php">
 				<h4>Search EOIs by applicant name</h4>
 				<div class="filter-group">
@@ -52,7 +52,7 @@ if (!$dbconn) {
 				</div>
 			</form>
 
-			<!-- Job Ref Filter -->
+			<!-- Form to filter table rows by job reference number -->
 			<form method="get" action="manage.php">
 				<h4>Search or delete EOIs by job reference number</h4>
 				<div class="filter-group">
@@ -85,9 +85,9 @@ if (!$dbconn) {
 						$row = mysqli_fetch_assoc($result);
 
 						if ($row['count'] > 0) {
-							echo "<p id='deletion_message'>Successfully deleted " . mysqli_fetch_assoc($result)['count'] . " EOIs.</p>";
+							echo "<p class='deletion_message'>Successfully deleted " . $row['count'] . " EOIs.</p>";
 						} else {
-							echo "<p id='deletion_message'>There are no EOIs to delete.</p>";
+							echo "<p class='deletion_message'>There are no EOIs to delete.</p>";
 						}
 
 						$query = "SELECT * FROM eoi WHERE jobReferenceNumber = '$ref'";
@@ -109,6 +109,7 @@ if (!$dbconn) {
 			</div>
 		</form>
 
+		<!-- Form manages sorting controls. Enables sorting rows by any field, ascending or descending -->
 		<form method="get" action="manage.php" class="sort-controls">
 			<?php
 			/* this php block is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
@@ -144,7 +145,7 @@ if (!$dbconn) {
 
 		</section>
 		<hr>
-		<section id="manage_eoi">
+		<section class="manage_eoi">
 			<h3>Manage EOIs</h3>
 			<!-- mysql queries based on filter and sorting parameters -->
 			<?php
@@ -235,6 +236,7 @@ if (!$dbconn) {
 				<?php
 				if (mysqli_num_rows($result) > 0) {
 					while ($row = mysqli_fetch_assoc($result)) {
+						$skills = json_decode($row['requiredTechnicalSkills']);
 						echo "<tr>";
 						echo "<td>" . $row['EOInumber'] . "</td>";
 						echo "<td>" . $row['jobReferenceNumber'] . "</td>";
@@ -242,7 +244,9 @@ if (!$dbconn) {
 						echo "<td>" . $row['streetAddress'] . " " . $row['town'] . " " . $row['state'] . " " . $row['postcode'] . "</td>";
 						echo "<td>" . $row['email'] . "</td>";
 						echo "<td>" . $row['phone'] . "</td>";
-						echo "<td>" . $row['requiredTechnicalSkills'] . "</td>";
+						echo "<td>";
+						foreach ($skills as $skill) { echo $skill->desc . "<br>"; }
+						echo "</td>";
 						echo "<td>" . $row['otherSkills'] . "</td>";
 						echo "<td class='status'>";
 						echo "<form method='get' action='manage.php'>";
@@ -266,7 +270,7 @@ if (!$dbconn) {
 						echo "</form>";
 						if(isset($_GET['eoi_number']) && $_GET['eoi_number'] == $row['EOInumber']) {
 							if (isset($_GET['update']) && $_GET['update'] == 'status') {
-								echo "<p id='update_text'>Updated!</p>";
+								echo "<p class='update_text'>Updated!</p>";
 							}
 						}
 						echo "</td>";
