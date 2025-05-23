@@ -129,7 +129,7 @@ td {
 	background-color: #efefef;
 	border: 1px solid #ccc;
 }
-td:hover {
+table:not(.manage_table) td:hover {
 	background-image: linear-gradient(to bottom right, #efefef, #e3ebee);
 }
 
@@ -643,6 +643,15 @@ while ($job = $result->fetch_assoc()) {
 	padding: 5px;
 }
 
+#manage_eoi tr td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+#manage_eoi tr:hover td {
+	background-color: #e2e0e0;
+}
+
 #filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -703,7 +712,17 @@ while ($job = $result->fetch_assoc()) {
 	padding: 4px 6px;
 }
 
+/*************************************/
+/* jobs_creation.php specific styles */
+/* Author: Max (With help from Ash)   */
+/*************************************/
 
+.jobs-creation-expectations {
+	display: none;
+}
+.jobs-creation-expectations:has(input:not(:placeholder-shown)) + .jobs-creation-expectations, .jobs-creation-expectations:first-child {
+	display:  list-item;
+}
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */

@@ -15,16 +15,6 @@
 	    <!-- set keywords for SEO -->
 	    <meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
 
-		<style>
-				.jobs-creation-expectations {
-					display: none;
-				}
-				.jobs-creation-expectations:has(input:not(:placeholder-shown)) + .jobs-creation-expectations, .jobs-creation-expectations:first-child {
-					display:  block;
-				}
-					
-		</style>
-
 	    <!-- set the page title -->
 	    <title>About Tolstra</title>
     </head>
@@ -90,6 +80,9 @@
 								for ($i = 0; $i < 50; $i++) {
 									echo "<li class=\"jobs-creation-expectations\">";
 									echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\">";
+									#echo "<br>";
+									#echo "<input type=\"checkbox\" id=\"jobs-creation-" . $i . "-checkbox\">";
+									#echo "<label for=\"jobs-creation-" . $i . "-checkbox\"\>Subitem?</label>";
 									echo "</li>";
 								}
 							?>

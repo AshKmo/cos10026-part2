@@ -1,9 +1,11 @@
 <?php
+// start a session if one is not already active
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+
 // import the database settings
 require_once "settings.php";
-
-// start the session
-session_start();
 
 // function to sanitise user input so that it's safe to store in the database and echo
 function sanitise($data)
@@ -178,7 +180,7 @@ function extract_relevant_skills($job, $skills)
 
     foreach ($required_skills as $skill) {
         // compare the submitted skill IDs to the calculated IDs of the real skills themselves
-        if (in_array(hash("md5", $skill), $skills)) {
+        if (in_array(hash("md5", $skill->desc), $skills)) {
             array_push($final_array, $skill);
         }
     }
