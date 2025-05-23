@@ -42,7 +42,7 @@ session_start();
 				<br>
 
 				<?php
-				if ($_SESSION['error']) {
+				if (isset($_SESSION['error'])) {
 					echo "<section id=error>";
 					echo '<p>' . $_SESSION['error'] . '</p>';
 					echo "</section>";

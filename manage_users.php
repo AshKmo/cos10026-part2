@@ -20,6 +20,55 @@ $dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
 if (!$dbconn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validates and inserts the new user info into the database
+    if (isset($_POST['type']) && $_POST['type'] == 'new_user') {
+        $input_username = trim($_POST['username']);
+        $input_password = trim($_POST['password']);
+        $input_privilege = $_POST['privilege'];
+        $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
+
+        $query = "SELECT * FROM users WHERE username = '$input_username'";
+
+        $result = mysqli_query($dbconn, $query);
+
+        if (mysqli_fetch_assoc($result)) {
+            $_SESSION['new_status'] = "User already exists.";
+        } else {
+            // Password strength check. Inspired from: https://stackoverflow.com/questions/8141125/regex-for-password-php
+            $uppercase = preg_match('@[A-Z]@', $input_password);
+            $lowercase = preg_match('@[a-z]@', $input_password);
+            //$number    = preg_match('@[0-9]@', $input_password);
+            if (!$uppercase || !$lowercase || /*!$number ||*/ strlen($input_password) < 8){
+                $_SESSION['new_status'] = "Failed to create user. Password must contain at least 8 characters, an uppercase letter, and a lowercase letter.";
+
+                header('Location: manage_users.php');
+                exit;
+            } else {
+                $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
+                $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
+                $stmt -> execute();
+                $_SESSION['new_status'] = "User created.";
+            }
+        }
+        header('Location: manage_users.php');
+        exit;
+    
+    // User Deletion
+    } elseif (isset($_POST['type']) && $_POST['type'] == 'delete_user') {
+        $delete_username = $_POST['user'];
+        $query = "DELETE FROM users WHERE username= '$delete_username'";
+        if ($dbconn -> query($query) === TRUE) {
+            $_SESSION['del_status'] = "User deleted.";
+        } else {
+            $_SESSION['del_status'] = "Unable to delete user.";
+        }
+        header('Location: manage_users.php');
+        exit;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -48,56 +97,7 @@ if (!$dbconn) {
 
 	<!-- define the main body content of the page -->
 	<main>
-        <!-- User Management -->
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Validates and inserts the new user info into the database
-            if (isset($_POST['type']) && $_POST['type'] == 'new_user') {
-                $input_username = trim($_POST['username']);
-                $input_password = trim($_POST['password']);
-                $input_privilege = $_POST['privilege'];
-                $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
-
-                $query = "SELECT * FROM users WHERE username = '$input_username'";
-
-                $result = mysqli_query($dbconn, $query);
-
-                if (mysqli_fetch_assoc($result)) {
-                    $_SESSION['new_status'] = "User already exists.";
-                } else {
-                    // Password strength check. Inspired from: https://stackoverflow.com/questions/8141125/regex-for-password-php
-                    $uppercase = preg_match('@[A-Z]@', $input_password);
-                    $lowercase = preg_match('@[a-z]@', $input_password);
-                    //$number    = preg_match('@[0-9]@', $input_password);
-                    if (!$uppercase || !$lowercase || /*!$number ||*/ strlen($input_password) < 8){
-                        $_SESSION['new_status'] = "Failed to create user. Password must contain at least 8 characters, an uppercase letter, and a lowercase letter.";
-
-                        header('Location: manage_users.php');
-                        exit;
-                    } else {
-                        $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
-                        $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
-                        $stmt -> execute();
-                        $_SESSION['new_status'] = "User created.";
-                    }
-                }
-                header('Location: manage_users.php');
-                exit;
-            
-            // User Deletion
-            } elseif (isset($_POST['type']) && $_POST['type'] == 'delete_user') {
-                $delete_username = $_POST['user'];
-                $query = "DELETE FROM users WHERE username= '$delete_username'";
-                if ($dbconn -> query($query) === TRUE) {
-                    $_SESSION['del_status'] = "User deleted.";
-                } else {
-                    $_SESSION['del_status'] = "Unable to delete user.";
-                }
-                header('Location: manage_users.php');
-                exit;
-            }
-        }
-        ?>
+        
 
 		<section id="user-add">
             <!-- Simple form based off the login form that creates a new user -->
@@ -127,7 +127,9 @@ if (!$dbconn) {
 					echo '<p>' . $_SESSION['new_status'] . '</p>';
 					echo "</section>";
 					unset($_SESSION['new_status']);
-				}
+				} else {
+                    echo "<br><br>";    
+                }
 				?>
 
                 <input type="submit" value="Add User">
@@ -160,7 +162,7 @@ if (!$dbconn) {
                             echo "<form action='manage_users.php' method='POST'>";
                             echo "<input type='hidden' name='type' value='delete_user'>";
                             echo "<input type='hidden' name='user' value='" . $row['username'] . "'>";
-                            echo "<input type='submit' class='apply-fancy-button-bad' value='Delete'>";
+                            echo "<input type='submit' class='delete-entry' value='Delete'>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";
