@@ -267,7 +267,7 @@ if (!$stmt->execute()) {
     <meta charset="UTF-8">
 
     <!-- include common meta tags -->
-    <?php include("meta.inc") ?>
+    <?php include_once("meta.inc") ?>
 
     <title>Thanks for applying</title>
 </head>

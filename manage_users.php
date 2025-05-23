@@ -30,7 +30,7 @@ if (!$dbconn) {
 
 <head>
 	<!-- include some common meta tags shared between all regular pages -->
-	<?php include "meta.inc"; ?>
+	<?php include_once "meta.inc"; ?>
 
 	<!-- set the page description -->
 	<meta name="description" content="Tolstra - User Manager">
@@ -44,7 +44,7 @@ if (!$dbconn) {
 
 <body>
 	<!-- include the page header -->
-	<?php include "header.inc" ?>
+	<?php include_once "header.inc" ?>
 
 	<!-- define the main body content of the page -->
 	<main>
@@ -181,5 +181,5 @@ if (!$dbconn) {
 		</section>
     </main>
 
-	<?php include "footer.inc"; ?>
+	<?php include_once "footer.inc"; ?>
 </body>
