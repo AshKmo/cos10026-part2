@@ -12,10 +12,10 @@ if (!$conn) {
 ?>
 
 /*
-filename: styles.css
+filename: styles.php
 author: Ash, Hayden, Tim, Max
 created: 2025-03-28
-last modified: 2025-04-14
+last modified: 2025-05-24
 description: Stylesheet for all pages
  */
 

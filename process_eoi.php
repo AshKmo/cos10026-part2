@@ -83,7 +83,7 @@ $field_values[$field_name] = sanitise($value);
 $field_name = "email";
 $value = $_POST[$field_name];
 check_field(
-    isset($value) && preg_match('/^\w+@([\w\-]+\.)+[\w\-]{2,}$/', $value),
+    isset($value) && preg_match('/^[\w.]+@([\w\-]+\.)+[\w\-]{2,}$/', $value),
     "Email field must contain a valid email address."
 );
 $field_values[$field_name] = sanitise($value);
@@ -267,7 +267,7 @@ if (!$stmt->execute()) {
     <meta charset="UTF-8">
 
     <!-- include common meta tags -->
-    <?php include_once("meta.inc") ?>
+    <?php include("meta.inc") ?>
 
     <title>Thanks for applying</title>
 </head>
