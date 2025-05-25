@@ -71,7 +71,7 @@ nav {
 }
 
 .nav-logo:hover {
-	transform: scale(1.05, 1.05);
+	transform: scale(1.1, 1.1);
 }
 
 nav ul {
@@ -726,16 +726,30 @@ while ($job = $result->fetch_assoc()) {
 }
 
 /**************************************/
-/*job_modification.php specific styles*/
+/*   job_manage.php specific styles   */
 /*  Author: Max (With help from Ash)  */
 /**************************************/
+
+#jobs-manage-table {
+	width: 100%;
+	padding-top: 15px;
+}
+
+#jobs-manage-table tr td {
+	padding: 4px 7px;
+}
 
 .jobs-manage-list {
 	display: none;
 }
+
 .jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)) + .jobs-manage-list, .jobs-manage-list:has(~ .jobs-manage-list .jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:has(.jobs-manage-list-input:not(:placeholder-shown)), .jobs-manage-list:first-child {
 	display: list-item;
 	padding-bottom: 3px;
+}
+
+.jobs-manage-list:has(.jobs-manage-list-checkbox:checked) {
+	margin-left: 2.5em;
 }
 
 .jobs-manage-fieldset {
@@ -765,6 +779,52 @@ while ($job = $result->fetch_assoc()) {
 
 .jobs-manage-fail {
 	color: rgb(160, 0, 0);
+}
+
+.jobs-manage-del-button {
+	width: 80%;
+	margin: 0 10%;
+	transition: color 0.2s, background-color 0.2s;
+	border: 1px, solid, rgb(119, 119, 119);
+	border-radius: 2px;
+	background-color: rgb(182, 0, 0);
+	color: white;
+}
+
+.jobs-manage-del-button:hover {
+	color: rgb(229, 229, 229);
+	background-color: rgb(111, 0, 0);
+	transition: color 0.2s, background-color 0.2s;
+}
+
+.jobs-manage-form input[type="text"] {
+	outline: none;
+	border: none;
+	border-bottom: solid #404040 2px;
+	font-size: 16px;
+	transition: border-bottom 0.15s ease;
+}	
+
+.jobs-manage-form input[type="text"]:focus {
+	border-bottom: solid #0073e6 2px;
+	transition: border-bottom 0.15s;
+}
+
+#jobs-manage-create-submit {
+	border: 1px, solid, rgb(119, 119, 119);
+	background-color: rgb(206, 232, 240);
+	border-radius: 5px;
+	padding: 2px;
+	width: 20%;
+	font-size: 16px;
+	transition: all 0.2s ease;
+	scale: 1;
+}
+
+#jobs-manage-create-submit:hover {
+	background-color: rgb(134, 205, 229);
+	transition: all 0.2s ease;
+	font-size: 17px;
 }
 
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
