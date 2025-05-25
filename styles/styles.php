@@ -66,7 +66,14 @@ nav {
 	left: 10px;
 	height: 100px;
 	z-index: 10; 
+	transform: scale(1, 1);
+	transition: transform 0.15s ease;
 }
+
+.nav-logo:hover {
+	transform: scale(1.05, 1.05);
+}
+
 nav ul {
 	list-style: none;
 	display: flex;

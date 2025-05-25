@@ -44,7 +44,7 @@ if (!$dbconn) {
 
     <body>
 	<!-- include the page header -->
-	<?php include "header.inc" ?>
+	<?php include_once "header.inc" ?>
 
 	<!-- define the main body content of the page -->
 	    <main>

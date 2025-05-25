@@ -54,7 +54,7 @@
 				$list_final[$last_entry] = [];
 				$list_final[$last_entry]['desc'] = $list_primary[$i][0];
 			} else {
-				if (!isset($job_details[$field_name][$last_entry]['children'])) {
+				if (!isset($list_final[$field_name][$last_entry]['children'])) {
 					$list_final[$last_entry]['children'] = [];
 				}
 				$list_final[$last_entry]['children'][] = $list_primary[$i][0];
