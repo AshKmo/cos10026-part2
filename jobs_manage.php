@@ -48,8 +48,21 @@ if (!$dbconn) {
 
 	<!-- define the main body content of the page -->
 	    <main>
-            <h1 id="jobs-manage-title">Job Modification</h1>
+            <h1 id="jobs-manage-title">Job Management</h1>
 			
+			<?php
+				if (isset($_SESSION["success"])) {
+					if ($_SESSION["success"] === true) {
+						echo "<p class=\"jobs-manage-success\">" . $_SESSION["message"] . "</p>";
+					} else {
+						echo "<p class=\"jobs-manage-fail\">Failed: " . $_SESSION["message"] . "</p>";
+					}
+					echo "<br>";
+					unset($_SESSION["success"]);
+					unset($_SESSION["message"]);
+				}
+			?>
+
 			<table>
                 <tr>
                     <th class="jobs-manage-table-position">Job Name</th>
@@ -68,9 +81,9 @@ if (!$dbconn) {
                             
                             // Delete User Button / Form
                             echo "<td>";
-                            echo "<form action='manage_jobs.php' method='POST'>";
+                            echo "<form action='process_jobs.php' method='POST'>";
                             echo "<input type='hidden' name='type' value='delete_job'>";
-                            echo "<input type='hidden' name='user' value='" . $row['position'] . "'>";
+                            echo "<input type='hidden' name='job_id' value='" . $row['job_id'] . "'>";
                             echo "<input type='submit' class='apply-fancy-button-bad' value='Delete'>";
                             echo "</form>";
                             echo "</td>";
@@ -80,27 +93,30 @@ if (!$dbconn) {
                     ?>
             </table>
 
+			<br>
 			<hr>
+			<br>
 
 			<fieldset class="jobs-manage-fieldset">
 				<legend id="jobs-manage-create-job"><strong>Create Job</strong></legend>
 				<form class="jobs-manage-form" method="POST" action="process_jobs.php">
+					<input type="hidden" name="type" value="create_job">
 					<fieldset class="jobs-manage-fieldset">
 						<legend>Job Info:</legend>
 						<div>
 							<p>
 								<label for="jobs-manage-title">Job Title:</label>
-								<input class="jobs-manage-input" type="text" name="position" id="jobs-manage-position" pattern="[a-zA-Z]{1,20}" size="20" maxlength="40" placeholder="Job Title Here" required>
+								<input class="jobs-manage-input" type="text" name="position" id="jobs-manage-position" size="20" maxlength="40" placeholder="Job Title Here" required>
 							</p>
 
 							<p>
 								<label for="jobs-manage-id">Job ID:</label>
-								<input class="jobs-manage-input" type="text" name="job_id" id="jobs-manage-id" pattern="[a-zA-Z]{1,20}" size="20" maxlength="5" placeholder="Job ID Here" required>
+								<input class="jobs-manage-input" type="text" name="job_id" id="jobs-manage-id" size="20" maxlength="5" placeholder="Job ID Here" required>
 							</p>
 
 							<p>
 								<label for="jobs-manage-id">Job Description</label>
-								<textarea id="apply-other-skills" name="description" placeholder="Enter job description"></textarea>
+								<textarea id="apply-other-skills" name="description" placeholder="Enter job description" required></textarea>
 							</p>
 							<br>
 
@@ -111,7 +127,7 @@ if (!$dbconn) {
 
 							<p>
 								<label for="jobs-manage-id">Employment type:</label>
-								<input class="jobs-manage-input" type="text" name="employment_type" id="jobs-manage-employ-type" pattern="[a-zA-Z]{1,20}" size="20" maxlength="30" placeholder="Full time, part time, etc" required>
+								<input class="jobs-manage-input" type="text" name="employment_type" id="jobs-manage-employ-type" size="20" maxlength="30" placeholder="Full time, part time, etc" required>
 							</p>
 
 							<p>
@@ -121,12 +137,12 @@ if (!$dbconn) {
 							<br>
 							<p>
 								<label for="jobs-manage-id">Name of Superior:</label>
-								<input class="jobs-manage-input" type="text" name="report_to_name" id="jobs-manage-superior" pattern="[a-zA-Z]{1,20}" size="20" maxlength="50" placeholder="Superior Name Here" required>
+								<input class="jobs-manage-input" type="text" name="report_to_name" id="jobs-manage-superior" size="20" maxlength="50" placeholder="Superior Name Here" required>
 							</p>
 
 							<p>
 								<label for="jobs-manage-id">Title of Superior:</label>
-								<input class="jobs-manage-input" type="text" name="report_to_title" id="jobs-manage-superior-title" pattern="[a-zA-Z]{1,20}" size="20" maxlength="40" placeholder="Superior Title Here" required>
+								<input class="jobs-manage-input" type="text" name="report_to_title" id="jobs-manage-superior-title" size="20" maxlength="40" placeholder="Superior Title Here" required>
 							</p>
 						</div>
 					</fieldset>
@@ -141,7 +157,7 @@ if (!$dbconn) {
 										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\" name=\"expectation-" . $i . "-sub\">";
+											echo "<input type=\"checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\">";
 											echo "<label for=\"jobs-manage-expectation-" . $i . "-checkbox\"\>Subitem?</label>";
 										}
 										echo "</li>";
@@ -161,7 +177,7 @@ if (!$dbconn) {
 										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\" name=\"essential-prereq-" . $i . "-sub\">";
+											echo "<input type=\"checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\">";
 											echo "<label for=\"jobs-manage-essential-prereq-" . $i . "-checkbox\"\>Subitem?</label>";
 										}
 										echo "</li>";
@@ -181,7 +197,7 @@ if (!$dbconn) {
 										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\" name=\"preferable-prereq-" . $i . "-sub\">";
+											echo "<input type=\"checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\">";
 											echo "<label for=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\"\>Subitem?</label>";
 										}
 										echo "</li>";

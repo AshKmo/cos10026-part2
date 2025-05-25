@@ -746,6 +746,14 @@ while ($job = $result->fetch_assoc()) {
 	width: 20%;
 }
 
+.jobs-manage-success {
+	color: rgb(8, 113, 19);
+}
+
+.jobs-manage-fail {
+	color: rgb(160, 0, 0);
+}
+
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 @media only screen and (max-width: 800px) {

@@ -91,7 +91,7 @@
 							echo "<strong>Job ID: </strong>" . $row["job_id"] . "<br><br>";
 							echo "<strong>You will report to:</strong><br>";
 							echo $row["report_to_title"];
-							echo "(current is " . $row["report_to_name"] . ")";
+							echo " (current is " . $row["report_to_name"] . ")";
 							echo "</aside>";
 
 							echo "<p class=\"jobs-description\">" . $row["description"] . "</p>";
