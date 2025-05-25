@@ -111,7 +111,7 @@ function print_skill($skill)
 						<!-- pattern created using RegExr's regular expression parser and cheat sheet -->
 						<!-- availabe at https://regexr.com/ -->
 						<input class="apply-input" type="text" name="email" id="apply-email" placeholder="asdf@asdf.com"
-							pattern="\w+@([\w\-]+\.)+[\w\-]{2,}" required>
+							pattern="[\w.]+@([\w\-]+\.)+[\w\-]{2,}" required>
 					</p>
 
 					<p>
