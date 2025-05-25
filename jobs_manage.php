@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-session_start();
+	ini_set('display_errors', '1');
+	ini_set('display_startup_errors', '1');
+	error_reporting(E_ALL);
+	session_start();
 
-if (!isset($_SESSION['privilege'])) {
-    if (isset($_SESSION['username'])) {
-        header('Location: job_manage.php');
-        exit;
-    } else {
-        header('Location: login.php');
-        exit;
-    }
-}
+	if (!isset($_SESSION['privilege'])) {
+		if (isset($_SESSION['username'])) {
+			header('Location: job_manage.php');
+			exit;
+		} else {
+			header('Location: login.php');
+			exit;
+		}
+	}
 
-require_once("settings.php");
-$dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
+	require_once("settings.php");
+	$dbconn = mysqli_connect($host, $user, $pwd, $sql_db);
 
-if (!$dbconn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+	if (!$dbconn) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
 ?>
 
 <!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part1/about.php -->
@@ -105,7 +105,7 @@ if (!$dbconn) {
 						<legend>Job Info:</legend>
 						<div>
 							<p>
-								<label for="jobs-manage-title">Job Title:</label>
+								<label for="jobs-manage-position">Job Title:</label>
 								<input class="jobs-manage-input" type="text" name="position" id="jobs-manage-position" size="20" maxlength="40" placeholder="Job Title Here" required>
 							</p>
 
@@ -158,7 +158,7 @@ if (!$dbconn) {
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\">";
-											echo "<label for=\"jobs-manage-expectation-" . $i . "-checkbox\"\>Subitem?</label>";
+											echo "<label for=\"jobs-manage-expectation-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
 									}
@@ -178,7 +178,7 @@ if (!$dbconn) {
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\">";
-											echo "<label for=\"jobs-manage-essential-prereq-" . $i . "-checkbox\"\>Subitem?</label>";
+											echo "<label for=\"jobs-manage-essential-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
 									}
@@ -198,7 +198,7 @@ if (!$dbconn) {
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\">";
-											echo "<label for=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\"\>Subitem?</label>";
+											echo "<label for=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
 									}
