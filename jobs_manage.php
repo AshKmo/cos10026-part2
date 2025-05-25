@@ -156,7 +156,7 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"120\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\"  class=\"jobs-manage-list-checkbox\">";
@@ -176,7 +176,7 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"120\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
+										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
@@ -196,7 +196,7 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"120\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
