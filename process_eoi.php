@@ -64,6 +64,8 @@ $field_values = [];
 
 // the following code checks the validity of each submitted field and either stores the valid values in $field_values or sets an error messasge for one that isn't
 
+// names must be 1-20 English alphabet characters
+// RegEx pattern created using RegExr's regular expression parser and cheat sheet availabe at https://regexr.com
 $field_name = "first-name";
 $value = $_POST[$field_name];
 check_field(
@@ -72,6 +74,8 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// names must be 1-20 English alphabet characters
+// RegEx pattern created using RegExr's regular expression parser and cheat sheet availabe at https://regexr.com
 $field_name = "last-name";
 $value = $_POST[$field_name];
 check_field(
@@ -80,6 +84,8 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// email addresses must start with a username, then an '@', then at least two parts of a domain name separated by a '.'. Finally, the TLD must be at least two letters long
+// RegEx pattern created using RegExr's regular expression parser and cheat sheet availabe at https://regexr.com
 $field_name = "email";
 $value = $_POST[$field_name];
 check_field(
@@ -88,6 +94,8 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// phone numbers must consist of 8-12 (inclusive) characters, each of which can either be a decimal digit or a space
+// RegEx pattern created using RegExr's regular expression parser and cheat sheet availabe at https://regexr.com
 $field_name = "phone";
 $value = $_POST[$field_name];
 check_field(
@@ -96,6 +104,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// address components must be between 1-40 characters in length (inclusive)
 $field_name = "address";
 $value = $_POST[$field_name];
 check_field(
@@ -104,6 +113,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// address components must be between 1-40 characters in length (inclusive)
 $field_name = "town";
 $value = $_POST[$field_name];
 check_field(
@@ -112,6 +122,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// the selected state value must be a valid Australian state code
 $field_name = "state";
 $value = $_POST[$field_name];
 check_field(
@@ -120,6 +131,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// postcodes consist of exactly 4 decimal digits and must match the selected state
 $field_name = "postcode";
 $value = $_POST[$field_name];
 check_field(
@@ -128,6 +140,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// dates of birth must be formatted as DD/MM/YYYY
 $field_name = "date-of-birth";
 $value = $_POST[$field_name];
 check_field(
@@ -136,6 +149,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// gender value must be one of the options given in the form
 $field_name = "gender";
 $value = $_POST[$field_name];
 check_field(
@@ -144,6 +158,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// if "other" is selected, a valid gender description must be provided
 $field_name = "specific-gender";
 $value = $_POST[$field_name];
 check_field(
@@ -152,6 +167,7 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
+// retrieve the complete set of job information from the job descriptions table
 $jobs = mysqli_query($conn, "select * from job_descriptions");
 if (!$jobs) {
     echo 'Job descriptions query failed.';
@@ -188,25 +204,28 @@ function extract_relevant_skills($job, $skills)
     return $final_array;
 }
 
+// determine the information associated with the selected job
 $field_name = "job-reference-number";
 $value = $_POST[$field_name];
-
 $job = get_job_from_id($jobs, $value);
 
+// if no valid job is found during the above query, the job ID value is invalid
 check_field(
     isset($value) && $job,
     "Please select a valid job from the options provided."
 );
 $field_values[$field_name] = sanitise($value);
 
+// the skills value must be an array of skills IDs, which will be filtered so that only the ones applicable for the selected job will be stored as part of the EOI
 $field_name = "required-technical-skills";
 $value = $_POST[$field_name];
 check_field(
-    isset($value),
+    isset($value) && is_array($value),
     "Please select valid technical skills for the job to which you will be applying."
 );
 $field_values[$field_name] = json_encode(extract_relevant_skills($job, $value));
 
+// the "Other skills" field must be specified but does not have to contain any text
 $field_name = "other-skills";
 $value = $_POST[$field_name];
 check_field(
@@ -258,6 +277,8 @@ if (!$stmt->execute()) {
     exit();
 }
 ?>
+
+<!-- print a lovely message for those lucky enough to avoid all the validation errors -->
 
 <!DOCTYPE html>
 
