@@ -74,7 +74,7 @@ if (!$dbconn) {
 						</select>
 					</label>
 					<button type="submit" name="filter" value="ref">Search</button>
-					<button type="submit" class="apply-fancy-button-bad" name="action" value="delete">Delete EOIs</button>
+					<button type="submit" class="del-button" name="action" value="delete">Delete EOIs</button>
 
 					<!-- below php block deletes selected EOIs and displays a confirmation message -->
 					<?php
