@@ -3,8 +3,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 
-<!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part2/manage.php -->
-
 <!-- the page language is set to English -->
 <html lang="en">
 
@@ -16,7 +14,7 @@ session_start();
 	<meta name="description" content="Tolstra - Staff Login">
 
 	<!-- set keywords for SEO -->
-	<meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
+	<meta name="keywords" content="Tolstra, telecommunications, Internet, phone, login">
 
 	<!-- set the page title -->
 	<title>Tolstra - Staff Login</title>
@@ -40,6 +38,7 @@ session_start();
 				<input type="password" id="password" name="password" placeholder="password" required>
 
 				<?php
+				// Display login error
 				if (isset($_SESSION['error'])) {
 					echo "<section id=error>";
 					echo '<p>' . $_SESSION['error'] . '</p>';
