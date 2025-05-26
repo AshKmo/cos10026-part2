@@ -83,7 +83,7 @@
 								echo "<form action='process_jobs.php' method='POST'>";
 								echo "<input type='hidden' name='type' value='delete_job'>";
 								echo "<input type='hidden' name='job_id' value='" . $row['job_id'] . "'>";
-								echo "<input type='submit' class='jobs-manage-del-button' value='Delete'>";
+								echo "<input type='submit' class='del-button' value='Delete'>";
 								echo "</form>";
 								echo "</td>";
 								echo "</tr>";
