@@ -779,7 +779,7 @@ while ($job = $result->fetch_assoc()) {
 }
 
 .jobs-manage-table-manage {
-	width: 20%;
+	width: 10%;
 }
 
 .jobs-manage-success {
