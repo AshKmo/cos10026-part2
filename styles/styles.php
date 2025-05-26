@@ -1,3 +1,11 @@
+/*
+filename: styles.php
+author: Ash, Hayden, Tim, Max
+created: 2025-03-28
+last modified: 2025-05-26
+description: Stylesheet for all pages
+*/
+
 <?php
 header("Content-Type: text/css");
 
@@ -10,14 +18,6 @@ if (!$conn) {
     exit();
 }
 ?>
-
-/*
-filename: styles.php
-author: Ash, Hayden, Tim, Max
-created: 2025-03-28
-last modified: 2025-05-24
-description: Stylesheet for all pages
- */
 
 /*************************************/
 /* non page-specific styles (global) */
