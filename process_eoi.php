@@ -255,23 +255,25 @@ check_field(
 $field_values[$field_name] = sanitise($value);
 
 // create the EOI table if it does not yet exist
-mysqli_query($conn, '
-    create table if not exists eoi (
-        EOInumber integer auto_increment primary key,
-        jobReferenceNumber varchar(5),
-        firstName varchar(20),
-        lastName varchar(20),
-        streetAddress varchar(40),
-        town varchar(40),
-        state enum("VIC", "NSW", "ACT", "NT", "SA", "WA", "TAS", "QLD"),
-        postcode varchar(4),
-        email text,
-        phone varchar(12),
-        requiredTechnicalSkills text,
-        otherSkills text,
-        status enum("new", "current", "final") default "new"
-    )
-');
+mysqli_query($conn, "
+    CREATE TABLE IF NOT EXISTS `eoi` (
+        `EOInumber` int(11) NOT NULL,
+        `jobReferenceNumber` varchar(5) DEFAULT NULL,
+        `firstName` varchar(20) DEFAULT NULL,
+        `lastName` varchar(20) DEFAULT NULL,
+        `streetAddress` varchar(40) DEFAULT NULL,
+        `town` varchar(40) DEFAULT NULL,
+        `state` enum('VIC','NSW','ACT','NT','SA','WA','TAS','QLD') DEFAULT NULL,
+        `postcode` varchar(4) DEFAULT NULL,
+        `dateOfBirth` date DEFAULT NULL,
+        `gender` text DEFAULT NULL,
+        `email` text DEFAULT NULL,
+        `phone` varchar(12) DEFAULT NULL,
+        `requiredTechnicalSkills` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+        `otherSkills` text DEFAULT NULL,
+        `status` enum('new','current','final') DEFAULT 'new'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+");
 
 // prepare a query that inserts an entry into the database based on the submitted values
 // this automatically removes the risk of SQL injection by properly escaping each value before adding it to the statement
