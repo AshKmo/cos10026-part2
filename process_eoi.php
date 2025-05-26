@@ -140,12 +140,24 @@ check_field(
 );
 $field_values[$field_name] = sanitise($value);
 
-// dates of birth must be formatted as DD/MM/YYYY
+// function to convert an Australian date into the ISO 8601 format
+function aus_to_iso_date($date_string) {
+    $date = DateTime::createFromFormat("d/m/Y", $date_string);
+
+    $errors = DateTime::getLastErrors();
+    if ($errors !== false) {
+        return false;
+    }
+
+    return $date->format("Y-m-d");
+}
+
+// dates of birth must be formatted as DD/MM/YYYY and must be a valid date
 $field_name = "date-of-birth";
 $value = $_POST[$field_name];
 check_field(
-    isset($value) && preg_match('/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/', $value),
-    "Date of birth must be in dd/mm/yyyy format."
+    isset($value) && preg_match('/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/', $value) && ($value = aus_to_iso_date($value)),
+    "Date of birth must be a valid date written in dd/mm/yyyy format."
 );
 $field_values[$field_name] = sanitise($value);
 
@@ -165,7 +177,11 @@ check_field(
     isset($value) && !($field_values["gender"] === "other" && strlen(sanitise($value)) === 0),
     "Please provide a gender description."
 );
-$field_values[$field_name] = sanitise($value);
+
+// update the "gender" field to the description provided if one was expected
+if ($field_values["gender"] === "other") {
+    $field_values["gender"] = sanitise($value);
+}
 
 // retrieve the complete set of job information from the job descriptions table
 $jobs = mysqli_query($conn, "select * from job_descriptions");
@@ -190,12 +206,16 @@ function get_job_from_id($jobs, $id)
 // function to filter submitted technical skills based on which ones are available for the selected job
 function extract_relevant_skills($job, $skills)
 {
+    // make a new array for the skills that are applicable
     $final_array = [];
 
+    // convert the skills list from JSON into an iterable Array object
     $required_skills = json_decode($job[10]);
 
     foreach ($required_skills as $skill) {
         // compare the submitted skill IDs to the calculated IDs of the real skills themselves
+        // even though md5 is somewhat insecure, that doesn't matter because we're only using it for unique identification of data that is already public
+        // plus it generates hashes that are much smaller than sha256
         if (in_array(hash("md5", $skill->desc), $skills)) {
             array_push($final_array, $skill);
         }
@@ -255,9 +275,9 @@ mysqli_query($conn, '
 
 // prepare a query that inserts an entry into the database based on the submitted values
 // this automatically removes the risk of SQL injection by properly escaping each value before adding it to the statement
-$stmt = $conn->prepare('insert into eoi values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "new")');
+$stmt = $conn->prepare('insert into eoi values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "new")');
 $stmt->bind_param(
-    'sssssssssss',
+    'sssssssssssss',
     $field_values["job-reference-number"],
     $field_values["first-name"],
     $field_values["last-name"],
@@ -265,6 +285,8 @@ $stmt->bind_param(
     $field_values["town"],
     $field_values["state"],
     $field_values["postcode"],
+    $field_values["date-of-birth"],
+    $field_values["gender"],
     $field_values["email"],
     $field_values["phone"],
     $field_values["required-technical-skills"],

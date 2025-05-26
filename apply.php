@@ -216,15 +216,15 @@ function print_skill($skill)
 						<option value="">Please select</option>
 
 						<?php
+						// query the database to retrieve all job info
 						$stmt = $conn->prepare('select * from job_descriptions');
-
 						if (!$stmt->execute()) {
 							echo "Database query failed.";
 							exit();
 						}
-
 						$result = $stmt->get_result();
 
+						// add each job as an option in the list, setting each option value to its job ID
 						while ($job = $result->fetch_assoc()) {
 							echo '<option value="' . $job["job_id"] . '">' . $job["position"] . ' (' . $job["job_id"] . ')</option>';
 						}
@@ -232,37 +232,44 @@ function print_skill($skill)
 					</select>
 				</p>
 
-				<!-- produce a series of checkboxes for each required technical skill for each job -->
-				<!-- the relevant checkboxes for each job are shown only when that job is selected above -->
-				<!-- this is done by applying a class to each checkbox indicating the job to which it is assigned -->
-				<!-- although this means that there might be values sent to the server that are not necessarily relevant for the selected job, the server will skip them -->
+				<!-- fieldset for the required skills checkbox input -->
 				<fieldset class="apply-fieldset">
 					<legend>Required technical skills:</legend>
 
 					<div class="apply-checkbox-set-container">
 						<?php
-						$stmt = $conn->prepare('select * from job_descriptions');
+						// produce a series of checkboxes for each required technical skill for each job
+						// the relevant checkboxes for each job are shown only when that job is selected above
+						// this is done by applying a class to each checkbox indicating the job to which it is assigned
+						// although this means that there might be values sent to the server that are not necessarily relevant for the selected job, the server will skip them
 
+						// query the database to retrieve all job info
+						$stmt = $conn->prepare('select * from job_descriptions');
 						if (!$stmt->execute()) {
 							echo "Database query failed.";
 							exit();
 						}
-
 						$result = $stmt->get_result();
 
+						// iterate through all jobs
 						while ($job = $result->fetch_assoc()) {
+							// get the skills from each job
 							$skills = json_decode($job["essential_prereqs"]);
 
+							// iterate through each skill and add a checkbox for it
 							foreach ($skills as $skill) {
-								// this hash is only used to uniquely identify the skill amongst the others so it's ok to use a dodgy algorithm like md5
+								// generate a unique ID for the skill, which will be used to style it and also to uniquely identify it on the backend
+								// this hash is only used to uniquely identify the skill amongst the others so it's ok to use an insecure algorithm like md5
 								$skill_id = hash("md5", $skill->desc);
 								echo '
 									<div class="apply-checkbox-container apply-checkbox-set-' . $job["job_id"] . '">
 										<input class="apply-input" type="checkbox" name="required-technical-skills[]" id="apply-required-technical-skills_' . $skill_id . '" value="' . $skill_id . '" checked>
 										<label for="apply-required-technical-skills_' . $skill_id . '">';
 
+								// iterate through the skill's subskills, if any, and print them along with the skill title itself
 								print_skill($skill);
 
+								// close the div
 								echo '</div>';
 							}
 						}
