@@ -5,14 +5,9 @@
 	error_reporting(E_ALL);
 	session_start();
 
-	if (!isset($_SESSION['privilege'])) {
-		if (isset($_SESSION['username'])) {
-			header('Location: job_manage.php');
-			exit;
-		} else {
-			header('Location: login.php');
-			exit;
-		}
+	if (!isset($_SESSION['username'])) {
+		header('Location: login.php');
+		exit;
 	}
 
 	require_once("settings.php");
@@ -62,36 +57,37 @@
 					unset($_SESSION["message"]);
 				}
 			?>
-
-			<table>
-                <tr>
-                    <th class="jobs-manage-table-position">Job Name</th>
-                    <th class="jobs-manage-table-id">Job ID</th>
-                    <th class="jobs-manage-table-manage">Manage</th>
-                    
+			<section>
+				<table id="jobs-manage-table">
+					<tr>
+						<th class="jobs-manage-table-position">Job Name</th>
+						<th class="jobs-manage-table-id">Job ID</th>
+						<th class="jobs-manage-table-manage">Manage</th>
+					</tr>
                     <?php
-                    $query = "SELECT position, job_id FROM job_descriptions";
-                    $result = $dbconn -> query($query);
+						$query = "SELECT position, job_id FROM job_descriptions";
+						$result = $dbconn -> query($query);
 
-                    if ($result -> num_rows > 0) {
-                        while ($row = $result -> fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row['position'] . "</td>";
-                            echo "<td>" . $row['job_id'] . "</td>";
-                            
-                            // Delete User Button / Form
-                            echo "<td>";
-                            echo "<form action='process_jobs.php' method='POST'>";
-                            echo "<input type='hidden' name='type' value='delete_job'>";
-                            echo "<input type='hidden' name='job_id' value='" . $row['job_id'] . "'>";
-                            echo "<input type='submit' class='apply-fancy-button-bad' value='Delete'>";
-                            echo "</form>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                    }
+						if ($result -> num_rows > 0) {
+							while ($row = $result -> fetch_assoc()) {
+								echo "<tr>";
+								echo "<td>" . $row['position'] . "</td>";
+								echo "<td>" . $row['job_id'] . "</td>";
+								
+								// Delete User Button / Form
+								echo "<td>";
+								echo "<form action='process_jobs.php' method='POST'>";
+								echo "<input type='hidden' name='type' value='delete_job'>";
+								echo "<input type='hidden' name='job_id' value='" . $row['job_id'] . "'>";
+								echo "<input type='submit' class='jobs-manage-del-button' value='Delete'>";
+								echo "</form>";
+								echo "</td>";
+								echo "</tr>";
+							}
+						}
                     ?>
-            </table>
+            	</table>
+			</section>
 
 			<br>
 			<hr>
@@ -99,6 +95,7 @@
 
 			<fieldset class="jobs-manage-fieldset">
 				<legend id="jobs-manage-create-job"><strong>Create Job</strong></legend>
+				<br>
 				<form class="jobs-manage-form" method="POST" action="process_jobs.php">
 					<input type="hidden" name="type" value="create_job">
 					<fieldset class="jobs-manage-fieldset">
@@ -154,10 +151,10 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\">";
+											echo "<input type=\"checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\"  class=\"jobs-manage-list-checkbox\">";
 											echo "<label for=\"jobs-manage-expectation-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
@@ -174,10 +171,10 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
+										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\">";
+											echo "<input type=\"checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
 											echo "<label for=\"jobs-manage-essential-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
@@ -194,10 +191,10 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"50\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\">";
+											echo "<input type=\"checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
 											echo "<label for=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
@@ -206,8 +203,8 @@
 							</ul>
 						</div>
 					</fieldset>
-
-					<input id="jobs-manage-confirm" type="submit" value="Create Job">
+					<br>
+					<input type="submit" value="Create Job" id="jobs-manage-create-submit">
 				</form>
 			</fieldset>
         </main>

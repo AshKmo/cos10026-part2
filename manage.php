@@ -85,18 +85,20 @@ if (!$dbconn) {
 						$row = mysqli_fetch_assoc($result);
 
 						if ($row['count'] > 0) {
+							$query = "SELECT * FROM eoi WHERE jobReferenceNumber = '$ref'";
+							$result = mysqli_query($dbconn, $query);
+
+							if (mysqli_num_rows($result) > 0) {
+								$query = "DELETE FROM eoi WHERE jobReferenceNumber = '$ref'";
+								mysqli_query($dbconn, $query);
+							}
+							
 							echo "<p class='deletion_message'>Successfully deleted " . $row['count'] . " EOIs.</p>";
 						} else {
 							echo "<p class='deletion_message'>There are no EOIs to delete.</p>";
 						}
 
-						$query = "SELECT * FROM eoi WHERE jobReferenceNumber = '$ref'";
-						$result = mysqli_query($dbconn, $query);
-
-						if (mysqli_num_rows($result) > 0) {
-							$query = "DELETE FROM eoi WHERE jobReferenceNumber = '$ref'";
-							mysqli_query($dbconn, $query);
-						}
+						
 					}
 					?>
 				</div>
