@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo "<form action='manage_users.php' method='POST'>";
                             echo "<input type='hidden' name='type' value='delete_user'>";
                             echo "<input type='hidden' name='user' value='" . $row['username'] . "'>";
-                            echo "<input type='submit' class='users-manage-del-button' value='Delete'>";
+                            echo "<input type='submit' class='del-button' value='Delete'>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";
