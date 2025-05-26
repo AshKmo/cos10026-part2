@@ -163,7 +163,7 @@
 										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\"  class=\"jobs-manage-list-checkbox\">";
+											echo "<input type=\"checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\"  class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\">";
 											echo "<label for=\"jobs-manage-expectation-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
@@ -184,7 +184,7 @@
 										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
+											echo "<input type=\"checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\">";
 											echo "<label for=\"jobs-manage-essential-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
@@ -205,7 +205,7 @@
 										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
-											echo "<input type=\"checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\">";
+											echo "<input type=\"checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\">";
 											echo "<label for=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\">Subitem?</label>";
 										}
 										echo "</li>";
