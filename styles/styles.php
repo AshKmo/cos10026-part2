@@ -793,7 +793,7 @@ while ($job = $result->fetch_assoc()) {
 .del-button {
 	width: 120px;
 	transition: color 0.2s, background-color 0.2s;
-	border: 1px, solid, rgb(119, 119, 119);
+	border: 1px solid rgb(119, 119, 119);
 	border-radius: 2px;
 	background-color: rgb(182, 0, 0);
 	color: white;
@@ -819,7 +819,7 @@ while ($job = $result->fetch_assoc()) {
 }
 
 #jobs-manage-create-submit {
-	border: 1px, solid, rgb(119, 119, 119);
+	border: 1px solid rgb(119, 119, 119);
 	background-color: rgb(206, 232, 240);
 	border-radius: 5px;
 	padding: 2px;
