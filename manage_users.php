@@ -1,9 +1,7 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 session_start();
 
+// Only allow access to site if user has privilege, otherwise send to other page
 if (!isset($_SESSION['privilege'])) {
     if (isset($_SESSION['username'])) {
         header('Location: manage.php');
@@ -46,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: manage_users.php');
                 exit;
             } else {
+                // Add to database table
                 $stmt = $dbconn -> prepare("INSERT INTO users (username, password, privilege) VALUES (?, ?, ?)");
                 $stmt -> bind_param("sss", $input_username, $hashed_password, $input_privilege);
                 $stmt -> execute();
@@ -72,8 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 
-<!-- this page can be accessed on Github Pages at https://ashkmo.github.io/cos10026-part2/manage.php -->
-
 <!-- the page language is set to English -->
 <html lang="en">
 
@@ -85,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta name="description" content="Tolstra - User Manager">
 
 	<!-- set keywords for SEO -->
-	<meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
+	<meta name="keywords" content="Tolstra, telecommunications, Internet, phone, manage">
 
 	<!-- set the page title -->
 	<title>Tolstra - User Manager</title>
@@ -122,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="manager">Manager</label>
 
                 <?php
+                // Status of new user creation
 				if (isset($_SESSION['new_status'])) {
 					echo "<section id=new_status>";
 					echo '<p>' . $_SESSION['new_status'] . '</p>';
@@ -138,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <br><hr><br>
 
-        <!-- Dynamic User Management Form -->
+        <!-- Dynamic User Management Form / Table -->
         <section id=user-manage>
             <h1>User Management</h1>
             <table>
@@ -170,8 +168,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                     ?>
             </table>
-
             <?php
+            // Print status of user deletion
 			if (isset($_SESSION['del_status'])) {
 			    echo "<section id=del_status>";
 				echo '<p>' . $_SESSION['del_status'] . '</p>';
