@@ -792,7 +792,6 @@ while ($job = $result->fetch_assoc()) {
 
 .del-button {
 	width: 120px;
-	margin: 0 10%;
 	transition: color 0.2s, background-color 0.2s;
 	border: 1px, solid, rgb(119, 119, 119);
 	border-radius: 2px;
