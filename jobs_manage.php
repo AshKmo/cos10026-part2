@@ -51,6 +51,7 @@
             <h1 id="jobs-manage-title">Job Management</h1>
 			
 			<?php
+				// check if a job has just been added/removed, and add text accordingly
 				if (isset($_SESSION["success"])) {
 					if ($_SESSION["success"] === true) {
 						echo "<p class=\"jobs-manage-success\">" . $_SESSION["message"] . "</p>";
@@ -64,22 +65,25 @@
 			?>
 			<section>
 				<table id="jobs-manage-table">
+					<!-- Create a table to contain all jobs -->
 					<tr>
 						<th class="jobs-manage-table-position">Job Name</th>
 						<th class="jobs-manage-table-id">Job ID</th>
 						<th class="jobs-manage-table-manage">Manage</th>
 					</tr>
                     <?php
+						// connect to the database and select the position titles and job IDs
 						$query = "SELECT position, job_id FROM job_descriptions";
 						$result = $dbconn -> query($query);
 
 						if ($result -> num_rows > 0) {
 							while ($row = $result -> fetch_assoc()) {
+								// add a row into the database for each position
 								echo "<tr>";
 								echo "<td>" . $row['position'] . "</td>";
 								echo "<td>" . $row['job_id'] . "</td>";
 								
-								// Delete User Button / Form
+								// add a button in the final column which sends to the processing page to delete the job
 								echo "<td>";
 								echo "<form action='process_jobs.php' method='POST'>";
 								echo "<input type='hidden' name='type' value='delete_job'>";
@@ -102,9 +106,11 @@
 				<legend id="jobs-manage-create-job"><strong>Create Job</strong></legend>
 				<br>
 				<form class="jobs-manage-form" method="POST" action="process_jobs.php">
+					<!-- Add a form to allow users to input new job details -->
 					<input type="hidden" name="type" value="create_job">
 					<fieldset class="jobs-manage-fieldset">
 						<legend>Job Info:</legend>
+						<!-- Add a text input for each job detail (most validation is done in the process_jobs page) -->
 						<div>
 							<p>
 								<label for="jobs-manage-position">Job Title:</label>
@@ -153,9 +159,12 @@
 						<legend>Expectations</legend>
 						<div>
 							<ol>
+								<!-- Create 50 text inputs and 49 checkboxes to collect expectation data, of which all inputs with information will be displayed, alongside the input after the current one (done through CSS) -->
+								<!-- The checkbox is used to determine if an entry is a subitem or not -->
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
+										// each input has a unique name so that the process_jobs page can recognise them individually and collate them into an array to put into the database
 										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
 										if ($i != 0) {
 											echo "<br>";
@@ -173,6 +182,7 @@
 						<legend>Essential Prerequisites</legend>
 						<div>
 							<ul>
+								<!-- Same as expectations -->
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
@@ -193,6 +203,7 @@
 						<legend>Preferable Prerequisites</legend>
 						<div>
 							<ul>
+								<!-- Same as expectations -->
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";

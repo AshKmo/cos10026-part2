@@ -7,10 +7,13 @@
 <?php
 	session_start();
 	function recursive_ol($list_items) {
+		// takes an array of items and if any of them have subitems, add a subitem into the HTML for it
 		echo "<ol>";
 		foreach ($list_items as $item) {
 			echo "<li>";
+			// check if there are any subitems
 			if (isset($item->children)) {
+				// if so, add all subitems in a new list
 				echo $item->desc;
 				echo "<ol>";
 				foreach ($item->children as $subitem) {
@@ -26,6 +29,7 @@
 	}
 
 	function recursive_ul($list_items) {
+		// same as recursive_ol but for unordered lists (probably could've just used one function for both and have the list type be another entry field but ah well)
 		echo "<ul>";
 		foreach ($list_items as $item) {
 			echo "<li>";
@@ -74,13 +78,17 @@
 		<hr>
 
 			<?php
+				// connect to the database
 				require_once "settings.php";
 				$dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
 				if ($dbconn) {
+					// select all jobs from the database
 					$query = "SELECT * FROM job_descriptions";
 					$result = mysqli_query($dbconn, $query);
+					// make an entry into the jobs table for each job in the database
 					if ($result) {
 						while ($row = mysqli_fetch_assoc($result)) {
+							// display the details for each job in the correct notation
 							$id = strtolower(str_replace(" ", "-", $row["job_id"]));
 							echo "<section class=\"jobs-dropdown\">";
 							echo "<input type=\"checkbox\" id=\"jobs-" . $id . "-dropdown\">";
@@ -98,6 +106,7 @@
 
 							echo "<h3>You will be expected to:</h3>";
 
+							// decode the json data from the database into arrays to make it usable in recursive_ol
 							$expectations = json_decode($row["expectations"]);
 							recursive_ol($expectations);
 
