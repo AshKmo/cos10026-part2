@@ -286,8 +286,8 @@ function print_skill($skill)
 			</fieldset>
 
 			<!-- add the buttons to submit and reset the form -->
-			<input type="submit" value="Apply" class="apply-fancy-button">
-			<input type="reset" value="Reset" class="apply-fancy-button apply-fancy-button-bad">
+			<input type="submit" value="Apply" class="submit-button">
+			<input type="reset" value="Reset" class="submit-button apply-fancy-button-bad">
 		</form>
 	</main>
 

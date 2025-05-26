@@ -460,7 +460,7 @@ while ($job = $result->fetch_assoc()) {
 }
 
 /* establish the default button styles with rounded corners, comfortable padding, an easily-readable font size and an appropriate cursor icon when hovered over */
-.apply-fancy-button {
+.submit-button {
 	background-color: #0073e6;
 	color: white;
 	border: none;
@@ -472,12 +472,12 @@ while ($job = $result->fetch_assoc()) {
 }
 
 /* make the outline on the buttons more visible for keyboard users when they are focused */
-.apply-fancy-button:focus {
+.submit-button:focus {
 	outline-offset: 4px;
 }
 
 /* make the buttons slightly darker when hovered over */
-.apply-fancy-button:hover {
+.submit-button:hover {
 	background-color: #003B73;
 }
 
@@ -715,22 +715,6 @@ while ($job = $result->fetch_assoc()) {
 /* manage_users.php specific styles */
 /******************************/
 
-.users-manage-del-button {
-	width: 80%;
-	margin: 0 10%;
-	transition: color 0.2s, background-color 0.2s;
-	border: 1px, solid, rgb(119, 119, 119);
-	border-radius: 2px;
-	background-color: rgb(182, 0, 0);
-	color: white;
-}
-
-.users-manage-del-button:hover {
-	color: rgb(229, 229, 229);
-	background-color: rgb(111, 0, 0);
-	transition: color 0.2s, background-color 0.2s;
-}
-
 #user-manage table {
 	width: 100%;
 }
@@ -806,8 +790,8 @@ while ($job = $result->fetch_assoc()) {
 	color: rgb(160, 0, 0);
 }
 
-.jobs-manage-del-button {
-	width: 80%;
+.del-button {
+	width: 120px;
 	margin: 0 10%;
 	transition: color 0.2s, background-color 0.2s;
 	border: 1px, solid, rgb(119, 119, 119);
@@ -816,7 +800,7 @@ while ($job = $result->fetch_assoc()) {
 	color: white;
 }
 
-.jobs-manage-del-button:hover {
+.del-button:hover {
 	color: rgb(229, 229, 229);
 	background-color: rgb(111, 0, 0);
 	transition: color 0.2s, background-color 0.2s;
@@ -941,7 +925,7 @@ while ($job = $result->fetch_assoc()) {
 	}
 	
 	/* make each button fill the line so that it's easier to press them */
-	.apply-fancy-button {
+	.submit-button {
 		display: block;
 		width: 100%;
 		margin-top: 20px;
