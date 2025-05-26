@@ -55,7 +55,7 @@
 					unset($_SESSION["message"]);
 				}
 			?>
-			<section>
+			<div>
 				<table id="jobs-manage-table">
 					<!-- Create a table to contain all jobs -->
 					<tr>
@@ -88,7 +88,7 @@
 						}
                     ?>
             	</table>
-			</section>
+			</div>
 
 			<br>
 			<hr>
