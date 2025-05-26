@@ -5,14 +5,9 @@
 	error_reporting(E_ALL);
 	session_start();
 
-	if (!isset($_SESSION['privilege'])) {
-		if (isset($_SESSION['username'])) {
-			header('Location: job_manage.php');
-			exit;
-		} else {
-			header('Location: login.php');
-			exit;
-		}
+	if (!isset($_SESSION['username'])) {
+		header('Location: login.php');
+		exit;
 	}
 
 	require_once("settings.php");

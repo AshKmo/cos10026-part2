@@ -712,12 +712,37 @@ while ($job = $result->fetch_assoc()) {
 }
 
 /******************************/
-/* manage.php specific styles */
+/* manage_users.php specific styles */
 /******************************/
+
+.users-manage-del-button {
+	width: 80%;
+	margin: 0 10%;
+	transition: color 0.2s, background-color 0.2s;
+	border: 1px, solid, rgb(119, 119, 119);
+	border-radius: 2px;
+	background-color: rgb(182, 0, 0);
+	color: white;
+}
+
+.users-manage-del-button:hover {
+	color: rgb(229, 229, 229);
+	background-color: rgb(111, 0, 0);
+	transition: color 0.2s, background-color 0.2s;
+}
+
+#user-manage table {
+	width: 100%;
+}
 
 #user-manage table td {
 	text-align: center;
 	padding: 10px 25px 10px 25px;
+}
+
+.user-manage-privilege,
+.user-manage-manage {
+	width: 20%;
 }
 
 #username,
