@@ -157,7 +157,8 @@
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
 										// each input has a unique name so that the process_jobs page can recognise them individually and collate them into an array to put into the database
-										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"expectation-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\" id=\"expectation-" . $i ."\">";
+										echo "<label for=\"expectation-" . $i ."\" class=\"jobs-manage-hiden-label\">Expectation " .  $i + 1 . "</label>";
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"expectation-" . $i . "-sub\" value=\"true\"  class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-expectation-" . $i . "-checkbox\">";
@@ -178,7 +179,8 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";									
+										echo "<input type=\"text\" name=\"essential-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\" id=\"essential-prereq-" . $i ."\">";									
+										echo "<label for=\"essential-prereq-" . $i ."\" class=\"jobs-manage-hiden-label\">Essential Prerequisite " .  $i + 1 . "</label>";
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"essential-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-essential-prereq-" . $i . "-checkbox\">";
@@ -199,7 +201,8 @@
 								<?php
 									for ($i = 0; $i < 50; $i++) {
 										echo "<li class=\"jobs-manage-list\">";
-										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\">";
+										echo "<input type=\"text\" name=\"preferable-prereq-" . $i ."\" size=\"110\" maxlength=\"200\" placeholder=\"Expectation " . $i+1 ."\" class=\"jobs-manage-list-input\" id=\"preferable-prereq-" . $i ."\">";
+										echo "<label for=\"preferable-prereq-" . $i ."\" class=\"jobs-manage-hiden-label\">Preferable Prerequisite " .  $i + 1 . "</label>";
 										if ($i != 0) {
 											echo "<br>";
 											echo "<input type=\"checkbox\" name=\"preferable-prereq-" . $i . "-sub\" value=\"true\" class=\"jobs-manage-list-checkbox\" id=\"jobs-manage-preferable-prereq-" . $i . "-checkbox\">";

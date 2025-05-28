@@ -37,7 +37,7 @@
 			// for every expectation/prerequisite, check that it has the correct formatting and add it to the list of entries if so
 			if (isset($_POST[$field_name . "-" . $i]) && $_POST[$field_name . "-" . $i] != "") {
 				check_field(
-					isset($_POST[$field_name . "-" . $i]) && preg_match(regex_main(300), $_POST[$field_name . "-" . $i]),
+					isset($_POST[$field_name . "-" . $i]) && preg_match(regex_main(200), $_POST[$field_name . "-" . $i]),
 					$message . " Failed at ". $field_name . " " . $i + 1
 				);
 				// if that entry is a subitem, add a variable stating as such
