@@ -40,21 +40,26 @@ if (!$dbconn) {
 
 	<!-- define the main body content of the page -->
 	<main>
+		<h1>Manage EOIs</h1>
+
 		<section class="filter-bar">
 		<div class="filter-options">
 			<!-- Form to filter table by first name or last name, or both -->
 			<form method="get" action="manage.php">
-				<h4>Search EOIs by applicant name</h4>
+				<p><strong>Search EOIs by applicant name</strong></p>
 				<div class="filter-group">
-					<input type="text" name="fname" placeholder="First Name">
-					<input type="text" name="lname" placeholder="Last Name">
+					<label for="fname" class="jobs-manage-hiden-label">First Name</label>
+					<input id="fname" type="text" name="fname" placeholder="First Name">
+					<label for="lname" class="jobs-manage-hiden-label">Last Name</label>
+					<input id="lname" type="text" name="lname" placeholder="Last Name">
 					<button type="submit" name="filter" value="name">Search</button>
 				</div>
 			</form>
 
 			<!-- Form to filter table rows by job reference number -->
 			<form method="get" action="manage.php">
-				<h4>Search or delete EOIs by job reference number</h4>
+				<p><strong>Search or delete EOIs by job reference number</strong></p>
+
 				<div class="filter-group">
 					<label for="job_ref">Job Ref:
 						<select name="job_ref" id="job_ref">
@@ -148,7 +153,7 @@ if (!$dbconn) {
 		</section>
 		<hr>
 		<section class="manage_eoi">
-			<h3>Manage EOIs</h3>
+			<h2>Manage EOIs</h2>
 			<!-- mysql queries based on filter and sorting parameters -->
 			<?php
 			if($dbconn) {
@@ -261,8 +266,8 @@ if (!$dbconn) {
 						}
 						/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
 						echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
-						echo '<label class="hidden-label" for="new_status">Status</label>';
-						echo "<select name='new_status'>";
+						echo '<label class="jobs-manage-hiden-label" for="new_status_' . $row['EOInumber'] . '">Status</label>';
+						echo '<select name="new_status" id="new_status_' . $row['EOInumber'] . '">';
 						$statuses = ['new', 'current', 'final'];
 						foreach ($statuses as $status) {
 							$selected = ($row['status'] === $status) ? "selected" : "";

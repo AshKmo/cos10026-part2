@@ -144,6 +144,12 @@ $field_values[$field_name] = sanitise($value);
 function aus_to_iso_date($date_string) {
     $date = DateTime::createFromFormat("d/m/Y", $date_string);
 
+    // if the date is in the present or the future, return false so that the validation check fails
+    if ((new DateTime())->getTimestamp() - $date->getTimestamp() <= 0) {
+        return false;
+    }
+
+    // if any errors occur when processing the date, return false so that the validation check fails
     $errors = DateTime::getLastErrors();
     if ($errors !== false) {
         return false;
@@ -157,7 +163,7 @@ $field_name = "date-of-birth";
 $value = $_POST[$field_name];
 check_field(
     isset($value) && preg_match('/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/', $value) && ($value = aus_to_iso_date($value)),
-    "Date of birth must be a valid date written in dd/mm/yyyy format."
+    "Date of birth must be a valid date in the past, written in dd/mm/yyyy format."
 );
 $field_values[$field_name] = sanitise($value);
 
@@ -309,21 +315,32 @@ if (!$stmt->execute()) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+	<!-- include some common meta tags shared between all regular pages -->
+	<?php include_once "meta.inc"; ?>
 
-    <!-- include common meta tags -->
-    <?php include("meta.inc") ?>
+	<!-- set the page description -->
+	<meta name="description" content="About Tolstra">
 
-    <title>Thanks for applying</title>
+	<!-- set keywords for SEO -->
+	<meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
+
+	<!-- set the page title -->
+	<title>About Tolstra</title>
 </head>
 
 <body>
-    <main>
+	<!-- include the page header -->
+	<?php include_once "header.inc" ?>
+
+	<!-- define the main body content of the page -->
+	<main>
         <h1>Application submitted</h1>
-        <p>Thank you for your application. It has been stored in the database with ID <?php echo $conn->insert_id ?>.
-            <a href="index.php">Please click here to return to the home page</a>.
-        </p>
-    </main>
+
+        <p>Thank you for your application. It has been stored in the database with ID <?php echo $stmt->insert_id; ?>. You may now <a href="index.php">return to the home page</a>.</p>
+	</main>
+
+	<!-- include the page footer -->
+	<?php include_once "footer.inc"; ?>
 </body>
 
 </html>
