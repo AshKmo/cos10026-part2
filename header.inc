@@ -16,7 +16,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                     echo '<li><a title="Tolstra - User Manager" href="manage_users.php">Manage Users</a></li>';
                 }
                 echo '<li><a title="Tolstra - Manage EOIs" href="manage.php">Manage EOIs</a></li>';
-                echo '<li><a title="Manage Jobs" href="jobs_manage.php">Manage Jobs</a></li>';
+                echo '<li><a title="Tolstra - Manage Jobs" href="jobs_manage.php">Manage Jobs</a></li>';
                 echo '<li><a href="logout.php">Logout</a></li>';
             } else {
                 echo '<li><a title="About Tolstra" href="about.php">About</a></li>';

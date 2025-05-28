@@ -31,7 +31,7 @@
 	    <meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
 
 	    <!-- set the page title -->
-	    <title>About Tolstra</title>
+	    <title>Tolstra - Manage Jobs</title>
     </head>
 
     <body>
