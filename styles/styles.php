@@ -483,12 +483,12 @@ while ($job = $result->fetch_assoc()) {
 
 /* set a different colour for buttons with a negative or destructive meaning */
 .apply-fancy-button-bad {
-	background-color: #FF0019;
+	background-color: #EE0000;
 }
 
 /* make the buttons slightly darker when hovered over */
 .apply-fancy-button-bad:hover {
-	background-color: #88000C;
+	background-color: #880000;
 }
 
 #apply-other-skills {
@@ -640,7 +640,7 @@ while ($job = $result->fetch_assoc()) {
 }
 
 /* Update eoi status text */
-#update_text {
+.update_text {
 	font-weight: bold;
 	text-align: center;
 	color: green;
