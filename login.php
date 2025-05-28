@@ -56,7 +56,7 @@ session_start();
 				";
 			}
 			if (isset($_SESSION["time_at_lockout"])) {
-				if (time() - ($_SESSION["time_at_lockout"] + 30)  > 0) {
+				if (time() - ($_SESSION["time_at_lockout"] + 300)  > 0) {
 					unset($_SESSION["time_at_lockout"]);
 					unset($_SESSION["attempts"]);
 					echo_login();
