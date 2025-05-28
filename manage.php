@@ -261,6 +261,7 @@ if (!$dbconn) {
 						}
 						/* above logic is from StackOverflow https://stackoverflow.com/questions/9624803/php-get-all-url-variables in order to retain $_GET params after form submission */
 						echo "<input type='hidden' name='eoi_number' value='" . $row['EOInumber'] . "'>";
+						echo '<label class="hidden-label" for="new_status">Status</label>';
 						echo "<select name='new_status'>";
 						$statuses = ['new', 'current', 'final'];
 						foreach ($statuses as $status) {
