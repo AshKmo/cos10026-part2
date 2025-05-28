@@ -12,6 +12,11 @@ if (!$dbconn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_SESSION["time_at_lockout"])) {
+        header('Location: login.php');
+        exit;
+    }
+
     $input_username = trim($_POST['username']);
     $input_password = trim($_POST['password']);
 

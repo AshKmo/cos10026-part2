@@ -33,6 +33,7 @@
 			<li>The EOI records can now be displayed in the management console ordered by the value of a specific field and in a specific direction (ascending/descending)</li>
 			<li>A manager registration page was created to allow for new users to be added to the management console and job creation pages</li>
 			<li>A manager login page was created and the management console now requires a valid username and password to be submitted to its database prior to use</li>
+			<li>Failing the authentication process for the sixth time now results in the user being locked out of the login page for five minutes</li>
 			<li>A job creation and editing page was added to allow managers to change the positions offered by the company and for which applicants can submit expressions of interest</li>
 		</ul>
 
