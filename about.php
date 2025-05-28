@@ -77,7 +77,7 @@
 				<h2>Team Contributions to the Project</h2>
 				<dl>
 					<dt>Ash</dt>
-					<dd>Applications page, EOI processing page and database table</dd>
+					<dd>Enhancements page, applications page, EOI processing page and database table</dd>
 					<dt>Hayden</dt>
 					<dd>Home page, management login page, registration and authentication</dd>
 					<dt>Max</dt>

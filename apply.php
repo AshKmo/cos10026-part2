@@ -60,7 +60,7 @@ function print_skill($skill)
 	<meta name="keywords" content="Tolstra, jobs, application">
 
 	<!-- set the page title -->
-	<title>Applications</title>
+	<title>Tolstra Job Applications</title>
 </head>
 
 <body>

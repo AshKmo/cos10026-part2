@@ -107,16 +107,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <br><br>
 
-                <label for="username">Password: </label><br>
+                <label for="password">Password: </label><br>
                 <input type="password" id="password" name="password" placeholder="password" required>
 
                 <br><br>
 
-                <input type="radio" id="staff" value="staff" name="privilege" checked required>
-                <label for="staff">Staff</label>
+                <fieldset class="apply-fieldset">
+                    <legend>Role</legend>
 
-                <input type="radio" id="manager" value="manager" name="privilege">
-                <label for="manager">Manager</label>
+                    <input type="radio" id="staff" value="staff" name="privilege" checked required>
+                    <label for="staff">Staff</label>
+
+                    <input type="radio" id="manager" value="manager" name="privilege">
+                    <label for="manager">Manager</label>
+                </fieldset>
 
                 <?php
                 // Status of new user creation
@@ -125,9 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					echo '<p>' . $_SESSION['new_status'] . '</p>';
 					echo "</section>";
 					unset($_SESSION['new_status']);
-				} else {
-                    echo "<br><br>";    
-                }
+				}
 				?>
 
                 <input type="submit" value="Add User">
@@ -172,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Print status of user deletion
 			if (isset($_SESSION['del_status'])) {
 			    echo "<section id=del_status>";
-				echo '<p>' . $_SESSION['del_status'] . '</p>';
+				echo '<br><p class="update_text">' . $_SESSION['del_status'] . '</p>';
 				echo "</section>";
 				unset($_SESSION['del_status']);
 			}
