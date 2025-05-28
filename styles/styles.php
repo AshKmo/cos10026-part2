@@ -835,6 +835,20 @@ while ($job = $result->fetch_assoc()) {
 	font-size: 17px;
 }
 
+#jobs-manage-description {
+	/* add a darker rounded border to the textarea box, make it fill the width of the fieldset, and add inner padding so that the text nicely fits inside */
+	width: 100%;
+	height: 150px;
+	box-sizing: border-box;
+	border: solid #606060 2px;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 16px;
+
+	/* disable changes to the width of the textarea so that it doesn't collide with the edges of the main element */
+	resize: vertical;
+}
+
 /* these styles only apply to browsers with a viewport width smaller than 800 pixels, such as browsers on mobile devices */
 /* mobile device criteria (modified) from https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 @media only screen and (max-width: 1100px) {

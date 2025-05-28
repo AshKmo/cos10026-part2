@@ -115,33 +115,33 @@
 							</p>
 
 							<p>
-								<label for="jobs-manage-id">Job Description</label>
-								<textarea id="apply-other-skills" name="description" placeholder="Enter job description" required></textarea>
+								<label for="jobs-manage-description">Job Description</label>
+								<textarea id="jobs-manage-description" name="description" placeholder="Enter job description" required></textarea>
 							</p>
 							<br>
 
 							<p>
-								<label for="jobs-manage-id">Salary range:</label>
+								<label for="jobs-manage-salary">Salary range:</label>
 								<input class="jobs-manage-input" type="text" name="salary_range" id="jobs-manage-salary" size="20" maxlength="30" placeholder="$0 to $999,999,999" required>
 							</p>
 
 							<p>
-								<label for="jobs-manage-id">Employment type:</label>
+								<label for="jobs-manage-employ-type">Employment type:</label>
 								<input class="jobs-manage-input" type="text" name="employment_type" id="jobs-manage-employ-type" size="20" maxlength="30" placeholder="Full time, part time, etc" required>
 							</p>
 
 							<p>
-								<label for="jobs-manage-id">Office Location:</label>
+								<label for="jobs-manage-location">Office Location:</label>
 								<input class="jobs-manage-input" type="text" name="location" id="jobs-manage-location" size="20" maxlength="70" placeholder="Location Here" required>
 							</p>
 							<br>
 							<p>
-								<label for="jobs-manage-id">Name of Superior:</label>
+								<label for="jobs-manage-superior">Name of Superior:</label>
 								<input class="jobs-manage-input" type="text" name="report_to_name" id="jobs-manage-superior" size="20" maxlength="50" placeholder="Superior Name Here" required>
 							</p>
 
 							<p>
-								<label for="jobs-manage-id">Title of Superior:</label>
+								<label for="jobs-manage-superior-title">Title of Superior:</label>
 								<input class="jobs-manage-input" type="text" name="report_to_title" id="jobs-manage-superior-title" size="20" maxlength="40" placeholder="Superior Title Here" required>
 							</p>
 						</div>
