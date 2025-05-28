@@ -61,7 +61,11 @@ session_start();
 					unset($_SESSION["attempts"]);
 					echo_login();
 				} else {
-					echo "<p>Maximum attempts have been reached. Please try again in " . (4 - intdiv(time() - $_SESSION["time_at_lockout"], 60)) . " minutes and " . (59 - (time() - $_SESSION["time_at_lockout"]) % 60) . " seconds.</p>";
+					if (4 - intdiv(time() - $_SESSION["time_at_lockout"], 60) != 0) {
+						echo "<p>Maximum attempts have been reached. Please try again in " . (4 - intdiv(time() - $_SESSION["time_at_lockout"], 60)) . " minutes and " . (59 - (time() - $_SESSION["time_at_lockout"]) % 60) . " seconds.</p>";
+					} else {
+						echo "<p>Maximum attempts have been reached. Please try again in " . (59 - (time() - $_SESSION["time_at_lockout"]) % 60) . " seconds.</p>";
+					}
 				}
 			} else {
 				echo_login();
