@@ -26,18 +26,20 @@ session_start();
 
 	<!-- define the main body content of the page -->
 	<main>
-		<section id="login-ui">
-			<h1>Staff Login</h1>
-			<form action="process_login.php" method="POST">
-				<label for="username">Username:</label><br>
-				<input type="text" id="username" name="username" placeholder="username" required>
+		<?php
+			function echo_login() {
+				echo "
+					<section id=\"login-ui\">
+						<h1>Staff Login</h1>
+							<form action=\"process_login.php\" method=\"POST\">
+								<label for=\"username\">Username:</label><br>
+								<input type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\" required>
 
-				<br><br>
-				
-				<label for="password">Password:</label><br>
-				<input type="password" id="password" name="password" placeholder="password" required>
-
-				<?php
+								<br><br>
+								
+								<label for=\"password\">Password:</label><br>
+								<input type=\"password\" id=\"password\" name=\"password\" placeholder=\"password\" required>
+				";
 				// Display login error
 				if (isset($_SESSION['error'])) {
 					echo "<section id=error>";
@@ -47,11 +49,26 @@ session_start();
 				} else {
 					echo "<br><br>";
 				}
-				?>
+				echo "
+								<input type=\"submit\" value=\"Login\">
+							</form>
+						</section>
+				";
+			}
+			if (isset($_SESSION["time_at_lockout"])) {
+				if (time() - ($_SESSION["time_at_lockout"] + 30)  > 0) {
+					unset($_SESSION["time_at_lockout"]);
+					unset($_SESSION["attempts"]);
+					echo_login();
+				} else {
+					echo "<p>Maximum attempts have been reached. Please try again in " . (4 - intdiv(time() - $_SESSION["time_at_lockout"], 60)) . " minutes and " . (59 - (time() - $_SESSION["time_at_lockout"]) % 60) . " seconds.</p>";
+				}
+			} else {
+				echo_login();
+			}
 
-				<input type="submit" value="Login">
-			</form>
-		</section>
+		?>
+		
     </main>
 
 	<?php include_once "footer.inc"; ?>

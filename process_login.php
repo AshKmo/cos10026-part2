@@ -37,6 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $_SESSION['error'] = "Username or password not found. Please try again.";
+    if (!isset($_SESSION["attempts"])) {
+        $_SESSION["attempts"] = 0;
+    }
+    $_SESSION["attempts"] += 1;
+    if ($_SESSION["attempts"] > 5) {
+        $_SESSION["time_at_lockout"] = time();
+    }
     header('Location: login.php');
     exit;
 }
