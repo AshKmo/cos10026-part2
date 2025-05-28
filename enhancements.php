@@ -16,7 +16,7 @@
 	<meta name="keywords" content="Tolstra, website, enhancements">
 
 	<!-- set the page title -->
-	<title>Tolstra Home</title>
+	<title>Tolstra Webpage Enhancements</title>
 </head>
 
 <body>
