@@ -25,7 +25,7 @@
 	    <?php include "meta.inc"; ?>
 
 	    <!-- set the page description -->
-	    <meta name="description" content="About Tolstra">
+	    <meta name="description" content="Tolstra - Manage Jobs">
 
 	    <!-- set keywords for SEO -->
 	    <meta name="keywords" content="Tolstra, telecommunications, Internet, phone, about">
